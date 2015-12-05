@@ -1,0 +1,23 @@
+{
+  "name": "hack15",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "font-awesome": "fontawesome#~4.4.0",
+    "jquery": "~2.1.1",
+    "jquery-cookie": "~1.4.1",
+    "jquery-ui": "~1.11.4",
+    "lodash": "~3.7.0",
+    "moment": "~2.10.2"
+  },
+  "homepage": "https://github.com/radamel9/hack15",
+  "authors": [
+    "radamel9 <ggola93@gmail.com>"
+  ],
+  "license": "MIT"
+}

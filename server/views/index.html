@@ -1,0 +1,44 @@
+<html ng-app="MyApp">
+	<head>
+		<title>ImerNews | Economic, finanace and business news</title>
+		<base href="/">
+		<meta http-equiv="X-UA-Compatible",content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<!--social -->
+		<meta property="og:url"           content="http://imernews.herokuapp.com/" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="ImerNews" />
+		<meta property="og:description"   content="Economic & Business News" />
+		<meta property="og:image"         content="http://imernews.herokuapp.com/images/posts/mainpost.jpg" />
+		<!-- end of social -->
+
+		<!-- favicon -->
+		<link rel='shortcut icon' href="/images/favicon.ico">
+		<!-- end of favicon -->
+
+		<!-- BEGIN CORE CSS FRAMEWORK -->
+		<link href="/css/vendor.css" rel="stylesheet" type="text/css"/>
+		<link href="/css/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<!-- END CORE CSS FRAMEWORK -->
+		
+		<!-- custom css  -->
+		<link href="/css/app.css" rel="stylesheet" type="text/css">
+		<!-- end of custom css  -->
+	</head>
+	<body ng-controller="mainCtrl">
+		<link rel="stylesheet" ng-href="{{ theme.cssMin }}">
+		<div class="container-fluid">
+			<header ui-view="header">
+			</header>
+
+			<div ui-view="content">
+			</div>
+
+			<footer ui-view="footer">
+			</footer>
+		</div>
+		<div id="fb-root"></div>
+		<script src="/scripts/vendor.js"></script>
+		<script src="/scripts/app.js"></script>
+	</body>
+</html>
