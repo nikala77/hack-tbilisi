@@ -17,6 +17,7 @@ mongoose.connection.on('error', function(err) {
 
 var app = require('./express')(db);
 
+app.set('views', __dirname + '/views');
 
 app.listen(app.get('PORT') , function() {
 	console.log('app is running on port: ' + app.get('PORT'));
