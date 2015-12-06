@@ -1,20 +1,18 @@
-var path         = require('path');
-// var auth         = require('../controllers/auth');
+var path    = require('path');
+var swig    = require('swig');
 
 module.exports = function (app) {
 
-	require('./article')(app);
-    require('./user')(app);
-    require('./follower')(app);
-
-    // app.get('/refreshJwt', auth.ensureAuthenticated, auth.refreshJwt);
+	require('./account')(app);
 
     app.all('/api/*', function(req, res){
         res.status(404).send('Invalid api url');
     });
 
     app.get('*', function (req, res) {
-        res.sendFile(path.join(app.get('views'), 'index.html'));
+        res.render(path.join(app.get('views'), 'index.html'), {
+            pageName: 'hack15'
+        });
     });
     
     if (process.env.NODE_ENV === 'test') {
