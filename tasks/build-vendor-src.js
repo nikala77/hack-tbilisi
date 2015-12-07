@@ -1,3 +1,4 @@
+var path           = require('path');
 var gulp           = require('gulp');
 var gif            = require('gulp-if');
 var gsize          = require('gulp-size');
@@ -13,8 +14,14 @@ var paths          = require('../config/gulp').paths;
 var filters        = require('../config/gulp').filters;
 
 gulp.task('build-vendor-js', function() {
+    var rootPath = path.normalize(__dirname);
+
+    var cabinetPath = path.join(rootPath, '../client/vendor/jquery.cabinet/jquery.cabinet.js');
+
+    var notMainBowerFiles = [ cabinetPath ];
+
     return gulp
-        .src(mainBowerFiles(filters.jsDeep))
+        .src(mainBowerFiles(filters.jsDeep).concat(notMainBowerFiles))
         .pipe(gif(args.isNotProduction, gsourcemaps.init()))
         .pipe(gorder([
             'jquery.js',
@@ -33,6 +40,7 @@ gulp.task('build-vendor-js', function() {
             'select.js',
             'ng-img-crop.js',
             'smart-area.js',
+            'jquery.cabinet.js',
             '*'
         ]))
         .pipe(gif(args.isProduction, guglify({

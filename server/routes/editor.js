@@ -3,4 +3,4 @@ module.exports = function (app) {
 
 	app.route('/editor')
 		.get(editor.getEditor);
-}
+};
