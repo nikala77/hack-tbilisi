@@ -75,9 +75,6 @@ gulp.task('build-vendor-css', function() {
 gulp.task('build-vendor-fonts', function() {
     return gulp
         .src(paths.clientFonts + filters.fontsDeep)
-        .pipe(gsize({
-            title: 'vendor.fonts'
-        }))
         .pipe(gulp.dest(paths.distFonts));
 });
 

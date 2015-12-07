@@ -2,7 +2,7 @@
 // var httpUtil	 = require('../util/httpUtil');
 
 exports.getLogin = function(req, res) {
-	res.render('404.html', {
+	res.render('account/login.html', {
         pageName: 'hack15'
     });
 };

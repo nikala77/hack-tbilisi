@@ -21,7 +21,7 @@ var config = {
         cssDeep: '**/*.css',
         jadeDeep: '**/*.jade',
         imagesDeep: '**/*.{ico,png,jpg,jpeg,gif,webp,svg}',
-        fontsDeep: '**/*.{eot,svg,ttf,woff,woff2}',
+        fontsDeep: '**/*.{otf,eot,svg,ttf,woff,woff2}',
         swfDeep: '**/*.swf',
         mapDeep: '**/*.map'
     },
