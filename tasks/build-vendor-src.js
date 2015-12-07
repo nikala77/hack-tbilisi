@@ -7,6 +7,7 @@ var gsourcemaps    = require('gulp-sourcemaps');
 var guglify        = require('gulp-uglify');
 var gminifyCss     = require('gulp-minify-css');
 var mainBowerFiles = require('main-bower-files');
+var lib            = require('bower-files')();
 var args           = require('../config/gulp').args;
 var paths          = require('../config/gulp').paths;
 var filters        = require('../config/gulp').filters;
@@ -47,7 +48,7 @@ gulp.task('build-vendor-js', function() {
 
 gulp.task('build-vendor-css', function() {
     return gulp
-        .src(mainBowerFiles(filters.cssDeep))
+        .src(lib.ext('less').files)
         .pipe(gif(args.isNotProduction, gsourcemaps.init()))
         .pipe(gorder([
             'bootstrap.css',
