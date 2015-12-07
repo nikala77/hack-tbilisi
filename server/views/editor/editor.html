@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<title>{{ pageName | title }}</title>
+		<base href="/">
+		<meta http-equiv="X-UA-Compatible",content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+		<!--social -->
+		<!-- <meta property="og:url"           content="http://hack15.herokuapp.com/" /> -->
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="hack15" />
+		<!-- end of social -->
+
+		<!-- favicon -->
+		<link rel='shortcut icon' href="/images/favicon.ico">
+		<!-- end of favicon -->
+
+		<!-- BEGIN CORE CSS FRAMEWORK -->
+		<link href="/css/vendor.css" rel="stylesheet" type="text/css"/>
+		<link href="/css/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<!-- END CORE CSS FRAMEWORK -->
+		
+		<!-- custom css  -->
+		<link href="/css/app.css" rel="stylesheet" type="text/css">
+		<!-- end of custom css  -->
+	</head>
+	<body>
+		<div class="container">
+			{% block content %}{% endblock %}
+			{% include "./sidebar.html" %}
+		</div>
+		<script src="/scripts/vendor.js"></script>
+		<script src="/scripts/app.js"></script>
+	</body>
+</html>
