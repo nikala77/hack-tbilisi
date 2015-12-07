@@ -3,7 +3,7 @@ var path    = require('path');
 module.exports = function (app) {
 	require('./account')(app);
     // require('./dashboard')(app);
-    // require('./editor')(app);
+    require('./editor')(app);
 
     app.all('/api/*', function(req, res){
         res.status(404).send('Invalid api url');
