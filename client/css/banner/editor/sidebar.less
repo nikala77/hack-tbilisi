@@ -1,0 +1,120 @@
+.cabinet {
+  position: fixed;
+  transition: all cubic-bezier(.19, 1, .22, 1);
+  transition-duration: 1.2s;
+}
+
+.cabinet-drawer {
+  position: absolute;
+	top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: #ffffff;
+}
+.cabinet-drawer.drawer-open {
+	z-index: 30;
+}
+.cabinet-drawer.drawer-close {
+	z-index: 0;
+}
+
+.cabinet-knob {
+  position: absolute;
+  background-color: #585555;
+  border: 1px solid #aaa;
+}
+
+.cabinet.cabinet-open .cabinet-drawer.drawer-open .cabinet-knob {
+  background-color: #585555;
+  border: none;
+  z-index: 10;
+}
+
+.cabinet-box {
+  position: absolute;
+	top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+
+  background-color: #585555;
+  padding: 10px;
+}
+
+.cabinet-left {
+  top: 0px;
+  left: 0px;
+  height: 100%;
+}
+
+.cabinet-left .cabinet-knob {
+  width: 80px;
+  height: 80px;
+}
+
+.cabinet-left .cabinet-knob p {
+	transform: rotate(-90deg);
+	transform-origin: left bottom;
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+	right: -80px;
+  overflow: hidden;
+}
+
+.cabinet-left .cabinet-drawer:nth-child(1) .cabinet-knob {
+  top: 0px;
+}
+.cabinet-left .cabinet-drawer:nth-child(2) .cabinet-knob {
+  top: calc(80px - 10px);
+}
+.cabinet-left .cabinet-drawer:nth-child(3) .cabinet-knob {
+  top: calc(160px - 20px);
+}
+.cabinet-left .cabinet-drawer:nth-child(4) .cabinet-knob {
+  top: calc(240px - 30px);
+}
+.cabinet-left .cabinet-drawer:nth-child(5) .cabinet-knob {
+  top: calc(320px - 40px);
+}
+
+.cabinet-left .cabinet-knob {
+	right: -80px;
+	border-radius: 0px 5px 5px 0px;
+}
+
+.cabinet-left.cabinet.cabinet-open .cabinet-drawer.drawer-open .cabinet-knob {
+	box-shadow: 5px 5px 10px 0px #aaa;
+}
+
+.cabinet-icon {
+  background-repeat: no-repeat;
+  background-size: 60% 60%;
+  display: block;
+  margin-left: 15px;
+  margin-top: 15px; 
+  width: 100%;
+  height: 100%;
+}
+
+.cabinet-icon.cabinet-background {
+  background-image: url("/images/background.png");
+}
+
+.cabinet-icon.cabinet-shapes {
+  background-image: url("/images/shapes.png");
+}
+
+.cabinet-icon.cabinet-image {
+  background-image: url("/images/images.png");
+}
+
+.cabinet-icon.cabinet-video {
+  background-image: url("/images/video.png");
+}
+
+.cabinet-icon.cabinet-audio {
+  background-image: url("/images/audio.png");
+}
