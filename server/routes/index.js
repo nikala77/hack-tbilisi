@@ -1,7 +1,6 @@
 var path    = require('path');
 
 module.exports = function (app) {
-
 	require('./account')(app);
     // require('./dashboard')(app);
     // require('./editor')(app);
@@ -11,7 +10,7 @@ module.exports = function (app) {
     });
 
     app.get('/', function (req, res) {
-        res.render(path.join(app.get('views'), 'index.html'), {
+        res.render(path.join(app.get('views'), 'account/layout.html'), {
             pageName: 'hack15'
         });
     });
@@ -22,7 +21,7 @@ module.exports = function (app) {
         });
     });
 
-    app.use(function(err, req, res, next){
+    app.use(function(err, req, res){
         res.render(path.join(app.get('views'), '500.html'), {
             status: err.status || 500,
             error: err
