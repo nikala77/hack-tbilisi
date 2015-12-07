@@ -1,5 +1,4 @@
 var path    = require('path');
-var swig    = require('swig');
 
 module.exports = function (app) {
 
@@ -11,9 +10,22 @@ module.exports = function (app) {
         res.status(404).send('Invalid api url');
     });
 
-    app.get('*', function (req, res) {
+    app.get('/', function (req, res) {
         res.render(path.join(app.get('views'), 'index.html'), {
             pageName: 'hack15'
+        });
+    });
+
+    app.use(function(req, res) {
+        res.render(path.join(app.get('views'), '404.html'), {
+            pageName: 'hack15'
+        });
+    });
+
+    app.use(function(err, req, res, next){
+        res.render(path.join(app.get('views'), '500.html'), {
+            status: err.status || 500,
+            error: err
         });
     });
     
