@@ -1,4 +1,58 @@
 {% extends "./layout.html" %}
 {% block content %}
+	<div class="header">
+		<header>
+			<div class="buttons">
+				<button class="btn btn-default">Preview</button>
+				<button class="btn btn-default">Publish</button>
+			</div>
+		</header>
+		<div class="subheader">
+			<div class="buttons">
+				<div class="dropdown-container">
+				  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    	Change Banner Size
+				    	<span class="caret"></span>
+				  	</button>
+				  	<ul class="dropdown-menu baner-size-dropdown" aria-labelledby="dropdownMenu1" style="left:515px;">
+				    	<li>
+				    		<h4>200X200</h4>
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>300X300</h4>	
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>728X90</h4>	
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>120X600</h4>	
+				    		<hr>
+				    	</li>
+				    	<li>
+				    		<h4>160X600</h4>	
+				    		<hr>
+				    	</li>
+				    	<li>
+				    		<h4>1200X628</h4>	
+				    		<hr>
+				    	</li>
+				    	<li>
+				    		<h4>1136X640</h4>	
+				    	</li>
+				  	</ul>
+					<button class="btn btn-default">Animations</button>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
 	{% include "./sidebar.html" %}
+	<div class="working-board">
+		<div class="working-banner"></div>
+	</div>
+	<div class="scalebar">
+	</div>
 {% endblock %}
