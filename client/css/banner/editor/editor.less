@@ -19,14 +19,10 @@ header {
 }
 
 
-.subheader {
+.main {
 	height: 40px;
-	background-color: #457288;
+	margin-left: 40%; 
 	position: relative;
-	.buttons {
-		text-align: center;
-	}
-
 	ul.dropdown-menu {
 		text-align: center;
 		h4 { 
@@ -55,9 +51,31 @@ header {
 
 .scalebar {
 	position: fixed;
-	bottom: 10px;
+	bottom: 30px;
 	right: 10px;
-	background-color: red;
-	width: 100px;
-	height: 200px;
+	background-color: #AAA;
+	width: 40px;
+	height: 70px;
+	display: block;
+	.scale-plus {
+		height: 35px;
+		text-align: center;
+	}
+	
+	hr {
+		margin: 0;
+	}
+
+	div {
+		text-align: center;
+		height: 35px;
+
+		span {
+			margin-top: 9px;
+			margin-left: 2px;
+		}
+	}
+	
+	.scale-minus {
+	}
 }

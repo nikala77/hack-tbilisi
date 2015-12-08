@@ -3,18 +3,18 @@
 	<div class="header">
 		<header>
 			<div class="buttons">
-				<button class="btn btn-default">Preview</button>
-				<button class="btn btn-default">Publish</button>
+				<button class="btn btn-success">Preview</button>
+				<button class="btn btn-danger">Publish</button>
 			</div>
 		</header>
-		<div class="subheader">
+		<div class="main">
 			<div class="buttons">
 				<div class="dropdown-container">
 				  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 				    	Change Banner Size
 				    	<span class="caret"></span>
 				  	</button>
-				  	<ul class="dropdown-menu baner-size-dropdown" aria-labelledby="dropdownMenu1" style="left:515px;">
+				  	<ul class="dropdown-menu baner-size-dropdown" aria-labelledby="dropdownMenu1">
 				    	<li>
 				    		<h4>200X200</h4>
 							<hr>
@@ -47,12 +47,18 @@
 			  	</div>
 			</div>
 		</div>
-	</div>
 
 	{% include "./sidebar.html" %}
 	<div class="working-board">
 		<div class="working-banner"></div>
 	</div>
 	<div class="scalebar">
+		<div class="scale-plus">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		</div>
+		<hr>
+		<div class="scale-minus">
+			<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+		</div>
 	</div>
 {% endblock %}
