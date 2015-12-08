@@ -8,13 +8,12 @@ var gsourcemaps    = require('gulp-sourcemaps');
 var guglify        = require('gulp-uglify');
 var gminifyCss     = require('gulp-minify-css');
 var mainBowerFiles = require('main-bower-files');
-var lib            = require('bower-files')();
 var args           = require('../config/gulp').args;
 var paths          = require('../config/gulp').paths;
 var filters        = require('../config/gulp').filters;
+var rootPath = path.normalize(__dirname);
 
 gulp.task('build-vendor-js', function() {
-    var rootPath = path.normalize(__dirname);
 
     var cabinetPath = path.join(rootPath, '../client/vendor/jquery.cabinet/jquery.cabinet.js');
 
@@ -55,8 +54,12 @@ gulp.task('build-vendor-js', function() {
 });
 
 gulp.task('build-vendor-css', function() {
+    var bootstrap = paths.vendor + '/bootstrap/dist/css/' + '*.css';
+    var fontAwesome = paths.vendor + '/font-awesome/css/' + '*.css';
+    var array = [bootstrap, fontAwesome];
+
     return gulp
-        .src(lib.ext('less').files)
+        .src(array)
         .pipe(gif(args.isNotProduction, gsourcemaps.init()))
         .pipe(gorder([
             'bootstrap.css',
@@ -73,8 +76,12 @@ gulp.task('build-vendor-css', function() {
 });
 
 gulp.task('build-vendor-fonts', function() {
+    var bootstrap = paths.vendor + '/bootstrap/dist/fonts/' + filters.fontsDeep;
+    var fontAwesome = paths.vendor + '/font-awesome/fonts/' + filters.fontsDeep;
+    var array = [bootstrap, fontAwesome];
+
     return gulp
-        .src(paths.clientFonts + filters.fontsDeep)
+        .src(array)
         .pipe(gulp.dest(paths.distFonts));
 });
 

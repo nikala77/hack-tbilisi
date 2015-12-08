@@ -35,7 +35,7 @@ var config = {
         clientJs: CLIENT + 'javascript/',
         clientCss: CLIENT + 'css/',
         clientImages: CLIENT + 'images/',
-        clientFonts: CLIENT + 'fonts/',
+        clientFonts: CLIENT,
         clientAccountCss: CLIENT + 'css/banner/account/',
         clientAccountJs: CLIENT + 'javascript/banner/account/',
         clientDashboardCss: CLIENT + 'css/banner/dashboard/',
