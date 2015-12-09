@@ -1,0 +1,123 @@
+@sideBarBG: #1B1E24;
+@popLogout: #00c4cc;
+@badgeColor: #FB4443;
+@beforeHover: #949494;
+
+body {
+	background-color: #E8E8E8;
+}
+
+.container-fluid {
+	padding: 0px;
+}
+
+.side-bar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+	display: inline-block;
+    float: left;
+    width: 250px;
+    height: 100%;
+	padding: 20px;
+    padding-bottom: 105px;
+	background-color: @sideBarBG;
+	color: #FFFFFF;
+	z-index: 1;
+
+	.current-user {
+		margin-top: 20px;
+		.avatar {
+			position: relative;
+			width: 55px;
+			height: 55px;
+			margin-left: 5px;
+			margin-right: 10px;
+			margin-bottom: 10px;
+			text-decoration: none;
+			span {
+				width: 50px;
+				height: 50px;
+				img {
+					width: 50px;
+					height: 50px;
+					&:hover {
+						border: 2px solid yellow;
+					};
+				}
+			}
+		}
+		.username {
+			cursor: pointer;
+			font-size: 13px;
+			color: #FFFFFF;
+		}
+	}
+	.popover {
+		h3 {
+			text-align: center;
+			color: #3f4652;
+			img {
+				margin-bottom: 10px;
+			}
+		}
+		.logout {
+			color: @popLogout;
+			margin-bottom: 10px;
+		}
+	}
+
+	.dashboard-ul {
+		margin-top: 50px;
+		ul {
+			padding-left: 5px;
+			padding-right: 5px;
+			li {
+				padding: 10px;
+				a {
+					color: @beforeHover;
+					text-decoration: none;
+					font-weight: bold;
+					font-family: Arial;
+					
+					i {
+						margin-right: 10px;
+					}
+
+					.badge {
+						background-color: @badgeColor;
+					}
+
+					&:hover {
+						color: #FFFFFF;
+					};
+				}
+			}
+			li.active {
+				background-color: #22262E;
+				a {
+					color: #FFFFFF;
+				}
+			}
+		}
+	}
+
+	.logo-div {
+		position: relative;
+		margin-top: 250px;
+		text-align: center;
+		img {
+			margin-left: 5px;
+			margin-right: 10px;
+			float: left;
+			width: 70px;
+			height: 70px;
+		}
+		span {
+			position: relative;
+			top: 15px;
+			color: #787D85;
+			margin-top: 20px;
+		}
+	}
+}
