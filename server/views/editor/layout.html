@@ -25,10 +25,18 @@
 		<!-- end of custom css  -->
 	</head>
 	<body>
+		<script type="text/javascript" src="https://api.filepicker.io/v2/filepicker.js"></script>
 		<div class="wrapper">
 			{% block content %}{% endblock %}
 		</div>
 		<script src="/scripts/vendor.js"></script>
 		<script src="/scripts/banner/editor/app.js"></script>
+		<script>
+			$(function () {
+				$('.bg-colpicker').on('click', function () {
+					$('#bg-colpicker').colpick();
+				});
+			});
+		</script>
 	</body>
 </html>

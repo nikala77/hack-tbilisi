@@ -2,7 +2,7 @@
   position: fixed;
   transition: all cubic-bezier(.19, 1, .22, 1);
   transition-duration: 1.2s;
-  z-index: 30;
+  z-index: 1;
 }
 
 .cabinet-drawer {
@@ -34,7 +34,7 @@
 
 .cabinet-box {
   position: absolute;
-	top: 0;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
@@ -118,4 +118,36 @@
 
 .cabinet-icon.cabinet-audio {
   background-image: url("/images/audio.png");
+}
+
+
+.bg-box {
+  padding: 13px;
+
+  .bg-item {
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 120px;
+    height: 75px;
+    &:hover {
+        cursor: pointer;
+    }
+  }
+
+  .bg-colpicker {
+    background-color: #fefef0;
+    border: 1px solid #000;
+    .addcolor {
+      margin: 22px 46px; 
+      width: 40px;
+      height: 40px;
+      background-repeat: no-repeat;
+      background-image: url("/images/addcolor.png");
+    }
+  }
+}
+
+.colpick {
+  z-index: 4;
 }

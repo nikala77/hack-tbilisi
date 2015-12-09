@@ -14,7 +14,8 @@
     "jquery-ui": "~1.11.4",
     "lodash": "~3.7.0",
     "moment": "~2.10.2",
-    "jquery.cabinet": "https://github.com/fintopo/jquery.cabinet.git#a04c07095143fe6f80bcebb82d8cd1ecf8a0319a"
+    "jquery.cabinet": "https://github.com/fintopo/jquery.cabinet.git#a04c07095143fe6f80bcebb82d8cd1ecf8a0319a",
+    "jquery-colpick": "~3.1.0"
   },
   "homepage": "https://github.com/radamel9/hack15",
   "authors": [

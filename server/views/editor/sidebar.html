@@ -4,8 +4,17 @@
 			<div class="cabinet-knob">
 				<div class="cabinet-icon cabinet-background"></div>
 			</div>
-			<div class="cabinet-box">
-				<h1>Background options must be there</h1>
+			<div class="cabinet-box bg-box">
+				<!-- <h1>Background options must be there</h1> -->
+				<div id="bg-colpicker" class="bg-colpicker bg-item">
+					<div class="addcolor"></div>
+				</div>
+				<div class="bg-item" style="clear:both; background-color:#FF0000;"></div>
+				<div class="bg-item" style="background-color:#00FF00;"></div>
+				<div class="bg-item" style="background-color:#0000FF;"></div>
+				<div class="bg-item" style="background-color:#FFFF00;"></div>
+				<div class="bg-item" style="background-color:#800080;"></div>
+				<div class="bg-item" style="background-color:#FFC0CB;"></div>
 			</div>
 		</div>
 		<div class="cabinet-drawer">
@@ -24,12 +33,9 @@
 			<div class="cabinet-knob">
 				<div class="cabinet-icon cabinet-image"></div>
 			</div>
-			<div class="cabinet-box">
-				<h3>Multiple Drawers</h3>
-				<p>
-					A cabinet have multiple drawers.
-					Display switches to each drawer.
-				</p>
+			<div class="cabinet-box image-box">
+				<h3>Image</h3>
+				<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="alert(event.fpfile.url)">
 			</div>
 		</div>
 		<div class="cabinet-drawer">
@@ -37,11 +43,8 @@
 				<div class="cabinet-icon cabinet-video"></div>
 			</div>
 			<div class="cabinet-box">
-				<h3>Multiple Drawers</h3>
-				<p>
-					A cabinet have multiple drawers.
-					Display switches to each drawer.
-				</p>
+				<h3>Video</h3>
+				<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="alert(event.fpfile.url)">
 			</div>
 		</div>
 		<div class="cabinet-drawer">
@@ -49,11 +52,8 @@
 				<div class="cabinet-icon cabinet-audio"></div>
 			</div>
 			<div class="cabinet-box">
-				<h3>Multiple Drawers</h3>
-				<p>
-					A cabinet have multiple drawers.
-					Display switches to each drawer.
-				</p>
+				<h3>Audio</h3>
+				<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="alert(event.fpfile.url)">
 			</div>
 		</div>
 	</div>
