@@ -27,21 +27,4 @@ $(function() {
     ,mode: 'position'
   }, options));
   //
-
-
-  // change banner size via dropdown
-  $('.baner-size-dropdown').on('click', 'li', function () {
-    var newValue =  parseInt($(this).find('h4').text());
-
-    switch (newValue) {
-      case 200 : changeBannerSize(200, 200); break;
-      case 300 : changeBannerSize(300, 300); break;
-      case 728 : changeBannerSize(728, 90); break;
-      case 120 : changeBannerSize(120, 600); break;
-      case 160 : changeBannerSize(160, 600); break;
-    }
-  });
-
-  // add background image
-  
 });
