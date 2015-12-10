@@ -1,7 +1,4 @@
-@sideBarBG: #1B1E24;
-@popLogout: #00c4cc;
-@badgeColor: #FB4443;
-@beforeHover: #949494;
+@import "variables.less";
 
 body {
 	background-color: #E8E8E8;
@@ -14,7 +11,6 @@ body {
 .side-bar {
     position: fixed;
     top: 0px;
-    left: 0px;
 	display: inline-block;
     float: left;
     width: 250px;
@@ -103,12 +99,12 @@ body {
 	}
 
 	.logo-div {
-		position: relative;
-		margin-top: 250px;
+		position: absolute;
+		bottom: 30px;
 		text-align: center;
 		img {
 			margin-left: 5px;
-			margin-right: 10px;
+			margin-right: 5px;
 			float: left;
 			width: 70px;
 			height: 70px;
@@ -120,4 +116,11 @@ body {
 			margin-top: 20px;
 		}
 	}
+}
+
+@media screen and (max-width: 767px) {
+	.side-bar {
+		left: -250px;
+	}
+
 }

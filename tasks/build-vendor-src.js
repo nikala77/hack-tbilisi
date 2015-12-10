@@ -56,7 +56,8 @@ gulp.task('build-vendor-js', function() {
 gulp.task('build-vendor-css', function() {
     var bootstrap = paths.vendor + '/bootstrap/dist/css/' + '*.css';
     var fontAwesome = paths.vendor + '/font-awesome/css/' + '*.css';
-    var array = [bootstrap, fontAwesome];
+    var colPicker = paths.vendor + '/jquery-colpick/css/' + '*.css'; 
+    var array = [bootstrap, fontAwesome, colPicker];
 
     return gulp
         .src(array)

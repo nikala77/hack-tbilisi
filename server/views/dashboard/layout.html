@@ -26,9 +26,12 @@
 	</head>
 	<body>
 		<div class="container-fluid">
+			{% include "./header.html" %}
 			{% include "./sidebar.html" %}
-			{% include "./projects.html" %}
-			{% block content %}{% endblock %}
+			<div class="section">
+				{% include "./projects.html" %}
+				{% block content %}{% endblock %}
+			</div>
 		</div>
 		<script src="/scripts/vendor.js"></script>
 		<script src="/scripts/banner/dashboard/app.js"></script>

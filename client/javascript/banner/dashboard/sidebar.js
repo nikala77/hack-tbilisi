@@ -21,4 +21,14 @@ $(function() {
 			$('.dashboard-ul li:eq(2)').addClass('active'); break;
 	};
 
+	$(window).on('resize', function() {
+		if($(this).width() <= 767) {
+			$('.side-bar').css('left', '-250px');
+			$('.header').css('margin-left', '0px');
+
+		} else {
+			$('.side-bar').css('left', '0px');
+		}
+	});
+
 });
