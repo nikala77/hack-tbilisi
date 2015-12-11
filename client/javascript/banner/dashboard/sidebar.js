@@ -5,12 +5,12 @@ $(function() {
 	$('.username').popover({
 		html: true,
 		title: avatarHTML + ' <p>' + usernameHTML + '</p>',
-		content: '<a href="/login" class="logout pull-right">Log Out</a>'
+		content: '<a href="/logout" class="logout pull-right">Log Out</a>'
 	});
 
 
 	// activate on click
-	switch(location.pathname) {
+	switch(window.location.pathname) {
 		case '/dashboard': 
 			$('.dashboard-ul li:eq(0), #banners').addClass('active'); 
 			break;
@@ -21,5 +21,5 @@ $(function() {
 		case '/dashboard/banner/statistics': 
 			$('.dashboard-ul li:eq(2), #statistics').addClass('active'); 
 			break;
-	};
+	}
 });

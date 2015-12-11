@@ -1,15 +1,17 @@
+var account = require('../services/account');
+
 module.exports = function(app) {
 	// dashboard controller
 	var dashboard = require('../controllers/dashboard');
 
 	// get dashboard
 	app.route('/dashboard')
-					  .get(dashboard.getDashboard);
+					  .get(account.isAuthenticated, dashboard.getDashboard);
 
 	app.route('/dashboard/banner/new')
-					  .get(dashboard.getBannerNew);
+					  .get(account.isAuthenticated, dashboard.getBannerNew);
 	
 	app.route('/dashboard/banner/statistics')
-					  .get(dashboard.getBannerStatistics);									 	
+					  .get(account.isAuthenticated, dashboard.getBannerStatistics);									 	
 
 };

@@ -1,17 +1,18 @@
 module.exports = function(app) {
 	// account controller
 	var account = require('../controllers/account');
+	var accountSrvc = require('../services/account');
 
 	// get login form
 	app.route('/login')
-					  .get(account.getLogin);
+					  .get(accountSrvc.blockAuth, account.getLogin);
 
 	app.route('/signup')
-					  .get(account.getSignUp);
+					  .get(accountSrvc.blockAuth, account.getSignUp);
 
 	app.route('/forgot')
-					  .get(account.getForgot);
+					  .get(accountSrvc.blockAuth, account.getForgot);
 
 	app.route('/reset/:token')
-					  .get(account.getReset);
+					  .get(accountSrvc.blockAuth, account.getReset);
 };

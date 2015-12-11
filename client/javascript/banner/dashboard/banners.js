@@ -35,7 +35,7 @@ $(function() {
 		} else {
 			child.css('top', 0);
 		}
-	};
+	}
 
-	alignMiddle($('.custom-size-rectangle'), $('.scrollable'))
+	alignMiddle($('.custom-size-rectangle'), $('.scrollable'));
 });

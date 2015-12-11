@@ -14,9 +14,11 @@ module.exports = function (app, passport) {
     });
 
     app.get('/', function (req, res) {
-        res.render(path.join(app.get('views'), 'account/login.html'), {
-            pageName: 'hack15'
-        });
+        if(req.isAuthenticated()) {
+            return res.redirect('/dashboard');
+        } else {
+            return res.redirect('/login');
+        }
     });
 
     app.use(function(req, res) {
