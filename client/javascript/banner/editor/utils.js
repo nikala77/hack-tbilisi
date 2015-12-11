@@ -10,3 +10,22 @@ function changeBannerSize (width, height) {
 		'top': top
 	});
 }
+
+
+function bindZooming (banner) {
+	var scale = 1;
+	var scaleFactor = 1.1;
+	$('.scale-plus').on('click', function() {
+		scale *= scaleFactor;
+		banner.css({
+			'transform': 'scale('+ scale +')'
+		});
+	});
+
+	$('.scale-minus').on('click', function() {
+		scale /= scaleFactor;
+		banner.css({
+			'transform': 'scale('+ scale +')'
+		});
+	});
+}

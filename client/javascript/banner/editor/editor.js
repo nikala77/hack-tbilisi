@@ -1,6 +1,7 @@
-console.log('editor');
 
 $(function() {
+  
+  var bannerBg = $('.working-banner');
 
   // sidebar initialization
   var backup_params;
@@ -27,4 +28,7 @@ $(function() {
     ,mode: 'position'
   }, options));
   //
+
+  // bind some editor options 
+  bindZooming(bannerBg);
 });
