@@ -1,13 +1,33 @@
-var mongoose = require('mongoose'),
-	Schema   = mongoose.Schema;
+var mongoose = require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
+var Schema   = mongoose.Schema;
 
 var userSchema = new Schema({
-	email    	: { type: String	, trim : true , required : true, unique: true },
-	salt	 	: {	type: String	, select: false	},
-	hashedPwd	: { type: String	, select: false },
-	apiKey		: { type: String },
-    roles		: [ String ],
-	verified	: { type: Boolean	, default: false }
+    local            : {
+        email        : String,
+        password     : String,
+    },
+    facebook         : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    },
+    google           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    }
 });
+
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
+
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.local.password);
+};
 
 mongoose.model('User' , userSchema);
