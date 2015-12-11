@@ -1,9 +1,13 @@
-var path    = require('path');
+var path        = require('path');
 
-module.exports = function (app) {
-	require('./account')(app);
+module.exports = function (app, passport) {
+    require('./account')(app);
+    require('./facebook')(app, passport);
     require('./dashboard')(app);
     require('./editor')(app);
+
+    // authentication strategies
+    require('../../config/strategy/passport')(passport);
 
     app.all('/api/*', function(req, res){
         res.status(404).send('Invalid api url');
