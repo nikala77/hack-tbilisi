@@ -1,4 +1,65 @@
 {% extends "./layout.html" %}
 {% block content %}
+	<div class="header">
+		<header>
+			<div class="buttons">
+				<button class="btn btn-success">Preview</button>
+				<button class="btn btn-danger">Publish</button>
+			</div>
+		</header>
+		<div class="main">
+			<div class="dropdown-container">
+				<div class="bannersize-dropdown">
+				  	<button class="btn btn-default dropdown-toggle" type="button" id="banenrsize" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    	Change Banner Size
+				    	<span class="caret"></span>
+				  	</button>
+				  	<ul class="dropdown-menu baner-size-dropdown" aria-labelledby="banenrsize">
+				    	<li>
+				    		<h4>200X200</h4>
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>300X300</h4>	
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>728X90</h4>	
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>120X600</h4>	
+				    		<hr>
+				    	</li>
+				    	<li>
+				    		<h4>160X600</h4>	
+				    	</li>
+				  	</ul>
+				</div>
+				<div class="animations-dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="animdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    	Animations
+				    	<span class="caret"></span>
+				  	</button>
+				  	<ul class="dropdown-menu baner-size-dropdown" aria-labelledby="animdropdown">
+				    	<p>Animations will be initialized there</p>
+				  	</ul>
+				</div>
+		  	</div>
+		</div>
+	</div>	
+
 	{% include "./sidebar.html" %}
+	<div class="working-board">
+		<div class="working-banner"></div>
+	</div>
+	<div class="scalebar">
+		<div class="scale-plus">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		</div>
+		<hr>
+		<div class="scale-minus">
+			<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+		</div>
+	</div>
 {% endblock %}
