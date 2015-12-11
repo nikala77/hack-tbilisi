@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row loginrow">
+	<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 loginform">
+		<div>
+			<div class="logo">
+				<img src="images/favic.jpg" class="img-rounded" />
+			</div>
+			<h4>Log In</h4>
+			<form>
+
+				<div class="form-group">
+			    	<button type="button" class="btn btn-facebook btn-block" ><i class="fa fa-facebook-square"></i> Login with Facebook</button>
+				</div>
+
+				<div class="form-group">
+			    	<button type="button" class="btn btn-googleplus btn-block" ><i class="fa fa-google-plus-square"></i> Login wits Google +
+				</div>
+
+				<div class="form-group">
+					<label for="email">Email address:</label>
+					<input type="email" class="form-control" id="email" placeholder="Enter Your Email">
+				</div>
+				<div class="form-group">
+					<label for="password">Password:</label>
+					<input type="password" class="form-control" id="password" placeholder="Enter Your Password">
+				</div>
+				<div class="remember">
+					<input type="checkbox" class="foem-control" id="remember-me" /> 
+					<label for="remember-me">Remember Me</label> 
+				</div>
+				<div class="form-group">
+					<buton type="submit" class="btn btn-success btn-block">Log In</button>
+				</div>
+				<div class="form-group">
+					<a href="/forgot"> Forget Password? </a>
+				</div>
+				<div class="form-group">
+					<a href="/signup">Don't have an account? Sign Up <i class="fa fa-location-arrow"></i></a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -10,7 +10,7 @@ module.exports = function (app) {
     });
 
     app.get('/', function (req, res) {
-        res.render(path.join(app.get('views'), 'account/layout.html'), {
+        res.render(path.join(app.get('views'), 'account/login.html'), {
             pageName: 'hack15'
         });
     });

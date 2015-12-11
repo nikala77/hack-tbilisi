@@ -21,7 +21,7 @@ var config = {
         cssDeep: '**/*.css',
         jadeDeep: '**/*.jade',
         imagesDeep: '**/*.{ico,png,jpg,jpeg,gif,webp,svg}',
-        fontsDeep: '**/*.{eot,svg,ttf,woff,woff2}',
+        fontsDeep: '**/*.{otf,eot,svg,ttf,woff,woff2}',
         swfDeep: '**/*.swf',
         mapDeep: '**/*.map'
     },
@@ -35,7 +35,7 @@ var config = {
         clientJs: CLIENT + 'javascript/',
         clientCss: CLIENT + 'css/',
         clientImages: CLIENT + 'images/',
-        clientFonts: CLIENT + 'fonts/',
+        clientFonts: CLIENT,
         clientAccountCss: CLIENT + 'css/banner/account/',
         clientAccountJs: CLIENT + 'javascript/banner/account/',
         clientDashboardCss: CLIENT + 'css/banner/dashboard/',
