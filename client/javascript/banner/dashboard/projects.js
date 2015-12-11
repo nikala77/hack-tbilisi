@@ -1,15 +1,9 @@
 $(function() {
-
-	if($(this).width() <= 752) {
-		$('.section').css('margin-left', '0px');
-	}
-
-	$(window).on('resize', function() {
-		if($(this).width() <= 752) {
-			$('.section').css('margin-left', '0px');
-		} else {
-			$('.section').css('margin-left', '250px');
-		}
+	
+	$('.project-list').on('click', function() {
+		$('a[href="/dashboard/banner/new"]').parent()
+			.addClass('active')
+			.siblings().removeClass('active');
 	});
 
 });

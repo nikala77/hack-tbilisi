@@ -1,42 +1,215 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="row thumbnails">
-	<div class="col-md-12">
-			<div class="col-md-4 col-sm-6 col-xs-12 banner-thumbnail">
-				<div class="thumbnail">
-					<img src="/images/placeholder.jpg" alt="placeholder">
-					<div class="caption">
-						<h5>Thumbnail label</h5>
+<div class="thumbnails">
+	<div>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane" id="banners">
+				<div class="banner-thumbnail">
+					<div class="thumbnail">
+						<img src="/images/placeholder.jpg" alt="placeholder">
+						<div class="caption">
+							<h5>Thumbnail label</h5>
+						</div>
+					</div>
+					<div class="tools">
+						<i class="fa fa-pencil-square-o"></i>
+						<i class="fa fa-trash-o"></i>
+					</div>
+				</div>
+			
+				<div class="banner-thumbnail">
+					<div class="thumbnail">
+						<img src="/images/placeholder.jpg" alt="placeholder">
+						<div class="caption">
+							<h5>Thumbnail label</h5>
+						</div>
+						<div class="tools">
+							<i class="fa fa-pencil-square-o"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="banner-thumbnail">
+					<div class="thumbnail">
+						<img src="/images/placeholder.jpg" alt="placeholder">
+						<div class="caption">
+							<h5>Thumbnail label</h5>
+						</div>
+						<div class="tools">
+							<i class="fa fa-pencil-square-o"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="banner-thumbnail">
+					<div class="thumbnail">
+						<img src="/images/placeholder.jpg" alt="placeholder">
+						<div class="caption">
+							<h5>Thumbnail label</h5>
+						</div>
+						<div class="tools">
+							<i class="fa fa-pencil-square-o"></i>
+							<i class="fa fa-trash-o"></i>
+						</div>
 					</div>
 				</div>
 			</div>
-		
-			<div class="col-md-4 col-sm-6 col-xs-12 banner-thumbnail">
-				<div class="thumbnail">
-					<img src="/images/placeholder.jpg" alt="placeholder">
-					<div class="caption">
-						<h5>Thumbnail label</h5>
+			
+			<div role="tabpanel" class="tab-pane" id="statistics">
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Data Created</th>
+								<th>Views</th>
+								<th>Clicks</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>My banner</td>
+								<td>19.20.1993 18:40</td>
+								<td>100</td>
+								<td>250</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>My banner</td>
+								<td>19.20.1993 18:40</td>
+								<td>100</td>
+								<td>250</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>My banner</td>
+								<td>19.20.1993 18:40</td>
+								<td>100</td>
+								<td>250</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>My banner</td>
+								<td>19.20.1993 18:40</td>
+								<td>100</td>
+								<td>250</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>My banner</td>
+								<td>19.20.1993 18:40</td>
+								<td>100</td>
+								<td>250</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="small-square">
+				<div class="small-square-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-4 col-sm-6 col-xs-12 banner-thumbnail">
-				<div class="thumbnail">
-					<img src="/images/placeholder.jpg" alt="placeholder">
-					<div class="caption">
-						<h5>Thumbnail label</h5>
+			<div role="tabpanel" class="tab-pane" id="standard-banner">
+				<div class="standard-banner-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="standard-banner-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="standard-banner-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="standard-banner-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
 					</div>
 				</div>
 			</div>
 
-			<div class="col-md-4 col-sm-6 col-xs-12 banner-thumbnail">
-				<div class="thumbnail">
-					<img src="/images/placeholder.jpg" alt="placeholder">
-					<div class="caption">
-						<h5>Thumbnail label</h5>
+			<div role="tabpanel" class="tab-pane" id="leader-board">
+				<div class="leader-board-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="leader-board-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="leader-board-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
 					</div>
 				</div>
 			</div>
+
+			<div role="tabpanel" class="tab-pane" id="skyscraper">
+				<div class="skyscraper-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="skyscraper-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="wide-skyscraper">
+				<div class="wide-skyscraper-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="wide-skyscraper-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+				<div class="wide-skyscraper-template template">
+					<div class="tools">
+						<button class="btn btn-default">Preview</button><br>
+						<button class="btn btn-primary">Use This</button>
+					</div>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="custom-size">
+			<div class="scrollable">
+					<div class="custom-size-rectangle">
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 {% endblock %}

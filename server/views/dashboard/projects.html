@@ -1,21 +1,56 @@
 <div class="projects">
-	<div class="row">
-		<div class="col-md-12">
-			<h1>Create a banner</h1>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<ul class="list-unstyled list-inline project-list">
-				<li class="active">
-					<a href="#"><img src="/images/ice.png" alt="banner ad"></a>
-					<p>Banner</p>
-				</li>
-				<!-- <li>
-					<a href="#"><img src="/images/fbcover.png" alt="facebook cover"></a>
-					<p>Facebook Cover</p>
-				</li> -->
-			</ul>
-		</div>
+	<h3>Create a banner</h3>
+	<div>
+		<ul class="nav nav-tabs list-unstyled list-inline project-list">
+			<li data-width="200" data-height="200">
+				<a href="#small-square" data-toggle="tab" tabindex="0">
+					<img src="/images/ice.png" alt="small square" 
+					class="smallsquare"><br>
+					<small>Small Square</small><br>
+					<b>200x200</b>
+				</a>
+			</li>
+			<li data-width="300" data-height="300">
+				<a href="#standard-banner" data-toggle="tab" tabindex="0">
+					<img src="/images/ice.png" alt="Standard Banner" 
+					class="standard-banner"><br>
+					<small>Standard Banner</small> <br>
+					<b>300X300</b>
+				</a>
+			</li>
+			<li data-width="728" data-height="90">
+				<a href="#leader-board" data-toggle="tab" tabindex="0">
+					<img src="/images/ice.png" alt="leader board" 
+					class="leaderboard"><br>
+					<small>Leader Board</small><br>
+					<b>728x90</b>
+				</a>
+			</li>
+			<li data-width="120" data-height="600">
+				<a href="#skyscraper" data-toggle="tab" tabindex="0">
+					<img src="/images/ice.png" alt="Skyscraper" 
+					class="skyscraper"><br>
+					<small>Skyscraper</small> <br>
+					<b>120X600</b>
+				</a>
+			</li>
+			<li data-width="160" data-height="600">
+				<a href="#wide-skyscraper" data-toggle="tab" tabindex="0">
+					<img src="/images/ice.png" alt="Wide Skyscraper" 
+					class="wide-skyscraper"><br>
+					<small>Wide Skyscraper</small> <br>
+					<b>160X600</b>
+				</a>
+			</li>
+			<li class="custom-size">
+				<a href="#custom-size" data-toggle="tab" tabindex="0">
+					<span>Custom Size</span><br>
+					<label for="banner-width">Width: </label>
+					<input type="text" id="banner-width" class="form-control" placeholder="width" value="728"> 
+					<label for="banner-height">Height: </label>
+					<input type="text" id="banner-height" class="form-control" placeholder="height" value="90">
+				</a>
+			</li>
+		</ul>
 	</div>
 </div>
