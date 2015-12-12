@@ -6,6 +6,7 @@ var userSchema = new Schema({
     local            : {
         email        : String,
         password     : String,
+        avatar       : { type: String, default: '/images/avatar.png' }
     },
     facebook         : {
         id           : String,
