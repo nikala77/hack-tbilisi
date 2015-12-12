@@ -16,8 +16,8 @@ var rootPath = path.normalize(__dirname);
 gulp.task('build-vendor-js', function() {
 
     var cabinetPath = path.join(rootPath, '../client/vendor/jquery.cabinet/jquery.cabinet.js');
-
-    var notMainBowerFiles = [ cabinetPath ];
+    var freetransPath = path.join(rootPath, '../client/vendor/jquery-free-transform/js/jquery.freetrans.js');
+    var notMainBowerFiles = [ cabinetPath, freetransPath ];
 
     return gulp
         .src(mainBowerFiles(filters.jsDeep).concat(notMainBowerFiles))
