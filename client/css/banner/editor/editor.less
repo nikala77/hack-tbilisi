@@ -18,7 +18,6 @@ header {
 	}
 }
 
-
 .main {
 	height: 40px;
 	margin-left: 40%; 
@@ -64,6 +63,7 @@ header {
 	position: absolute;
 	left: 350px;
 	top: 200px;
+	z-index: -1;
 }
 
 .scalebar {
@@ -95,5 +95,19 @@ header {
 
 	div:hover {
 		background-color: #e3e3e3;
+	}
+}
+
+.custom-size {
+	padding: 5px;
+
+	input {
+		width: 55px;
+		margin-left: 5px;
+	}
+	
+	button {
+		float: right;
+		margin-top: 5px;
 	}
 }
