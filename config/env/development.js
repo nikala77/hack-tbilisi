@@ -24,9 +24,9 @@ module.exports = {
 	},
 
 	googleAuth : {
-		'clientID'		: 'my-secret-clientID-here',
-		'clientSecret'	: 'my-client-secret-here',
-		'callbackURL'	: '/auth/google/callback'
+		'clientID'		: '648830601365-r3hi30tker1ujtihfstkqhklkno35619.apps.googleusercontent.com',
+		'clientSecret'	: 'Y0UezWpzlAb1NDVrgRRN5OOm',
+		'callbackURL'	: 'http://localhost:5001/auth/google/callback'
 	},
 
 	TOKEN_SECRET: 'my jwt secret'
