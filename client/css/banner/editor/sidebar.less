@@ -17,7 +17,7 @@
   position: fixed;
   transition: all cubic-bezier(.19, 1, .22, 1);
   transition-duration: 1.2s;
-  z-index: 1;
+  z-index: 1000;
 }
 
 .cabinet-drawer {
@@ -39,6 +39,7 @@
   position: absolute;
   background-color: #585555;
   border: 1px solid #aaa;
+  cursor: pointer;
 }
 
 .cabinet.cabinet-open .cabinet-drawer.drawer-open .cabinet-knob {
@@ -208,4 +209,8 @@
     font-weight: bold;
     font-size: 18px;
   }
+}
+
+.yv-validation {
+  display: none;
 }

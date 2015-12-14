@@ -17,6 +17,10 @@ $(function() {
 		alignMiddle($('.custom-size-rectangle'), $('.scrollable'));
 	});
 
+	$('.edit-banner').on('click', function() {
+		window.open('/editor/' + $(this).data('id'));
+	});
+
 	function alignMiddle(child, parent) {
 		var pWidth = parent.width();
 		var pHeight = parent.height();
@@ -35,7 +39,23 @@ $(function() {
 		} else {
 			child.css('top', 0);
 		}
-	};
+	}
 
-	alignMiddle($('.custom-size-rectangle'), $('.scrollable'))
+	alignMiddle($('.custom-size-rectangle'), $('.scrollable'));
+
+	// create banner
+	$('.template .use-this').on('click', function() {
+		var that = $(this);
+		var name = that.data('name') || 'Untitled Banner';
+		var width = that.data('width');
+		var height = that.data('height');
+		var url = that.data('url') || 'www.example.com';
+		var data = that.data('json') || [];
+		var template = false;
+		createBanner(that, name, width, height, userID, url, data, template);
+	});
+
+	// create blank banner with custom size
+	$('.custom-size-rectangle').on('click', bindCustomCreate);
+
 });

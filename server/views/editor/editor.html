@@ -5,6 +5,8 @@
 			<div class="buttons">
 				<button class="btn btn-success btn-primary preview-btn" data-toggle="modal" data-target="#preview">Preview</button>
 				<button class="btn btn-danger" data-toggle="modal" data-target="#publish">Publish</button>
+				<button class="btn btn-warning" id="save">Save</button>
+				<input type="text" value="{{ banner.name }}">
 			</div>
 			{% include "./preview.html" %}
 			{% include "./publish.html" %}
@@ -35,6 +37,15 @@
 				    	</li>
 				    	<li>
 				    		<h4>160X600</h4>	
+				    		<hr>
+				    	</li>
+				    	<li style="text-align:initial;">
+				    		<div class="custom-size">
+					    		<label>custom size</label><br>
+						        	<span>width:</span><input class="custom-size-width" type="number">
+						        	<span>height:</span><input class="custom-size-height" type="number"><br>
+					      			<button class="btn btn-primary">ok</button>
+					      	</div>
 				    	</li>
 				  	</ul>
 				</div>
@@ -51,7 +62,7 @@
 
 	{% include "./sidebar.html" %}
 	<div class="working-board">
-		<div class="working-banner"></div>
+		<div class="working-banner" style="width: {{ banner.width }}px; height: {{ banner.height }}px"></div>
 	</div>
 	<div class="scalebar">
 		<div class="scale-plus">

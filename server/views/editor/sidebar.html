@@ -106,7 +106,7 @@
 				<hr>
 				<div class="upload">
 					<label>Upload:</label>
-					<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="alert(event.fpfile.url)">
+					<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="addImage(workingBanner, event.fpfile.url)" data-fp-mimetypes="image/*">
 				</div>	
 				<br>
 				<div class="bg-item bg-image" style="background-image: url('/images/images/deer-1076245_640.jpg')"></div>
@@ -131,15 +131,17 @@
 			<div class="cabinet-box">
 				<h3>Video</h3>
 				<hr>
-				<div class="upload">
+<!-- 				<div class="upload">
 					<label>Upload:</label>
-					<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="alert(event.fpfile.url)">
-				</div>
+					<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="alert(event.fpfile.url)" data-fp-mimetypes="video/*">
+				</div> -->
 				<div class="youtube-video">
+					<p class="alert alert-danger yv-validation">Youtube or Vimeo Url is incorrect</p>
 					<div class="form-group">
-					  	<label>Youtube Link:</label>
-					  	<input type="text" class="form-control" placeholder="https://www.youtube.com/watch?v=WWtOz7GVxJM">
+					  	<label>Insert Youtube or Vimeo Url:</label>
+					  	<input type="text" class="form-control yvlink" placeholder="https://www.youtube.com/watch?v=WWtOz7GVxJM">
 					</div>
+					<button class="btn btn-primary insert-yt-video">Insert Video</button><br>
 				</div>
 			</div>
 		</div>
@@ -152,7 +154,7 @@
 				<hr>
 				<div class="upload">
 					<label>Upload:</label>
-					<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="alert(event.fpfile.url)">
+					<input type="filepicker" data-fp-apikey="AUMJQ4CG4QXuwFINqyvG5z" onchange="addAudio(workingBanner, event.fpfile.url)"  data-fp-mimetypes="audio/*">
 				</div>
 			</div>
 		</div>

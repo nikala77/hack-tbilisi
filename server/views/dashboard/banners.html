@@ -4,57 +4,20 @@
 	<div>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane" id="banners">
-				<div class="banner-thumbnail">
+				{% for banner in banners %}
+				<div class="banner-thumbnail" data-json="{{ banner.data }}">
 					<div class="thumbnail">
 						<img src="/images/placeholder.jpg" alt="placeholder">
 						<div class="caption">
-							<h5>Thumbnail label</h5>
+							<h5>{{ banner.name }}</h5>
 						</div>
 					</div>
 					<div class="tools">
-						<i class="fa fa-pencil-square-o"></i>
-						<i class="fa fa-trash-o"></i>
+						<i class="fa fa-pencil-square-o edit-banner" data-id="{{ banner.id }}"></i>
+						<i class="fa fa-trash-o delete-banner" data-id="{{ banner.id }}"></i>
 					</div>
 				</div>
-			
-				<div class="banner-thumbnail">
-					<div class="thumbnail">
-						<img src="/images/placeholder.jpg" alt="placeholder">
-						<div class="caption">
-							<h5>Thumbnail label</h5>
-						</div>
-						<div class="tools">
-							<i class="fa fa-pencil-square-o"></i>
-							<i class="fa fa-trash-o"></i>
-						</div>
-					</div>
-				</div>
-
-				<div class="banner-thumbnail">
-					<div class="thumbnail">
-						<img src="/images/placeholder.jpg" alt="placeholder">
-						<div class="caption">
-							<h5>Thumbnail label</h5>
-						</div>
-						<div class="tools">
-							<i class="fa fa-pencil-square-o"></i>
-							<i class="fa fa-trash-o"></i>
-						</div>
-					</div>
-				</div>
-
-				<div class="banner-thumbnail">
-					<div class="thumbnail">
-						<img src="/images/placeholder.jpg" alt="placeholder">
-						<div class="caption">
-							<h5>Thumbnail label</h5>
-						</div>
-						<div class="tools">
-							<i class="fa fa-pencil-square-o"></i>
-							<i class="fa fa-trash-o"></i>
-						</div>
-					</div>
-				</div>
+				{% endfor %}
 			</div>
 			
 			<div role="tabpanel" class="tab-pane" id="statistics">
@@ -65,46 +28,22 @@
 								<th>#</th>
 								<th>Name</th>
 								<th>Data Created</th>
+								<th>Data Updated</th>
 								<th>Views</th>
 								<th>Clicks</th>
 							</tr>
 						</thead>
 						<tbody>
+							{% for banner in banners %}
 							<tr>
-								<td>1</td>
-								<td>My banner</td>
-								<td>19.20.1993 18:40</td>
-								<td>100</td>
-								<td>250</td>
+								<td>{{ loop.index }}</td>
+								<td>{{ banner.name }}</td>
+								<td>{{ banner.createdAt | date('d-m-Y') }}</td>
+								<td>{{ banner.updatedAt | date('d-m-Y') }}</td>
+								<td>{{ banner.views }}</td>
+								<td>{{ banner.clicks }}</td>
 							</tr>
-							<tr>
-								<td>2</td>
-								<td>My banner</td>
-								<td>19.20.1993 18:40</td>
-								<td>100</td>
-								<td>250</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>My banner</td>
-								<td>19.20.1993 18:40</td>
-								<td>100</td>
-								<td>250</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>My banner</td>
-								<td>19.20.1993 18:40</td>
-								<td>100</td>
-								<td>250</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>My banner</td>
-								<td>19.20.1993 18:40</td>
-								<td>100</td>
-								<td>250</td>
-							</tr>
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>
@@ -113,8 +52,8 @@
 			<div role="tabpanel" class="tab-pane" id="small-square">
 				<div class="small-square-template template">
 					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
+						<button class="btn btn-default" data-width="200" data-height="200">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="200" data-height="200">Use This</button>
 					</div>
 				</div>
 			</div>
@@ -122,26 +61,8 @@
 			<div role="tabpanel" class="tab-pane" id="standard-banner">
 				<div class="standard-banner-template template">
 					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="standard-banner-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="standard-banner-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="standard-banner-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
+						<button class="btn btn-default" data-width="300" data-height="300">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="300" data-height="300">Use This</button>
 					</div>
 				</div>
 			</div>
@@ -149,20 +70,8 @@
 			<div role="tabpanel" class="tab-pane" id="leader-board">
 				<div class="leader-board-template template">
 					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="leader-board-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="leader-board-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
+						<button class="btn btn-default" data-width="728" data-height="90">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="728" data-height="90">Use This</button>
 					</div>
 				</div>
 			</div>
@@ -170,14 +79,8 @@
 			<div role="tabpanel" class="tab-pane" id="skyscraper">
 				<div class="skyscraper-template template">
 					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="skyscraper-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
+						<button class="btn btn-default" data-width="120" data-height="600">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="120" data-height="600">Use This</button>
 					</div>
 				</div>
 			</div>
@@ -185,20 +88,8 @@
 			<div role="tabpanel" class="tab-pane" id="wide-skyscraper">
 				<div class="wide-skyscraper-template template">
 					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="wide-skyscraper-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
-					</div>
-				</div>
-				<div class="wide-skyscraper-template template">
-					<div class="tools">
-						<button class="btn btn-default">Preview</button><br>
-						<button class="btn btn-primary">Use This</button>
+						<button class="btn btn-default" data-width="160" data-height="600">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="160" data-height="600">Use This</button>
 					</div>
 				</div>
 			</div>

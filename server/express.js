@@ -8,6 +8,7 @@ var	methodOverride = require('method-override');
 var	cookieParser   = require('cookie-parser');
 var	config         = require('../config/env');
 var	consolidate    = require('consolidate');
+var session 	   = require('express-session');
 var passport 	   = require('passport');
 var	configuration  = config.configuration;
 
@@ -31,10 +32,15 @@ module.exports = function() {
 		.use(bodyParser.urlencoded({ extended: true }))
 		.use(bodyParser.json()) //body parsing middleware should be above methodOverride
 		.use(cookieParser())    // CookieParser should be above session
+		.use(session({
+			secret: 'someSecret',
+			saveUninitialized: true,
+			resave: true
+  		}))
 		.use(methodOverride())
 		.use(express.static('./public'))
 		.use(passport.initialize())
-    	.use(passport.session())
+    	.use(passport.session());
 
 	// Environment dependent middleware
 	if (process.env.NODE_ENV === 'development') {
@@ -44,9 +50,6 @@ module.exports = function() {
 		app.locals.cache = 'memory';
 	}
 
-	// use passport session
-	// app.use(passport.initialize());
-	// app.use(passport.session());
 
 	// include routing files
 	require('./routes')(app, passport);

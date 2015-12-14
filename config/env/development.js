@@ -18,15 +18,15 @@ module.exports = {
 	},
 
 	facebookAuth : {
-		'clientID'		: '949803935104303',
-		'clientSecret'	: '5854b12a3b17dd38d6aa5b9ba0998351',
+		'clientID'		: '927447444002913',
+		'clientSecret'	: 'b30a560d628e196a94036065495d2d7f',
 		'callbackURL'	: 'http://localhost:5001/auth/facebook/callback'
 	},
 
 	googleAuth : {
-		'clientID'		: 'my-secret-clientID-here',
-		'clientSecret'	: 'my-client-secret-here',
-		'callbackURL'	: '/auth/google/callback'
+		'clientID'		: '648830601365-r3hi30tker1ujtihfstkqhklkno35619.apps.googleusercontent.com',
+		'clientSecret'	: 'Y0UezWpzlAb1NDVrgRRN5OOm',
+		'callbackURL'	: 'http://localhost:5001/auth/google/callback'
 	},
 
 	TOKEN_SECRET: 'my jwt secret'
