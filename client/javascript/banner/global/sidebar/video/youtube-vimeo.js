@@ -24,7 +24,7 @@ function showValidation(tag) {
 	tag.show(500);
 	setTimeout(function() {
 		tag.hide();
-	}, 3000);
+	}, 2000);
 };
 
 function getYTID(url) {

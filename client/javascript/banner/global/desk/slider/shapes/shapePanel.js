@@ -15,11 +15,11 @@ function addControlPanel (shape, top, left) {
 	}
 
 	if (shape.data('type') === 'text') {
-		heart = shape.parent('.slide-heart');
+		heart = shape.parent('.working-banner');
 		left = left + shape.width() + 10;
 		top = top - 5;
 	} else {
-		heart = shape.parent('.ft-container').parent('.slide-heart');
+		heart = shape.parent('.ft-container').parent('.working-banner');
 		shapePanel = shape.parent('.ft-container').siblings('.shape-panel');
 	}
 
@@ -182,8 +182,8 @@ function addControlPanel (shape, top, left) {
 }
 
 function reBindListeners () {
-	var heart = $('.slide-heart');
-	var ft = $('.slide-heart').children('.ft-container').find('[data-active=true]');
+	var heart = $('.working-banner');
+	var ft = $('.working-banner').children('.ft-container').find('[data-active=true]');
 	var panel = heart.children('.shape-panel');
 
 	var col = panel.find('.pnl-color:not(.pnl-scolor)'),
@@ -780,7 +780,7 @@ function bindDelete (element) {
 		container.siblings('.shape-panel').hide();
 		removeObjectFromGroup();
 		container.remove();
-		updateObjectStates(getSlideData());
+		updateObjectStates(getBannerData());
 	});
 }
 
@@ -815,20 +815,20 @@ function bindClone (element) {
 
 		switch (type) {
 			case 'image':
-				addImage(slideHeart, obj.attr('src'), obj.width(), obj.height(), obj.attr('style'), freetrans, null, true);
+				addImage(workingBanner, obj.attr('src'), obj.width(), obj.height(), obj.attr('style'), freetrans, null, true);
 				break;
 			case 'text':
 				var text = obj.text();
-				addText(slideHeart, text, obj.css('font-family'), obj.attr('rows'), text.length, obj.attr('style'), null, true);
+				addText(workingBanner, text, obj.css('font-family'), obj.attr('rows'), text.length, obj.attr('style'), null, true);
 				break;
 			case 'shape':
-				addShape(slideHeart, obj.data('src'), obj.width(), obj.height(), obj.data('fill'), obj.attr('style'), freetrans, null, true);
+				addShape(workingBanner, obj.data('src'), obj.width(), obj.height(), obj.data('fill'), obj.attr('style'), freetrans, null, true);
 				break;
 			case 'video':
-				addVideo(slideHeart, obj.data('video-src'), obj.width(), obj.height(), obj.data('video-type'), obj.attr('style'), freetrans, null, true);
+				addVideo(workingBanner, obj.data('video-src'), obj.width(), obj.height(), obj.data('video-type'), obj.attr('style'), freetrans, null, true);
 				break;
 			case 'audio':
-				addAudio(slideHeart, obj.data('audio-src'), obj.width(), obj.height(), obj.attr('style'), freetrans, null, true);
+				addAudio(workingBanner, obj.data('audio-src'), obj.width(), obj.height(), obj.attr('style'), freetrans, null, true);
 				break;
 		}
 	});

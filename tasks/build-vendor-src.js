@@ -15,9 +15,10 @@ var rootPath = path.normalize(__dirname);
 
 gulp.task('build-vendor-js', function() {
 
-    var cabinetPath = path.join(rootPath, '../client/vendor/jquery.cabinet/jquery.cabinet.js');
-    var freetransPath = path.join(rootPath, '../client/vendor/jquery-free-transform/js/jquery.freetrans.js');
-    var notMainBowerFiles = [ cabinetPath, freetransPath ];
+    var cabinetPath = paths.vendor + 'jquery.cabinet/jquery.cabinet.js';
+    var matrixPath = paths.vendor + 'jquery-free-transform/js/Matrix.js';
+    var freetransPath = paths.vendor + 'jquery-free-transform/js/jquery.freetrans.js';
+    var notMainBowerFiles = [ cabinetPath, freetransPath, matrixPath ];
 
     return gulp
         .src(mainBowerFiles(filters.jsDeep).concat(notMainBowerFiles))
@@ -28,17 +29,8 @@ gulp.task('build-vendor-js', function() {
             'toastr.js',
             'moment.js',
             'lodash.js',
-            'angular.js',
-            'angular-resource.js',
-            'angular-route.js',
-            'angular-ui.js',
-            'angular-sanitize.js',
-            'restangular.js',
-            'angular-mocks',
-            'ui-bootstrap-tpls.js',
             'select.js',
-            'ng-img-crop.js',
-            'smart-area.js',
+            'jquery-ui.js',
             'jquery.cabinet.js',
             '*'
         ]))
@@ -54,10 +46,12 @@ gulp.task('build-vendor-js', function() {
 });
 
 gulp.task('build-vendor-css', function() {
-    var bootstrap = paths.vendor + '/bootstrap/dist/css/' + '*.css';
-    var fontAwesome = paths.vendor + '/font-awesome/css/' + '*.css';
-    var colPicker = paths.vendor + '/jquery-colpick/css/' + '*.css';
-    var array = [bootstrap, fontAwesome, colPicker];
+    var bootstrap = paths.vendor + 'bootstrap/dist/css/' + '*.css';
+    var jqueryUICss = paths.vendor + 'jquery-ui/themes/black-tie/css/' + 'jquery-ui.min.css';
+    var fontAwesome = paths.vendor + 'font-awesome/css/' + '*.css';
+    var colPicker = paths.vendor + 'jquery-colpick/css/' + '*.css';
+    var freetrans = paths.vendor + 'jquery-free-transform/css/' + '*.css';
+    var array = [bootstrap, jqueryUICss, fontAwesome, colPicker, freetrans];
 
     return gulp
         .src(array)
@@ -65,6 +59,7 @@ gulp.task('build-vendor-css', function() {
         .pipe(gorder([
             'bootstrap.css',
             'font-awesome.css',
+            'jquery-ui.min.css',
             '*'
         ]))
         .pipe(gif(args.isProduction, gminifyCss()))

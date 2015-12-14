@@ -1,5 +1,5 @@
 $(function() {
-	$('#slide-container').on('click', '.contenteditable', function(e) {
+	$('.working-board').on('click', '.contenteditable', function(e) {
 		$(this).find('div').focus();
 		e = e || window.event;
 		var caretRange = getMouseEventCaretRange(e);
@@ -10,7 +10,7 @@ $(function() {
 		return false;
 	});
 
-	$('#slide-container').on('focus', '.editable', function (e) {
+	$('.working-board').on('focus', '.editable', function (e) {
 		var div = this;
 		window.setTimeout(function() {
 			var sel, range;
@@ -30,16 +30,16 @@ $(function() {
 		}, 1);
 	});
 
-	$('#slide-container').on('keyup resize', '.contenteditable', function() {
+	$('.working-board').on('keyup resize', '.contenteditable', function() {
 		var width = $(this).find('.editable').width();
 		var height = $(this).find('.editable').height();
 		$(this).width(width);
 		$(this).height(height);
 	});
 
-	$('#text h4 a').on('click', function() {
+	$('.text-box h3').on('click', function() {
 		var fontFamily = $(this).css('font-family');
-		addText(slideHeart, 'Text Field', fontFamily);
-		updateObjectStates(getSlideData());
+		addText(workingBanner, 'Text Field', fontFamily);
+		updateObjectStates(getBannerData());
 	});
 });

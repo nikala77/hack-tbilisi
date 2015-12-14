@@ -2,13 +2,13 @@ function addAudio(slide, src, width, height, style, freetrans, animation, clone)
 	var random = generateRandom(slide);
 	var x = random.x;
 	var y = random.y;
-	var width  = width ? width: 100;
-	var height = height ? height: 100;
+	var width  = width ? width: 50;
+	var height = height ? height: 50;
 
 	var audio = $('<img></img>');
 
 	audio.attr({
-		src: '/uploads/images/audio.png',
+		src: '/images/audioplaceholder.png',
 		width: width,
 		height: height,
 		class: 'ft-widget'

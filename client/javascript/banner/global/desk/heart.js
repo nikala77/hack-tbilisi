@@ -22,16 +22,17 @@ function alignMiddle(div) {
 	});
 };
 
-function loadObjects(activeSlide) {
+function loadObjects(data) {
 	groupArr = [];
-	var objects = eval(presentationData[activeSlide].json);
-	slideHeart.css('background', presentationData[activeSlide].title);
+	var objects = eval(data.json);
+	workingBanner.css('background', data.background);
 
 	if(!objects) {
 		return;
 	}
 
-	initObjectStates(presentationData[activeSlide].json);
+	initObjectStates(objects);
+
 	for(var j = 0; j < objects.length; j++) {
 		var obj = objects[j];
 		var src = obj.src;
@@ -48,14 +49,13 @@ function loadObjects(activeSlide) {
 		var rows = obj.rows;
 		var cols = obj.cols;
 
-		var loopSlide = slideHeart;
 		
 		switch(objects[j].tag) {
-			case 'img':   addImage(loopSlide, src, width, height, style, freetrans, animation); break;
-			case 'textArea':  addText(loopSlide, text, font, width, height, style, animation); break;
-			case 'shape':  addShape(loopSlide, src, width, height, obj.fill, obj.stroke, style, freetrans, animation); break;
-			case 'audio': addAudio(loopSlide, src, width, height, style, freetrans, animation); break;
-			case 'video': addVideo(loopSlide, src, width, height, videoType, style, freetrans, animation); break;
+			case 'img':   addImage(workingBanner, src, width, height, style, freetrans, animation); break;
+			case 'textArea':  addText(workingBanner, text, font, width, height, style, animation); break;
+			case 'shape':  addShape(workingBanner, src, width, height, obj.fill, obj.stroke, style, freetrans, animation); break;
+			case 'audio': addAudio(workingBanner, src, width, height, style, freetrans, animation); break;
+			case 'video': addVideo(workingBanner, src, width, height, videoType, style, freetrans, animation); break;
 		}
 	}
 };
@@ -84,20 +84,18 @@ function loadAfterModify (str) {
 		var rows = obj.rows;
 		var cols = obj.cols;
 
-		var loopSlide = slideHeart;
-
 		switch(objects[j].tag) {
-			case 'audio': addAudio(loopSlide, src, width, height, style, freetrans, animation); break;
-			case 'img':   addImage(loopSlide, src, width, height, style, freetrans, animation); break;
-			case 'textArea':  addText(loopSlide, text, font, rows, cols, style, freetrans, animation); break;
-			case 'shape':  addShape(loopSlide, src, width, height, obj.fill, style, freetrans, animation); break;
-			case 'video': addVideo(loopSlide, src, width, height, videoType, style, freetrans, animation); break;
+			case 'audio': addAudio(workingBanner, src, width, height, style, freetrans, animation); break;
+			case 'img':   addImage(workingBanner, src, width, height, style, freetrans, animation); break;
+			case 'textArea':  addText(workingBanner, text, font, rows, cols, style, freetrans, animation); break;
+			case 'shape':  addShape(workingBanner, src, width, height, obj.fill, style, freetrans, animation); break;
+			case 'video': addVideo(workingBanner, src, width, height, videoType, style, freetrans, animation); break;
 		}
 	}
 }
 
-function getSlideData() {
-	var slideData = [];
+function getBannerData() {
+	var bannerData = [];
 	groupArr.forEach(function(obj) {
 		var type = obj.data('type');
 		try {
@@ -135,7 +133,7 @@ function getSlideData() {
 			var height = obj.height();
 			var style  = obj.attr('style');
 			var imageObj = new Image(tag, src, width, height, style, freetrans, animation);
-			slideData.push(imageObj);
+			bannerData.push(imageObj);
 			return;
 		}
 		if(type === 'text') {
@@ -146,7 +144,7 @@ function getSlideData() {
 			var width  = obj.width();
 			var height = obj.height();
 			var textObj = new TextFiled(tag, text, font, width, height, style, freetrans, animation);
-			slideData.push(textObj);
+			bannerData.push(textObj);
 			return;
 		}
 
@@ -159,7 +157,7 @@ function getSlideData() {
 			var stroke = obj.data('stroke');
 			var style  = obj.attr('style');
 			var shapeObj = new Shape(tag, src, width, height, fill, stroke, style, freetrans, animation);
-			slideData.push(shapeObj);
+			bannerData.push(shapeObj);
 			return;
 		}
 		
@@ -170,7 +168,7 @@ function getSlideData() {
 			var height = obj.height();
 			var style  = obj.attr('style');
 			var audioObj = new Audio(tag, src, width, height, style, freetrans, animation);
-			slideData.push(audioObj);
+			bannerData.push(audioObj);
 			return;
 		}
 
@@ -182,11 +180,11 @@ function getSlideData() {
 			var style  = obj.attr('style');
 			var videoType = obj.data('video-type');
 			var videoObj = new Video(tag, src, videoType, width, height, style, freetrans, animation);
-			slideData.push(videoObj);
+			bannerData.push(videoObj);
 			return;
 		}
 	});
-	var slideData = JSON.stringify(slideData);
+	var bannerData = JSON.stringify(bannerData);
 
-	return slideData;
+	return bannerData;
 };

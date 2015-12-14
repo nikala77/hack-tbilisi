@@ -23,7 +23,7 @@ function addVideo(slide, src, width, height, videoType, style, freetrans, animat
 	}
 
 	video.attr({
-		src: '/uploads/images/video.png',
+		src: '/images/videoplaceholder.jpg',
 		width: width,
 		height: height,
 		class: 'ft-widget'

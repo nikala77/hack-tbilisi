@@ -7,7 +7,7 @@ var bannerSchema = new Schema({
 	height		: { type : Number  , required: true },
 	userID		: { type : Schema.Types.ObjectId, required : true },
 	url  		: { type : String  , trim : true },
-	data		: { type : String  , default: '[]', trim : true },
+	data		: { type : String  , default: '{}', trim : true },
 	template	: { type : Boolean , default: false },
 	createdAt	: { type : Date	   , default: Date.now },
 	updatedAt	: { type : Date	   , default: Date.now },

@@ -71,10 +71,6 @@ function lightSlider(ul) {
     });
 };
 
-function isFullScreen() {
-	return window.innerHeight === screen.height;
-}
-
 function getMouseEventCaretRange(evt) {
     var range, x = evt.clientX, y = evt.clientY;
     

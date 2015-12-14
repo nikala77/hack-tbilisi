@@ -1,20 +1,28 @@
 $(function() {
 	$('#save').on('click', function () {
-		var slideData = getSlideData();
-		var background = slideHeart.css('background');
+		var that = $(this);
+		var data = getBannerData();
+		var background = workingBanner.css('background');
 
-		presentationData[activeSlide].title = background;
-		presentationData[activeSlide].json = slideData;
+		bannerData.background = background;
+		bannerData.json = data;
 
 		$.ajax({
-			url: '/campaigns/update-campaign/',
-			type: 'POST',
-			data: {
-				campaignHash: hash,
-				json: JSON.stringify(presentationData)
+			url: '/api/banner/data/' + bannerID,
+			type: 'PUT',
+			data: { data: JSON.stringify(bannerData) },
+			timeout: 3000,
+			beforeSend: function() {
+				that.attr('disabled', 'disabled');
 			},
-			success: function(result) {
-				console.log('saved in DB');
+			success: function(response) {
+				console.log(response);
+			},
+			error: function(request, errorType, errorMessage) {
+				console.log(request, errorType, errorMessage);
+			},
+			complete: function() {
+				that.removeAttr('disabled');
 			}
 		});
 	});

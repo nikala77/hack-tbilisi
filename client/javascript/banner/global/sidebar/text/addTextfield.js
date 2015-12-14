@@ -75,6 +75,7 @@ function addText(slide, text, font, width, height, style, animation, clone) {
 	textContainer.css('z-index', lastZindex);
 
 	textContainer.draggable();
+	console.log(textContainer);
 	textContainer.resizable({
 	    handles: {
 			'nw': '#nwgrip',

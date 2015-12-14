@@ -9,7 +9,7 @@ var httpUtil  = require('../util/httpUtil');
 exports.getDashboard = function(req, res) {
 	// API get all banners by user ID
 	Promise.resolve(Banner.find({ userID: req.user.id },
-	{ 'name': 1, 'data': 1 }))
+	{ 'name': 1, 'data': 1 }).sort({ updatedAt: -1 }))
 	.then(function(banners) {
 		res.render('dashboard/banners.html', {
 			pageName	: 'hack15',

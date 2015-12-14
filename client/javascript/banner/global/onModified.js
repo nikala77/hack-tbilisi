@@ -14,11 +14,11 @@ function bindOnModifiedEvent (element) {
 			    		if (!isSelected) {
 
 			    			isSelected = false;
-			    			updateObjectStates(getSlideData());
+			    			updateObjectStates(getBannerData());
 			    		} else if (wasDragged) {
 
 			    			wasDragged = false;
-			    			updateObjectStates(getSlideData());
+			    			updateObjectStates(getBannerData());
 			    		} 
 			    		else {
 			    			wasDragged = false;

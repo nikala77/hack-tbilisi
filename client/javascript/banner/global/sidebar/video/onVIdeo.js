@@ -1,5 +1,5 @@
 $(function() {
-	$('.insert-video').on('click', function() {
+	$('.insert-yt-video').on('click', function() {
 		var yvlink = $('.yvlink').val();
 		var valid = validateYoutubeVimeo(yvlink);
 		var src;
@@ -23,8 +23,8 @@ $(function() {
 				width = 500;
 				height = 264;
 			}
-			addVideo(slideHeart, src, width, height, videoType);
-			updateObjectStates(getSlideData());
+			addVideo(workingBanner, src, width, height, videoType);
+			updateObjectStates(getBannerData());
 		} else {
 			showValidation($('.yv-validation'));
 		}
@@ -32,8 +32,8 @@ $(function() {
 
 	$('#video').on('click', '.plus-video', function() {
 		console.log('addvideo', $(this).data('src'));
-		addVideo(slideHeart, $(this).data('src'), 300, 150, 'upload');
-		updateObjectStates(getSlideData());
+		addVideo(workingBanner, $(this).data('src'), 300, 150, 'upload');
+		updateObjectStates(getBannerData());
 	});
 
 	$('#activate-uploaded-videos').on('click', function() {
@@ -47,7 +47,7 @@ $(function() {
 				$('.uploaded-videos').append('<video width="300" height="150" src="https://prezhero.s3.amazonaws.com/'+ i +'" controls="controls">Your browser does not support the video element.</video>');
 				$('.uploaded-videos').append('<button class="btn btn-block btn-success plus-video" data-src="https://prezhero.s3.amazonaws.com/'+ i +'"><i class="fa fa-plus"></i></button>');
 			});
-			updateObjectStates(getSlideData());
+			updateObjectStates(getBannerData());
 		})
 		.fail(function(err) {
 			console.log('err', err);

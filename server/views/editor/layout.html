@@ -21,11 +21,15 @@
 		<!-- END CORE CSS FRAMEWORK -->
 		
 		<!-- custom css  -->
+		<link rel="stylesheet" href="/css/banner/global/app.css">
 		<link rel="stylesheet" href="/css/banner/editor/app.css">
 		<!-- end of custom css  -->
 	</head>
+	<script>
+		var bannerID = "{{ banner.id }}";
+	</script>
 	<body>
-		<script type="text/javascript" src="https://api.filepicker.io/v2/filepicker.js"></script>
+		<script src="https://api.filepicker.io/v2/filepicker.js"></script>
 		<div class="wrapper">
 			{% block content %}{% endblock %}
 		</div>
