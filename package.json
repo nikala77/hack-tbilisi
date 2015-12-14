@@ -17,7 +17,7 @@
     "cookie-parser": "*",
     "crypto": "0.0.3",
     "express": "*",
-    "express-session": "^1.10.3",
+    "express-session": "^1.12.1",
     "glop": "^0.3.1",
     "gulp-main-bower-files": "^1.2.1",
     "jsonwebtoken": "^5.4.1",

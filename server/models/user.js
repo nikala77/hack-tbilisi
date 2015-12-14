@@ -6,18 +6,21 @@ var userSchema = new Schema({
     local            : {
         email        : String,
         password     : String,
+        avatar       : { type: String, default: '/images/avatar.png' }
     },
     facebook         : {
         id           : String,
         token        : String,
         email        : String,
-        name         : String
+        name         : String,
+        avatar       : String
     },
     google           : {
         id           : String,
         token        : String,
         email        : String,
-        name         : String
+        name         : String,
+        avatar       : String
     }
 });
 

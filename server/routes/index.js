@@ -3,20 +3,24 @@ var path        = require('path');
 module.exports = function (app, passport) {
     require('./account')(app);
     require('./facebook')(app, passport);
+    require('./google')(app, passport);
     require('./dashboard')(app);
     require('./editor')(app);
 
     // authentication strategies
     require('../../config/strategy/passport')(passport);
+    require('../../config/strategy/google')(passport);
 
     app.all('/api/*', function(req, res){
         res.status(404).send('Invalid api url');
     });
 
     app.get('/', function (req, res) {
-        res.render(path.join(app.get('views'), 'account/login.html'), {
-            pageName: 'hack15'
-        });
+        if(req.isAuthenticated()) {
+            return res.redirect('/dashboard');
+        } else {
+            return res.redirect('/login');
+        }
     });
 
     app.use(function(req, res) {

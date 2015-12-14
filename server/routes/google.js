@@ -1,10 +1,10 @@
 module.exports = function(app, passport) {
 
-	app.route('/auth/facebook')
-		.get(passport.authenticate('facebook', { scope: [ 'email' ] }));
+	app.route('/auth/google')
+		.get(passport.authenticate('google', { scope: [ 'email' ] }));
 
-	app.route('/auth/facebook/callback')
-		.get(passport.authenticate('facebook', {
+	app.route('/auth/google/callback')
+		.get(passport.authenticate('google', {
 				successRedirect : '/dashboard',
 				failureRedirect : '/login'
 			}));

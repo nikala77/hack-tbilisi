@@ -24,3 +24,4 @@ exports.getReset = function(req, res) {
         pageName: 'hack15'
     });
 };
+
