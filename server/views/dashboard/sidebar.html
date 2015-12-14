@@ -2,11 +2,11 @@
 	<div class="row current-user">
 		<a href="/dashboard" class="avatar">
 			<span>
-				<img src="{{ user.facebook.avatar }}" alt="profile image" class="img img-circle">
+				<img src="{{ user.facebook.avatar || user.google.avatar }}" alt="profile image" class="img img-circle">
 			</span>
 		</a>
 		<span class="username" data-toggle="popover">
-			{{ user.facebook.name }}
+			{{ user.facebook.name || user.google.name }}
 			<i class="fa fa-caret-right"></i>
 		</span>
 	</div>
