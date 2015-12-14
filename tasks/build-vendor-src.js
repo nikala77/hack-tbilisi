@@ -74,7 +74,8 @@ gulp.task('build-vendor-css', function() {
 gulp.task('build-vendor-fonts', function() {
     var bootstrap = paths.vendor + '/bootstrap/dist/fonts/' + filters.fontsDeep;
     var fontAwesome = paths.vendor + '/font-awesome/fonts/' + filters.fontsDeep;
-    var array = [bootstrap, fontAwesome];
+    var fonts = paths.vendor + '/fonts/' + filters.fontsDeep; 
+    var array = [bootstrap, fontAwesome, fonts];
 
     return gulp
         .src(array)
