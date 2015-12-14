@@ -15,6 +15,7 @@
     "lodash": "~3.7.0",
     "moment": "~2.10.2",
     "jquery.cabinet": "https://github.com/fintopo/jquery.cabinet.git#a04c07095143fe6f80bcebb82d8cd1ecf8a0319a",
+    "jquery-free-transform": "https://github.com/gthmb/jquery-free-transform.git#a6fa00f03c15daf4c6b3d77b54f4622003dca4ca",
     "jquery-colpick": "~3.1.0"
   },
   "homepage": "https://github.com/radamel9/hack15",

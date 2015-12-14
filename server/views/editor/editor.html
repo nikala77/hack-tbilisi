@@ -5,6 +5,8 @@
 			<div class="buttons">
 				<button class="btn btn-success">Preview</button>
 				<button class="btn btn-danger">Publish</button>
+				<button class="btn btn-warning" id="save">Save</button>
+				<input type="text" value="{{ banner.name }}">
 			</div>
 		</header>
 		<div class="main">
@@ -60,7 +62,7 @@
 
 	{% include "./sidebar.html" %}
 	<div class="working-board">
-		<div class="working-banner"></div>
+		<div class="working-banner" style="width: {{ banner.width }}px; height: {{ banner.height }}px"></div>
 	</div>
 	<div class="scalebar">
 		<div class="scale-plus">
