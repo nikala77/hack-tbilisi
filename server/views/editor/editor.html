@@ -3,11 +3,13 @@
 	<div class="header">
 		<header>
 			<div class="buttons">
-				<button class="btn btn-success">Preview</button>
-				<button class="btn btn-danger">Publish</button>
+				<button class="btn btn-success btn-primary preview-btn" data-toggle="modal" data-target="#preview">Preview</button>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#publish">Publish</button>
 				<button class="btn btn-warning" id="save">Save</button>
 				<input type="text" value="{{ banner.name }}">
 			</div>
+			{% include "./preview.html" %}
+			{% include "./publish.html" %}
 		</header>
 		<div class="main">
 			<div class="dropdown-container">
@@ -48,13 +50,11 @@
 				  	</ul>
 				</div>
 				<div class="animations-dropdown">
-					<button class="btn btn-default dropdown-toggle" type="button" id="animdropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+					<button class="btn btn-default dropdown-toggle" type="button" id="animdropdown" data-toggle="dropdown">
 				    	Animations
 				    	<span class="caret"></span>
 				  	</button>
-				  	<ul class="dropdown-menu baner-size-dropdown" aria-labelledby="animdropdown">
-				    	<p>Animations will be initialized there</p>
-				  	</ul>
+				  	{% include "./animation_dropdown.html" %}
 				</div>
 		  	</div>
 		</div>
