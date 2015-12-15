@@ -5,10 +5,12 @@ module.exports = function(app) {
 
 	// get login form
 	app.route('/login')
-					  .get(accountSrvc.blockAuth, account.getLogin);
+					  .get(accountSrvc.blockAuth, account.getLogin)
+					  .post(accountSrvc.blockAuth, account.postLogin);
 
 	app.route('/signup')
-					  .get(accountSrvc.blockAuth, account.getSignUp);
+					  .get(accountSrvc.blockAuth, account.getSignUp)
+					  .post(accountSrvc.blockAuth, account.postSignUp);
 
 	app.route('/forgot')
 					  .get(accountSrvc.blockAuth, account.getForgot);
