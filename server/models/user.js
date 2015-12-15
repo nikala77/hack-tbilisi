@@ -36,7 +36,7 @@ var userSchema = new Schema({
 // };
 
 userSchema.methods.comparePassword = function(candidatePassword, callback) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+  bcrypt.compare(candidatePassword, this.local.password, function(err, isMatch) {
     if (err) return callback(err);
     callback(null, isMatch);
   });
@@ -60,5 +60,4 @@ userSchema.pre('save', function (next) {
     });
 });
 
-
-module.exports = mongoose.model('User' , userSchema); 
+mongoose.model('User' , userSchema); 
