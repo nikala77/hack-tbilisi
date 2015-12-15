@@ -1,6 +1,9 @@
 var mongoose 	 = require('mongoose'),
     passport     = require('passport'),
-    validator    = require('validator');
+    validator    = require('validator'),
+    crypto       = require('crypto'),
+    nodemailer   = require('nodemailer'),
+    Promise      = require('promise');
 
 var User = mongoose.model('User');
 // var httpUtil	 = require('../util/httpUtil');
@@ -53,6 +56,59 @@ exports.postSignUp = function(req, res) {
 exports.getForgot = function(req, res) {
 	res.render('account/forgot.html', {
         pageName: 'hack15'
+    });
+};
+
+exports.postForgot = function(req, res) {
+
+    var getToken = function () {
+        return new Promise(function (resolve, reject) {
+            crypto.randomBytes(20, function(err, buf) {
+                var token = buf.toString('hex');
+                return resolve(token);
+            }); 
+        });
+    };   
+
+    getToken().then(function (token) {
+        return User.findOne({ 'local.email': req.body.email }, function(err, user) {
+            if (!user) {
+                return res.status(200).json({message: 'No account with that email address exists.'});
+            }
+            user.local.resetPasswordToken = token;
+            user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+            user.save(function(err) {
+                if (err)
+                    console.log(err);
+                return  user;
+            });
+        });
+    }).then(function (user) {
+        var smtpTransport = nodemailer.createTransport('SMTP', {
+            service: 'gmail',
+            auth: {
+                user: 'ggola93@gmail.com',
+                pass: '571212223'
+            }
+        });
+        var mailOptions = {
+            to: user.local.email,
+            from: 'hack15@project.com',
+            subject: 'hack15 Password Reset',
+            text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+            'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+            'http://' + req.headers.host + '/reset/' + user.local.resetPasswordToken + '\n\n' +
+            'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+        };
+        smtpTransport.sendMail(mailOptions, function(err) {
+            if (err) {
+                console.log(err)
+                return res.status(404).json({ message: 'senging mail failed, please try later!' })
+            }
+            return res.status(200).json({ message: 'An e-mail has been sent to ' + user.local.email + ' with further instructions.' });
+            
+        });
     });
 };
 

@@ -13,7 +13,8 @@ module.exports = function(app) {
 					  .post(accountSrvc.blockAuth, account.postSignUp);
 
 	app.route('/forgot')
-					  .get(accountSrvc.blockAuth, account.getForgot);
+					  .get(accountSrvc.blockAuth, account.getForgot)
+					  .post(accountSrvc.blockAuth, account.postForgot);
 
 	app.route('/reset/:token')
 					  .get(accountSrvc.blockAuth, account.getReset);
