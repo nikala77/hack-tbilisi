@@ -1,15 +1,17 @@
-function loadPreview(activeSlide, presentationData, slideHeart, windowx, windowy) {
-	slideHeart.html('');
+function loadPreview(bannerData, workingBanner, windowx, windowy) {
 	try {
-		var objects = eval(presentationData[activeSlide].json);
-		var background = presentationData[activeSlide].title;
-		slideHeart.css('background', background);
+		var objects = JSON.parse(bannerData.json);
+		var background = bannerData.background;
+		workingBanner.css('background', background);
 	} catch(err) {
-		slideHeart.css('background', 'none');
-		slideHeart.css('background-color', '#545252');
-		return;
+		workingBanner.css('background', 'none');
+		workingBanner.css('background-color', '#545252');
+		
 		console.log('objects doesn\'t exists');
+
+		return;
 	}
+
 	objects.forEach(function(obj) {
 		var type = obj.tag;
 		var src = obj.src;
@@ -69,7 +71,7 @@ function loadPreview(activeSlide, presentationData, slideHeart, windowx, windowy
 			activeTag = tag;
 
 		} else if(type === 'textArea') {
-			var tag = $('<div class="textarea"></div>');
+			var tag = $('<textArea type="text" disabled></textArea>');
 			
 			var height = Number(style.height.split('px')[0]);
 			var width = Number(style.width.split('px')[0]);
@@ -91,11 +93,13 @@ function loadPreview(activeSlide, presentationData, slideHeart, windowx, windowy
 
 		}  else if(type === 'shape') {
 			var fill = obj.fill;
+			var stroke = obj.stroke;
 			var tag = $('<div data-src="'+ src +'" data-fill="'+ fill +'"><img src="'+ src +'"></img></div>');
-			convertSVG(tag.find('img'), fill);
+			
+			convertSVG(tag.find('img'), fill, stroke, width / scalex, height / scaley);
 
 			tag.css(style);
-			
+
 			activeTag = tag;
 
 		} else if(type === 'audio') {
@@ -112,12 +116,6 @@ function loadPreview(activeSlide, presentationData, slideHeart, windowx, windowy
 			if(videoType === 'upload') {
 				tag = $('<video></video>');
 
-				tag.attr({
-					'autoplay': true,
-					'muted': true,
-					'controls': true
-				});
-
 				var source = $('<source></source>');
 				source.attr({ type : 'video/mp4' , src : '/uploads/videos/test.mp4' });
 				tag.append(source);
@@ -125,6 +123,7 @@ function loadPreview(activeSlide, presentationData, slideHeart, windowx, windowy
 
 			} else if(videoType === 'youtube') {
 				tag = $('<iframe></iframe>');
+
 				tag.attr({
 					src: src
 				});
@@ -156,7 +155,7 @@ function loadPreview(activeSlide, presentationData, slideHeart, windowx, windowy
 			activeTag = tag;
 		}
 		// add tag to preview
-		slideHeart.append(activeTag);
+		workingBanner.append(activeTag);
 		// animation
 		var enterAnimation = obj.animation.enter;
 		var exitAnimation = obj.animation.exit;

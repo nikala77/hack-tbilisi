@@ -51,7 +51,9 @@ gulp.task('build-vendor-css', function() {
     var fontAwesome = paths.vendor + 'font-awesome/css/' + '*.css';
     var colPicker = paths.vendor + 'jquery-colpick/css/' + '*.css';
     var freetrans = paths.vendor + 'jquery-free-transform/css/' + '*.css';
-    var array = [bootstrap, jqueryUICss, fontAwesome, colPicker, freetrans];
+    var animateCss = paths.vendor + 'animate.css/' + 'animate.min.css';
+    var array = [bootstrap, jqueryUICss, fontAwesome, colPicker, freetrans,
+                animateCss];
 
     return gulp
         .src(array)
