@@ -101,8 +101,8 @@ function activateAnimation(obj) {
 	$('.exit-delay').val(exitDelay);
 
 	if(enterAnimation === 'none') {
-		$('#enter-stage li a').removeClass('active-animation');
-		$('#common-stage li a').removeClass('active-animation');
+		$('#enter-stage-content li a').removeClass('active-animation');
+		$('#common-content li a').removeClass('active-animation');
 	}
 
 	if(exitAnimation === 'none') {

@@ -1,16 +1,20 @@
-function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy) {
-	slideHeart.fadeOut().html('').fadeIn();
+function loadBanner(bannerData, workingBanner, windowx, windowy) {
 	try {
-		var objects = eval(presentationData[activeSlide].json);
-		var background = presentationData[activeSlide].title;
-		slideHeart.css('background', background);
+		bannerData = JSON.parse(bannerData);
+		var background = bannerData.background;
+		workingBanner.css('background', background);
+		var objects = JSON.parse(bannerData.json);
 	} catch(err) {
-		slideHeart.css('background', 'none');
-		slideHeart.css('background-color', '#545252');
-		return;
+		workingBanner.css('background', 'none');
+		workingBanner.css('background-color', '#545252');
+		
 		console.log('objects doesn\'t exists');
+
+		return;
 	}
+
 	objects.forEach(function(obj) {
+		console.log(obj);
 		var type = obj.tag;
 		var src = obj.src;
 		var videoType = obj.videoType;
@@ -45,16 +49,6 @@ function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy
 		var videoType = obj.videoType;
 		var activeTag;
 
-		if(type === 'audio') {
-			var tag = $(document.createElement('audio'));
-			var attributes = obj.prop("attributes");
-			tag.attr('src', '/uploads/audios/queen.mp3');
-
-			tag[0].play();
-
-			activeTag = tag;
-		}
-
 		if(type === 'img') {
 			var tag = $(document.createElement('img'));
 
@@ -77,10 +71,9 @@ function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy
 					'-webkit-transform-origin': '50% 50% 50px' });
 
 			activeTag = tag;
-		}
 
-		if(type === 'textArea') {
-			var tag = $('<div class="textarea"></div>');
+		} else if(type === 'textArea') {
+			var tag = $('<textArea type="text" disabled></textArea>');
 			
 			var height = Number(style.height.split('px')[0]);
 			var width = Number(style.width.split('px')[0]);
@@ -99,19 +92,31 @@ function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy
 			.html(text)
 
 			activeTag = tag;
-		}
 
-		if(type === 'video') {
+		}  else if(type === 'shape') {
+			var fill = obj.fill;
+			var stroke = obj.stroke;
+			var tag = $('<div data-src="'+ src +'" data-fill="'+ fill +'"><img src="'+ src +'"></img></div>');
+			
+			convertSVG(tag.find('img'), fill, stroke, width / scalex, height / scaley);
+
+			tag.css(style);
+
+			activeTag = tag;
+
+		} else if(type === 'audio') {
+			var tag = $(document.createElement('audio'));
+			var attributes = obj.prop("attributes");
+			tag.attr('src', '/uploads/audios/queen.mp3');
+
+			tag[0].play();
+
+			activeTag = tag;
+		} else {
 			var tag;
 
 			if(videoType === 'upload') {
 				tag = $('<video></video>');
-
-				tag.attr({
-					'autoplay': true,
-					'muted': true,
-					'controls': true
-				});
 
 				var source = $('<source></source>');
 				source.attr({ type : 'video/mp4' , src : '/uploads/videos/test.mp4' });
@@ -120,6 +125,7 @@ function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy
 
 			} else if(videoType === 'youtube') {
 				tag = $('<iframe></iframe>');
+
 				tag.attr({
 					src: src
 				});
@@ -151,7 +157,7 @@ function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy
 			activeTag = tag;
 		}
 		// add tag to preview
-		slideHeart.append(activeTag);
+		workingBanner.append(activeTag);
 		// animation
 		var enterAnimation = obj.animation.enter;
 		var exitAnimation = obj.animation.exit;
@@ -164,7 +170,7 @@ function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy
 				scalex = windowx;
 				scaley = windowy;
 			}
-			generateAnimation(activeTag, type, startTime, delay, scalex, scaley);
+			generateAnimation(activeTag, type, startTime, delay, scalex, windowy);
 		}
 		if(exitAnimation) {
 			var type = exitAnimation.type;
@@ -180,22 +186,4 @@ function loadObjects(activeSlide, presentationData, slideHeart, windowx, windowy
 			generateAnimation(activeTag, type, startTime, delay, scalex, scaley, sum);
 		}
 	});
-};
-
-function buildCss(style) {
-	var styles = style.split(';');
-	var buildCss = {};
-	
-	styles.forEach(function(style) {
-		var prop = style.split(':')[0];
-		var val  = style.split(':')[1];
-		
-		if(prop && val) {
-			prop = prop.trim();
-			val  = val.trim();
-			buildCss[prop] = val;
-		}
-	});
-
-	return buildCss;
 };

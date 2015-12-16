@@ -1,3 +1,5 @@
+var fs          = require('fs');
+var path        = require('path');
 var gulp        = require('gulp');
 var gplumber    = require('gulp-plumber');
 var gif         = require('gulp-if');
@@ -12,160 +14,55 @@ var args        = require('../config/gulp').args;
 var paths       = require('../config/gulp').paths;
 var filters     = require('../config/gulp').filters;
 
+function getFolders(dir) {
+    return fs.readdirSync(dir)
+      .filter(function(file) {
+        return fs.statSync(path.join(dir, file)).isDirectory();
+      });
+};
+
 /* jshint camelcase: false */
-gulp.task('build-banner-account-js', function() {
-    return gulp
-        .src(paths.clientAccountJs + filters.jsDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'index.js',
-            'main.js',
-            '*'
-        ]))
-        .pipe(gif(args.isProduction, guglify({ mangle : false })))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.js'))
-        .pipe(gsize({
-            title: 'app.js'
-        }))
-        .pipe(gulp.dest(paths.distAccountJs));
+gulp.task('build-banner-js', function() {
+    var folders = getFolders(paths.clientBannerJs);
+
+    return folders.map(function(folder) {
+
+        return gulp
+            .src(path.join(paths.clientBannerJs, folder, '/**/*.js'))
+            .pipe(gorder([
+                'svg.js',
+                '*'
+            ]))
+            .pipe(gplumber())
+            .pipe(gif(args.isNotProduction, gsourcemaps.init()))
+            .pipe(gif(args.isProduction, guglify({ mangle : false })))
+            .pipe(gif(args.isNotProduction, gsourcemaps.write()))
+            .pipe(gconcat('app.js'))
+            .pipe(gsize({
+                title: 'app.js'
+            }))
+            .pipe(gulp.dest(path.join(paths.distBannerJS, folder)));
+    });
+
 });
 
-gulp.task('build-banner-account-css', function() {
-    return gulp
-        .src(paths.clientAccountCss + filters.lessDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'site.css',
-            '*'
-        ]))
-        .pipe(gless())
-        .pipe(gif(args.isProduction, gminifyCss()))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.css'))
-        .pipe(gsize({
-            title: 'app.css'
-        }))
-        .pipe(gulp.dest(paths.distAccountCss));
+gulp.task('build-banner-css', function() {
+    var folders = getFolders(paths.clientBannerCss);
+
+    return folders.map(function(folder) {
+        return gulp
+            .src(path.join(paths.clientBannerCss, folder, '/**/*.less'))
+            .pipe(gplumber())
+            .pipe(gif(args.isNotProduction, gsourcemaps.init()))
+            .pipe(gless())
+            .pipe(gif(args.isProduction, gminifyCss()))
+            .pipe(gif(args.isNotProduction, gsourcemaps.write()))
+            .pipe(gconcat('app.css'))
+            .pipe(gsize({
+                title: 'app.css'
+            }))
+            .pipe(gulp.dest(path.join(paths.distBannerCss, folder)));
+    });
 });
 
-gulp.task('build-banner-dashboard-js', function() {
-    return gulp
-        .src(paths.clientDashboardJs + filters.jsDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'index.js',
-            'main.js',
-            '*'
-        ]))
-        .pipe(gif(args.isProduction, guglify({ mangle : false })))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.js'))
-        .pipe(gsize({
-            title: 'app.js'
-        }))
-        .pipe(gulp.dest(paths.distDashboardJs));
-});
-
-gulp.task('build-banner-dashboard-css', function() {
-    return gulp
-        .src(paths.clientDashboardCss + filters.lessDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'site.css',
-            '*'
-        ]))
-        .pipe(gless())
-        .pipe(gif(args.isProduction, gminifyCss()))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.css'))
-        .pipe(gsize({
-            title: 'app.css'
-        }))
-        .pipe(gulp.dest(paths.distDashboardCss));
-});
-
-gulp.task('build-banner-editor-js', function() {
-    return gulp
-        .src(paths.clientEditorJs + filters.jsDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'index.js',
-            'main.js',
-            '*'
-        ]))
-        .pipe(gif(args.isProduction, guglify({ mangle : false })))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.js'))
-        .pipe(gsize({
-            title: 'app.js'
-        }))
-        .pipe(gulp.dest(paths.distEditorJs));
-});
-
-gulp.task('build-banner-editor-css', function() {
-    return gulp
-        .src(paths.clientEditorCss + filters.lessDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'site.css',
-            '*'
-        ]))
-        .pipe(gless())
-        .pipe(gif(args.isProduction, gminifyCss()))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.css'))
-        .pipe(gsize({
-            title: 'app.css'
-        }))
-        .pipe(gulp.dest(paths.distEditorCss));
-});
-
-gulp.task('build-banner-global-js', function() {
-    return gulp
-        .src(paths.clientGlobalJs + filters.jsDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'index.js',
-            'main.js',
-            '*'
-        ]))
-        .pipe(gif(args.isProduction, guglify({ mangle : false })))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.js'))
-        .pipe(gsize({
-            title: 'app.js'
-        }))
-        .pipe(gulp.dest(paths.distGlobalJs));
-});
-
-gulp.task('build-banner-global-css', function() {
-    return gulp
-        .src(paths.clientGlobalCss + filters.lessDeep)
-        .pipe(gplumber())
-        .pipe(gif(args.isNotProduction, gsourcemaps.init()))
-        .pipe(gorder([
-            'site.css',
-            '*'
-        ]))
-        .pipe(gless())
-        .pipe(gif(args.isProduction, gminifyCss()))
-        .pipe(gif(args.isNotProduction, gsourcemaps.write()))
-        .pipe(gconcat('app.css'))
-        .pipe(gsize({
-            title: 'app.css'
-        }))
-        .pipe(gulp.dest(paths.distGlobalCss));
-});
-
-gulp.task('build-banner-src', ['build-banner-account-js', 'build-banner-account-css',
-'build-banner-dashboard-js', 'build-banner-dashboard-css', 'build-banner-editor-js', 
-'build-banner-editor-css', 'build-banner-global-js', 'build-banner-global-css'
-]);
+gulp.task('build-banner-src', ['build-banner-js', 'build-banner-css']);

@@ -36,30 +36,16 @@ var config = {
         clientCss: CLIENT + 'css/',
         clientImages: CLIENT + 'images/',
         clientFonts: CLIENT,
-        clientAccountCss: CLIENT + 'css/banner/account/',
-        clientAccountJs: CLIENT + 'javascript/banner/account/',
-        clientDashboardCss: CLIENT + 'css/banner/dashboard/',
-        clientDashboardJs: CLIENT + 'javascript/banner/dashboard/',
-        clientEditorCss: CLIENT + 'css/banner/editor/',
-        clientGlobalCss: CLIENT + 'css/banner/global/',
-        clientEditorJs: CLIENT + 'javascript/banner/editor/',
-        clientGlobalJs: CLIENT + 'javascript/banner/global/',
-        clientEmbedJs: CLIENT + 'javascript/banner/embed/',
+        clientBannerCss: CLIENT + 'css/banner/',
+        clientBannerJs: CLIENT + 'javascript/banner/',
         vendor: CLIENT + 'vendor/',
         dist: DIST,
         distCss: DIST + 'css/',
         distJs: DIST + 'scripts/',
         distImages: DIST + 'images/',
         distFonts: DIST + 'fonts/',
-        distAccountCss: DIST + 'css/banner/account/',
-        distAccountJs: DIST + 'scripts/banner/account/',
-        distDashboardCss: DIST + 'css/banner/dashboard/',
-        distDashboardJs: DIST + 'scripts/banner/dashboard/',
-        distEditorCss: DIST + 'css/banner/editor/',
-        distEditorJs: DIST + 'scripts/banner/editor/',
-        distGlobalCss: DIST + 'css/banner/global/',
-        distGlobalJs: DIST + 'scripts/banner/global/',
-        distEmbedJs: DIST + 'scripts/banner/embed/',
+        distBannerCss: DIST + 'css/banner/',
+        distBannerJS: DIST + 'scripts/banner/',
     }
 };
 
@@ -67,36 +53,12 @@ var taskConfigs = {
     watcher: {
         watchers: [
             {
-                src: [config.paths.clientAccountJs + config.filters.jsDeep],
-                tasks: ['build-banner-account-js']
+                src: [config.paths.clientBannerJs + config.filters.jsDeep],
+                tasks: ['build-banner-js']
             },
             {
-                src: [config.paths.clientAccountCss + config.filters.lessDeep],
-                tasks: ['build-banner-account-css']
-            },
-            {
-                src: [config.paths.clientDashboardJs + config.filters.jsDeep],
-                tasks: ['build-banner-dashboard-js']
-            },
-            {
-                src: [config.paths.clientDashboardCss + config.filters.lessDeep],
-                tasks: ['build-banner-dashboard-css']
-            },
-            {
-                src: [config.paths.clientEditorJs + config.filters.jsDeep],
-                tasks: ['build-banner-editor-js']
-            },
-            {
-                src: [config.paths.clientEditorCss + config.filters.lessDeep],
-                tasks: ['build-banner-editor-css']
-            },
-            {
-                src: [config.paths.clientGlobalJs + config.filters.jsDeep],
-                tasks: ['build-banner-global-js']
-            },
-            {
-                src: [config.paths.clientGlobalCss + config.filters.lessDeep],
-                tasks: ['build-banner-global-css']
+                src: [config.paths.clientBannerCss + config.filters.lessDeep],
+                tasks: ['build-banner-css']
             },
             {
                 src: [config.paths.clientImages + config.filters.imagesDeep],

@@ -6,6 +6,7 @@ module.exports = function (app, passport) {
     require('./google')(app, passport);
     require('./dashboard')(app);
     require('./editor')(app);
+    require('./embed')(app);
 
     // authentication strategies
     require('../../config/strategy/passport')(passport);
