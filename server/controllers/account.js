@@ -70,21 +70,25 @@ exports.postForgot = function(req, res) {
         });
     };   
 
-    getToken().then(function (token) {
-        return User.findOne({ 'local.email': req.body.email }, function(err, user) {
-            if (!user) {
-                return res.status(200).json({message: 'No account with that email address exists.'});
-            }
-            user.local.resetPasswordToken = token;
-            user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    var getUser = function (token) {
+        return new Promise(function (resolve, reject) {
+            User.findOne({ 'local.email': req.body.email }, function (err, user) {
+                if (!user) {
+                    return res.status(200).json({message: 'No account with that email address exists.'});
+                }
+                user.local.resetPasswordToken = token;
+                user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
-            user.save(function(err) {
-                if (err)
-                    console.log(err);
-                return  user;
+                user.save(function(err) {
+                    if (err)
+                        console.log(err);
+                    return  resolve(user);
+                });
             });
-        });
-    }).then(function (user) {
+        });    
+    };   
+
+    var sendMail = function (user) {
         var smtpTransport = nodemailer.createTransport('SMTP', {
             service: 'gmail',
             auth: {
@@ -109,15 +113,73 @@ exports.postForgot = function(req, res) {
             return res.status(200).json({ message: 'An e-mail has been sent to ' + user.local.email + ' with further instructions.' });
             
         });
-    });
+    }
+
+    getToken()
+        .then(function (token) {
+            return getUser(token);
+        })
+        .then(function (user) {
+            sendMail(user);
+        });
 };
 
 exports.getReset = function(req, res) {
-	res.render('account/reset.html', {
-        pageName: 'hack15'
+    User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpires': { $gt: Date.now() } }, function(err, user) {
+        if (!user) {
+            return res.status(404).json({message: 'Password reset token is invalid or has expired!'});
+        }
+        res.render('account/reset.html', {
+            pageName: 'hack15'
+        });
     });
 };
 
+exports.postReset = function (req, res) {
+    var getUser = function () {
+        return new Promise(function (resolve, reject) {
+            User.findOne({ 'local.resetPasswordToken': req.params.token , 'local.resetPasswordExpires': { $gt: Date.now() } }, function(err, user) {
+                if (!user) {
+                    return res.status(404).json({message: 'Password reset token is invalid or has expired!'});
+                }
+
+                user.local.password = req.body.password;
+                user.local.resetPasswordToken = undefined;
+                user.local.resetPasswordExpires = undefined;    
+                
+                user.save(function(err) {
+                    if (err)
+                        console.log(err);
+                    return  resolve(user);
+                });
+            });
+        });
+    };   
+
+    getUser().then(function (user) {
+        var smtpTransport = nodemailer.createTransport('SMTP', {
+            service: 'gmail',
+            auth: {
+                user: 'ggola93@gmail.com',
+                pass: '571212223'
+            }
+        });
+        var mailOptions = {
+            to: user.local.email,
+            from: 'hack15@project.com',
+            subject: 'Your password has been changed',
+            text: 'Hello,\n\n' +
+                'This is a confirmation that the password for your account ' + user.local.email + ' has just been changed.\n'
+        };
+        smtpTransport.sendMail(mailOptions, function(err) {
+            if (err) {
+                console.log(err)
+                return res.status(404).json({ message: 'senging mail failed, please try later!' })
+            }
+            return res.status(200).json({ message: 'Your password has just been changed!' });
+        });
+    });
+}
 exports.logout = function (req, res) {
     req.session.destroy()
     req.logout();

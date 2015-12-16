@@ -17,5 +17,6 @@ module.exports = function(app) {
 					  .post(accountSrvc.blockAuth, account.postForgot);
 
 	app.route('/reset/:token')
-					  .get(accountSrvc.blockAuth, account.getReset);
+					  .get(accountSrvc.blockAuth, account.getReset)
+					  .post(accountSrvc.blockAuth, account.postReset);
 };

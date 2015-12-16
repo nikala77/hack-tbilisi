@@ -62,7 +62,30 @@ $(function () {
 				data: { email: email },
 				success: function (data) {
 					alert(data.message);
-					// document.location.href='/login';
+					document.location.href='/forgot';
+				}, 
+			}).fail(function (data) {
+				alert(data.responseText);
+			});
+		}
+	});
+
+	$('#reset').on('click', function () {
+		var password = $('#resetpass').val().trim();
+		var repeatPassword = $('#repeatpass').val().trim();
+
+		if (!password || !repeatPassword) {
+			alert('please fill all the fields!')
+		} else if (password !== repeatPassword) {
+			alert('password and repeatPassword must be the same!')
+		} else {
+			$.ajax({
+				type: "POST",
+				url: document.location.pathname,
+				data: { password: password, repeatPassword: repeatPassword },
+				success: function (data) {
+					alert(data.message);
+					document.location.href='/login';
 				}, 
 			}).fail(function (data) {
 				alert(data.responseText);
