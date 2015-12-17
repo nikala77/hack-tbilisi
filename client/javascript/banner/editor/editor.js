@@ -28,6 +28,25 @@ $(function() {
   }, options));
   //
 
+
+  // update banner name 
+
+  $('#bannername').on('blur', function () {
+    var name = $(this).val().trim();
+    var id = document.location.pathname.split('/')[2];
+    console.log('/api/banner/' + id);
+    if (name) {
+      $.ajax({
+        type: "PUT",
+        url: '/api/banner/' + id,
+        data: { name: name },
+      }).fail(function (data) {
+        alert(data.responseText);
+      });
+    }
+    
+  });
+
   // bind some editor options 
   bindZooming(bannerBg);
 });
