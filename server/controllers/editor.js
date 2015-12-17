@@ -54,3 +54,23 @@ exports.updateBannerData = function(req, res, next) {
 		return httpUtil.processError(err, 'json', res, next);
 	});
 };
+
+exports.updateBannerName = function (req, res, next) {
+
+	Promise.resolve(Banner.findById(req.params.id))
+	.then(function(banner) {
+		if(!banner) {
+			return Promise.reject();
+		}
+
+		banner.name = req.body.name;
+		banner.updatedAt = new Date();
+		return banner.save();
+	})
+	.then(function(status) {
+		res.send('Saved Successfully');
+	})
+	.catch(function(err) {
+		return httpUtil.processError(err, 'json', res, next);
+	});
+}
