@@ -3,6 +3,7 @@ var mongoose 	 = require('mongoose'),
     validator    = require('validator'),
     crypto       = require('crypto'),
     nodemailer   = require('nodemailer'),
+    emailConf    = require('../../config/env/development').email,
     Promise      = require('promise');
 
 var User = mongoose.model('User');
@@ -92,8 +93,8 @@ exports.postForgot = function(req, res) {
         var smtpTransport = nodemailer.createTransport('SMTP', {
             service: 'gmail',
             auth: {
-                user: 'ggola93@gmail.com',
-                pass: '571212223'
+                user: emailConf.user,
+                pass: emailConf.pass
             }
         });
         var mailOptions = {
@@ -157,11 +158,11 @@ exports.postReset = function (req, res) {
     };   
 
     getUser().then(function (user) {
-        var smtpTransport = nodemailer.createTransport('SMTP', {
+            var smtpTransport = nodemailer.createTransport('SMTP', {
             service: 'gmail',
             auth: {
-                user: 'ggola93@gmail.com',
-                pass: '571212223'
+                user: emailConf.user,
+                pass: emailConf.pass
             }
         });
         var mailOptions = {
