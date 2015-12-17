@@ -1,13 +1,12 @@
-var mongoose 	 = require('mongoose'),
-    passport     = require('passport'),
-    validator    = require('validator'),
-    crypto       = require('crypto'),
-    nodemailer   = require('nodemailer'),
-    emailConf    = require('../../config/env/development').email,
-    Promise      = require('promise');
+var mongoose 	 = require('mongoose');
+var passport     = require('passport');
+var validator    = require('validator');
+var crypto       = require('crypto');
+var nodemailer   = require('nodemailer');
+var emailConf    = require('../../config/env/development').email;
+var Promise      = require('promise');
 
 var User = mongoose.model('User');
-// var httpUtil	 = require('../util/httpUtil');
 
 exports.getLogin = function(req, res) {
 	res.render('account/login.html', {

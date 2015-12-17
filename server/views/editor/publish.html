@@ -8,23 +8,74 @@
       </div>
       <div class="modal-body">
         <div class="publish-content" >
-          <div class="publish-menu">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active">
+              <a href="#embed" aria-controls="embed" role="tab" data-toggle="tab">   Embed To a Site
+              </a>
+            </li>
+            <li >
+              <a href="#player" aria-controls="player" role="tab" data-toggle="tab">
+                Player
+              </a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="embed">
+              <p>
+                Copy the code below (fixed or responsive) and paste it (embed) to any of your website or blogs.
+              </p>
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#fixed" aria-controls="fixed" role="tab" data-toggle="tab">
+                    Fixed Banner
+                  </a>
+                  </li>
+                <li role="presentation">
+                  <a href="#responsive" aria-controls="responsive" role="tab" data-toggle="tab">
+                    Responsive Banner
+                  </a>
+                  </li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="fixed">
+                  <textarea class="link-area" cols="63" rows="5">
+                    {% include "../embed/fixed-iframe.html" %}
+                  </textarea>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="responsive">
+                  <textarea class="link-area" cols="63" rows="5">
+                    {% include "../embed/responsive-iframe.html" %}
+                  </textarea>
+                </div>
+              </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="player">
+              <label class="repeat-label">
+                <input type="checkbox" checked="checked"> Repeat 
+              </label>
+            </div>
+          </div>
+          <!-- <div class="publish-menu">
             <ul>
               <li id="publish-embed" class="publish-active">
-                Enbed To a Site
+                Embed To a Site
               </li>
               <li id="publish-player">
                 Player
               </li>
-              <li id="publish-download">
+              <!-- <li id="publish-download">
                 Download
-              </li>
+              </li> -->
             </ul>
           </div>
           <ul class="menu-contents">
             <li  class="embed-content">
               <p>
-                Copy the code below and paste it (embed) to any of your website or blogs. You can insert to HTML code of any website including WordPress, Drupal, and all other sites and blogs.
+                Copy the code below (fixed or responsive) and paste it (embed) to any of your website or blogs.
               </p>
               <div class="embed-menu" >
                 <ul>
@@ -36,18 +87,13 @@
                   </li>
                 </ul>
               </div>
-              <textarea class="link-area" ></textarea>
-              <button type="button" class="btn btn-sm btn-success copy-btn">Copy</button>
             </li>
             <li class="player-content" style="display:none;">
               <label class="repeat-label">
                 <input type="checkbox" value="" /> Repeat 
               </label>
             </li>
-            <li class="download-content" style="display:none;">
-              <!-- TODO -->
-            </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
       <div class="modal-footer publish-footer">

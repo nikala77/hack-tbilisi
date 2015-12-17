@@ -1,3 +1,12 @@
+function copyElement(elementID) {
+    var hiddenInput = document.createElement("input");
+    hiddenInput.setAttribute("value", document.getElementById(elementID).value);
+    document.body.appendChild(hiddenInput);
+    hiddenInput.select();
+    document.execCommand("copy");
+    document.body.removeChild(hiddenInput);
+};
+
 $(function () {
 	$("#publish-embed").on("click",function(){
 		$("#publish-embed").addClass("publish-active");
@@ -39,8 +48,7 @@ $(function () {
 		$("#responsive").addClass("active");
 	});
 
-	/*$(".copy-btn").on("click",function(elementID){
-		var hiddenInput = document.createElement("input");
-		hiddenInput.setAtribute("value")
-	});	*/
+	$(".copy-btn").on("click",function(){
+		copyElement('puvlish-link-textarea');
+	});	
 });

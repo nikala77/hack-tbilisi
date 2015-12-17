@@ -2,8 +2,9 @@ function addShape(slide, src, width, height, fill, stroke, style, freetrans, ani
 	var random = generateRandom(slide);
 	var x = random.x;
 	var y = random.y;
-	var width  = width || 100;
-	var height = height || 100;
+	console.log(width, height)
+	var width  = width || 90;
+	var height = height || 90;
 
 	var shape = $('<div data-src="'+ src +'"><img src="'+ src +'" width="'+ width +'" height="'+ height +'"></img></div>');
 	shape.data('fill', fill);

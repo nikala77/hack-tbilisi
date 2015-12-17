@@ -1,4 +1,3 @@
-
 module.exports = function (app) {
 	var account = require('../services/account');
 	var editor = require('../controllers/editor');
