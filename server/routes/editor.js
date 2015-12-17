@@ -11,4 +11,7 @@ module.exports = function (app) {
 		.get(editor.getBannerData)
 		.put(editor.updateBannerData);
 
+	app.route('/api/banner/:id')
+		.put(editor.updateBannerName);	
+
 };
