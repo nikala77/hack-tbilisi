@@ -14,7 +14,6 @@ function loadBanner(bannerData, workingBanner, windowx, windowy) {
 	}
 
 	objects.forEach(function(obj) {
-		console.log(obj);
 		var type = obj.tag;
 		var src = obj.src;
 		var videoType = obj.videoType;

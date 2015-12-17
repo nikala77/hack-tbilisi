@@ -1,5 +1,5 @@
 $(function() {
-	var id = $('.fixed-banner').data('id');
+	var id = $('.working-banner').data('id');
 	
 	$.ajax({
 		url: '/api/banner/data/' + id,
@@ -22,5 +22,8 @@ $(function() {
 });
 
 function startFixedBanner(data) {
-	loadBanner(data, $('.fixed-banner'), 1, 1);
+	var width = $('.working-banner').data('width');
+	var height = $('.working-banner').data('height');
+
+	loadBanner(data, $('.working-banner'), window.innerWidth / width, window.innerHeight / height);
 };
