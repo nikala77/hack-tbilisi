@@ -2,11 +2,16 @@
 {% block content %}
 	<div class="header">
 		<header>
+			<div class="logo">
+				<a href="dashboard" >
+					<img src="/images/blue.png" />
+				</a>
+			</div>
 			<div class="buttons">
 				<button class="btn btn-success btn-primary preview-btn" data-toggle="modal" data-target="#preview">Preview</button>
 				<button class="btn btn-danger" data-toggle="modal" data-target="#publish">Publish</button>
 				<button class="btn btn-warning" id="save">Save</button>
-				<input type="text" value="{{ banner.name }}">
+				<input type="text" id="bannername" value="{{ banner.name }}">
 			</div>
 			{% include "./preview.html" %}
 			{% include "./publish.html" %}

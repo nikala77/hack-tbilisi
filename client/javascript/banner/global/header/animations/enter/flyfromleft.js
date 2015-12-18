@@ -1,7 +1,7 @@
 function flyFromLeft(tag, slide, startTimeAt, delay, scalex) {
 	var left = tag.css('left');
 	var outX = -tag.width();
-	
+
 	if(tag.hasClass('textarea')) {
 		outX = -tag.width() * scalex;
 	}

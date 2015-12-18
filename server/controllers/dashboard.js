@@ -32,7 +32,8 @@ exports.getBannerNew = function(req, res) {
 exports.getBannerStatistics = function(req, res) {
 	// API get all banners by user ID
 	Promise.resolve(Banner.find({ userID: req.user.id }, 
-	{ 'name': 1, 'createdAt': 1, 'updatedAt': 1, 'views': 1, 'clicks': 1 }))
+	{ 'name': 1, 'createdAt': 1, 'updatedAt': 1, 'views': 1, 'clicks': 1 })
+	.sort({ updatedAt: -1 }))
 	.then(function(banners) {
 		res.render('dashboard/banners.html', {
 			pageName	: 'hack15',

@@ -5,6 +5,8 @@ var httpUtil  = require('../util/httpUtil');
 
 
 exports.getEditor = function (req, res, next) {
+	var baseURL = req.protocol + '://' + req.get('host');
+	
 	Promise.resolve(Banner.findById(req.params.id, { 'data': 0 }))
 	.then(function(banner) {
 		if(!banner) {
@@ -13,7 +15,8 @@ exports.getEditor = function (req, res, next) {
 
 		return res.render('editor/editor.html', {
 			pageName: 'Editor',
-			banner: banner
+			banner: banner,
+			host: baseURL
 		});
 	})
 	.catch(function(err) {
@@ -54,3 +57,23 @@ exports.updateBannerData = function(req, res, next) {
 		return httpUtil.processError(err, 'json', res, next);
 	});
 };
+
+exports.updateBannerName = function (req, res, next) {
+
+	Promise.resolve(Banner.findById(req.params.id))
+	.then(function(banner) {
+		if(!banner) {
+			return Promise.reject();
+		}
+
+		banner.name = req.body.name;
+		banner.updatedAt = new Date();
+		return banner.save();
+	})
+	.then(function(status) {
+		res.send('Saved Successfully');
+	})
+	.catch(function(err) {
+		return httpUtil.processError(err, 'json', res, next);
+	});
+}

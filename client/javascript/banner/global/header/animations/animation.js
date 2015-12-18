@@ -1,10 +1,12 @@
 function generateAnimation(tag, animation, startTime, delay, scalex, scaley, sum) {
 	try {
-		var previewDesk = $("#preview-slide-desk");
+		var previewBanner = $('.preview-banner');
 		startTime = (Number(startTime) + 0.5) * 1000;
 		delay = (Number(delay) + 0.5 ) * 1000;
 		sum = sum ? sum : 0;
-		eval(animation + '(tag, previewDesk, startTime, delay, scalex, scaley, sum)');
+		console.log('animation', animation)
+		eval(animation + '(tag, previewBanner, startTime, delay, scalex, scaley, sum)');
+		
 	} catch(err) {
 		// console.log('animation doesn\'t exists', err);
 	}

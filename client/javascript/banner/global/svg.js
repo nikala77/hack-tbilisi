@@ -22,6 +22,11 @@ function convertSVG(shape, fill, stroke, width, height) {
         $svg.attr('width', width);
         $svg.attr('height', height);
 
+        $svg.css({
+            'width': width,
+            'height': height
+        });
+
         // Replace image with new SVG
         $img.replaceWith($svg);
 

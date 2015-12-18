@@ -11,14 +11,14 @@ $(function() {
 			var YTID = getYTID(yvlink);
 			if(YTID) {
 				// "https://www.youtube.com/embed/"+myId+"?rel=0&start="+ start_time +"&showinfo=0&end="+ end_time +"&autoplay="+autoplay+"&controls="+controls
-				src = 'https://www.youtube.com/embed/'+ YTID +'?rel=0&showinfo=0&autoplay=true&controls=false';
+				src = 'https://www.youtube.com/embed/'+ YTID +'?rel=0&showinfo=0&autoplay=0&controls=0';
 				videoType = 'youtube';
 				width = 560;
 				height = 315;
 			} else {
 				var VID = getVimeoID(yvlink);
 				// src = "https://player.vimeo.com/video/"+videoId+"#t="+ start_time +"?autoplay="+autoplay+"&controls="+controls;
-				src = 'https://player.vimeo.com/video/'+ VID +'?autoplay=true&controls=false';
+				src = 'https://player.vimeo.com/video/'+ VID +'?autoplay=false&controls=false';
 				videoType = 'vimeo';
 				width = 500;
 				height = 264;

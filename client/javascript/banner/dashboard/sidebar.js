@@ -5,9 +5,8 @@ $(function() {
 	$('.username').popover({
 		html: true,
 		title: avatarHTML + ' <p>' + usernameHTML + '</p>',
-		content: '<a href="/logout" class="logout pull-right">Log Out</a>'
+		content: '<a href="/logout" class="logout pull-right"><i class="fa fa-power-off"></i>  Log Out </a>'
 	});
-
 
 	// activate on click
 	switch(window.location.pathname) {
