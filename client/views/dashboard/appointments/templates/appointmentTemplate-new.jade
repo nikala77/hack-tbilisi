@@ -1,0 +1,17 @@
+div(ng-include="'views/dashboard/appointments/shell-settings.html'")
+
+.container
+    .row
+        .col-md-12
+            h2 Create New Appointment Template
+    .row
+        .col-md-6
+            include ./form.jade
+        .col-md-6
+            include ./form-automations.jade
+    .row
+        .col-md-12
+            .pull-right
+                a.btn.btn-default(href="/appointments/settings/templates") Cancel
+                | &nbsp;
+                button.btn.btn-primary(ng-click="createAppointmentTemplate()", ng-disabled="appointmentTemplateForm.$invalid || isSaving") Create

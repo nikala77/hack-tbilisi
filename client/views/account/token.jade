@@ -1,0 +1,41 @@
+div(ng-include="'views/account/shell.html'")
+.container.well(ng-show="data.tokenType == 'newOwner'")
+    h2 Welcome {{data.firstName}}
+    p Your email address is now verified.
+    p Your new account is set up and ready to go.
+    a.btn.btn-primary(href="/dashboard") Start now
+
+mixin pwForm
+    form.form-horizontal
+        .form-group
+            label.col-sm-2.control-label(for='password') Password
+            .col-sm-9
+                input.form-control(ng-model='password' type='password' placeholder='Password')
+        .form-group
+            label.col-sm-2.control-label(for='repeatPassword') Repeat Password
+            .col-sm-9
+                input.form-control(ng-model='repeatPassword' type='password' placeholder='Repeat password')
+        .form-group
+            .col-sm-offset-2.col-sm-9
+                button.btn.btn-primary.pull-right(ng-click="setPassword(password, repeatPassword)") Set Password
+
+.container.well(ng-show="data.tokenType == 'newUser'")
+    h2 Welcome {{data.firstName}}
+    p Your email address is now verified.
+    p One last step to join your team at Zurli... Enter your password:
+    p
+    p
+    +pwForm
+
+.container.well(ng-show="data.tokenType == 'emailChange'")
+    h2 Your email address has been updated {{data.firstName}}
+    p It is now {{data.data}}.
+    a.btn.btn-primary(href="/dashboard") Go to app
+
+.container.well(ng-show="data.tokenType == 'passwordReset'")
+    h2 Enter your new password {{data.firstName}}
+    +pwForm
+
+.container.well(ng-show="!!reason")
+    h2 Uh-Oh. Something went wrong :(
+    p {{reason}}

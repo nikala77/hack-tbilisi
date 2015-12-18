@@ -1,0 +1,11 @@
+ui-select(multiple="" ng-model="$parent.ngModel")
+    ui-select-match(placeholder="{{placeholder}}")
+        img.img-thumbnail(profile-img="$item" profile-type="user" profile-defimg="/images/man64.png" profile-size="small"
+            style="width: 64px; height: 64px")
+        span  {{$item.name}}
+    ui-select-choices(repeat="user._id as user in users | filter: {name:$select.search}")
+        img.img-thumbnail(profile-img="user" profile-type="user" profile-defimg="/images/man64.png" profile-size="small"
+            style="width: 64px; height: 64px")
+        span &nbsp;
+        span(ng-bind-html="trustAsHtml((user.name | highlight: $select.search))")
+        span(ng-show="user.practitioner")  - ({{ user.practitioner }} Practitioner)

@@ -1,0 +1,24 @@
+div(ng-include="'views/dashboard/settings/shell.html'")
+
+div(ng-include="'views/common/spinner.html'" ng-show="isLoading")
+.container(ng-hide="isLoading")
+    .row
+        .col-md-12
+            h2 {{ user.name }}
+    .row
+        .col-md-2
+            div(ng-show="user.pic")
+                img.img-thumbnail.img-responsive(profile-img="user" profile-type="user" profile-size="large")
+        .col-md-10
+            p.text-muted Linked Resource:
+                a.text-default(ng-show="user.linkedResource" href="/appointments/settings/resources/{{ user.linkedResource._id }}") {{ user.linkedResource.name }}
+            p.text-muted Email:
+                a.text-default(href="mailto:{{ user.email }}") {{ user.email }}
+            p.text-muted Roles:
+                span.text-default {{ user.roles }}
+    .row
+        .col-md-12
+            .pull-right
+                a.btn.btn-default(href="/settings/users") Cancel
+                |&nbsp;
+                a.btn.btn-primary(href="/settings/users/{{ user._id }}/edit" ng-disabled="!canEdit") Edit

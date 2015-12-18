@@ -1,0 +1,38 @@
+.navbar.navbar-default
+    .container-fluid
+        .navbar-header
+            button.navbar-toggle.collapsed(data-toggle="collapse" data-target="#navbar-dashboard")
+                span.sr-only Toggle Navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            .navbar-brand.visible-xs Menu
+    .navbar-collapse.collapse(id="navbar-dashboard")
+            ul.nav.navbar-nav.auto-active
+                li
+                    a(href="/dashboard") Dashboard
+                li
+                    a(href="/clients") Clients
+                li
+                    a(href="/appointments") Appointments
+                //li
+                //    a(href="/accounts") Accounts
+                li
+                    a(href="/communication") Communication
+
+            ul.nav.navbar-nav.navbar-right.auto-active
+                //li
+                //    a(href="/upload")
+                //        span.glyphicon.glyphicon-cloud-upload
+                //li
+                //    a(href="/messages")
+                //        span.glyphicon.glyphicon-envelope
+                //li
+                //    a(href="/filing")
+                //        span.glyphicon.glyphicon-file
+                li
+                    a(href="/settings")
+                        span.glyphicon.glyphicon-cog
+                //li
+                //    a(href="/help")
+                //        span.glyphicon.glyphicon-question-sign

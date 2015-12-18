@@ -1,0 +1,44 @@
+{
+  "name": "fullcalendar",
+  "description": "Full-sized drag & drop event calendar",
+  "keywords": [
+    "calendar",
+    "event",
+    "full-sized"
+  ],
+  "homepage": "http://arshaw.com/fullcalendar/",
+  "dependencies": {
+    "jquery": ">=1.7.1",
+    "moment": ">=2.5.0"
+  },
+  "devDependencies": {
+    "jquery-ui": ">=1.11.1",
+    "jquery-simulate-ext": "~1.3.0",
+    "jquery-mockjax": "~1.5.4",
+    "jasmine-jquery": "~2.0.3",
+    "jasmine-fixture": "~1.2.0",
+    "moment-timezone": "~0.2.1",
+    "bootstrap": "~3.2.0"
+  },
+  "main": [
+    "dist/fullcalendar.js",
+    "dist/fullcalendar.css"
+  ],
+  "ignore": [
+    "*",
+    "**/.*",
+    "!/dist/**",
+    "!/bower.json",
+    "!/changelog.*",
+    "!/license.*",
+    "!/readme.*"
+  ],
+  "_release": "343fff5b24",
+  "_resolution": {
+    "type": "commit",
+    "commit": "343fff5b24dba413f5955c0c724ea58fd2aca094"
+  },
+  "_source": "https://github.com/richardsawyer/fullcalendar.git",
+  "_target": "343fff5b24dba413f5955c0c724ea58fd2aca094",
+  "_originalSource": "https://github.com/richardsawyer/fullcalendar.git"
+}

@@ -1,0 +1,23 @@
+div(ng-include="'views/dashboard/appointments/shell-settings.html'")
+
+div(ng-include="'views/common/spinner.html'" ng-show="isLoading")
+.container(ng-hide="isLoading")
+    .row
+        .col-md-12
+            h2 {{ appointmentTemplate.name }}
+    .row
+        .col-md-12
+            p.text-muted Template name:
+                span.text-default {{ appointmentTemplate.name }}
+            p.text-muted Available to:
+                span.text-default {{ appointmentTemplate.resources }}
+            p.text-muted Color:&nbsp;
+                span.bgColor(ng-style="{ 'background-color': appointmentTemplate.color || 'white' }")
+            p.text-muted Duration:
+                span.text-default {{ appointmentTemplate.duration }} minutes
+    .row
+        .col-md-12
+            .pull-right
+                a.btn.btn-default(href="/appointments/settings/templates") Cancel
+                | &nbsp;
+                a.btn.btn-primary(href="/appointments/settings/templates/{{ appointmentTemplate._id }}/edit" ng-show="canEdit") Edit

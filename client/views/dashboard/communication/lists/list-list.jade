@@ -1,0 +1,24 @@
+div(ng-include="'views/dashboard/shell.html'")
+h1 Lists
+div(ng-include="'views/dashboard/communication/navbar-communication.html'")
+.container
+    .row
+        .col-md-3.col-sm-6
+            input.form-control(type="text" placeholder="Find")
+        .col-md-3.col.sm-3
+            button.btn.btn-success 
+                span.glyphicon.glyphicon-plus-sign
+                |  New list
+    .row
+        .voffset2
+        table.table.table-hover
+            tr
+                th Created
+                th Last used
+                th Description
+                th Status
+            tr(ng-repeat="list in lists")
+                td {{ list.created  | date:'d MMM y' }}
+                td {{ list.lastUsed | date:'d MMM y' }}
+                td 
+                    a(href="communication/lists/{{list.id}}") {{ list.description }}

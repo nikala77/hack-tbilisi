@@ -1,0 +1,27 @@
+div(ng-include="'views/account/navbar-account.html'")
+div(ng-include="'views/dashboard/navbar-dashboard.html'")
+
+div(ng-include="'views/common/spinner.html'" ng-show="isLoading")
+.container(ng-hide="isLoading")
+    .row
+        .col-md-offset-2.col-md-8
+            h2 Edit {{ client.name }}
+    
+    div(ng-show="isChangingPic")
+        include ../../common/picUploader.jade
+    
+    .row(ng-hide="isChangingPic")
+        .col-md-offset-2.col-md-2.text-center
+            div(ng-show="client.pic")
+                img.img-thumbnail.img-responsive(profile-img="client" profile-type="client" profile-size="large" profile-nocache="true" img-changed="imgChanged")
+            div
+               button.btn.btn-primary(ng-click="startChangingPic()" ng-disabled="isSaving") Change Pic
+        .col-md-6
+            include ./form.jade
+
+    .row(ng-hide="isChangingPic")
+        .col-md-10
+            .pull-right
+                a.btn.btn-default(href="/clients/{{ client._id }}") Cancel
+                | &nbsp;
+                button.btn.btn-primary(ng-click="saveClient()", ng-disabled="clientForm.$invalid || isSaving") Save

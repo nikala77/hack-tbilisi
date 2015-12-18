@@ -1,0 +1,23 @@
+div(ng-include="'views/dashboard/settings/shell.html'")
+
+div(ng-include="'views/common/spinner.html'" ng-show="isLoading")
+.container(ng-hide="isLoading")
+    .row
+        .col-md-12
+            h2 API Key {{ user.displayName }}
+    .row
+        .col-md-12
+            p.text-muted Date Created:
+                span.text-default {{ user.created | date: 'fullDate' }}
+            p.text-muted API Key:
+                textarea.form-control#copy-target(cols="50" rows="3" readonly) {{ user.apiKey }}
+    .row
+        .col-md-12
+            .pull-left
+                a.btn.btn-default(href=" http://zurili.com/install/zurilisynctool/setup.exe") Download Sync Tool
+                |&nbsp;
+                a.btn.btn-success#copy-api(data-clipboard-target="copy-target") Copy
+            .pull-right
+                a.btn.btn-default(href="/settings/api") Cancel
+                |&nbsp;
+                a.btn.btn-primary(href="/settings/api/{{ user._id }}/edit" ng-disabled="!canEdit") Edit

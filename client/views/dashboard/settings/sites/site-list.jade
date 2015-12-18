@@ -1,0 +1,26 @@
+div(ng-include="'views/dashboard/settings/shell.html'")
+
+.container
+    .row
+        .col-md-12
+            h2 Your Sites
+    .row
+        .col-md-12
+            table.table.table-striped.sites
+                thead
+                    tr
+                        td.pic
+                            strong Pic
+                        td
+                            strong Name
+                tbody
+                    tr(ng-repeat="site in sites")
+                        td
+                            div(ng-show="site.pic")
+                                img.img-thumbnail.img-responsive(profile-img="site" profile-type="site" profile-size="small")
+                        td
+                            a(ng-show="site.isOwner" href="/settings/sites/{{ site._id }}") {{ site.name }}
+                            span(ng-hide="site.isOwner") {{ site.name }}
+    .row
+        .col-md-12
+            a.btn.btn-default.btn-primary.pull-right(href="/settings/sites/new") New Site

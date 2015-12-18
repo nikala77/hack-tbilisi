@@ -1,0 +1,14 @@
+form.form-horizontal(name="dashboardForm") 
+    p.alert.alert-danger(ng-show="dashboardForm.dashboardName.$error.maxlength" class="help-block") Dashboard Name must be less than 100 character
+    .form-group(ng-class="{ 'has-error': dashboardForm.dashboardName.$error.required }")
+        label.col-md-3.control-label(for="dashboardName") Dashboard Name: *
+        .col-md-9
+            input.form-control(name="dashboardName" ng-model="dashboard.name" ng-blur="" 
+                                ng-required="true" placeholder="Dashboard Name"
+                                ng-maxlength="100" autofocus)
+    .form-group
+        .col-md-9.col-md-offset-3
+            .pull-right
+                a.btn.btn-default(href="/dashboard/dashboards") Cancel
+                | &nbsp;
+                button.btn.btn-primary(ng-click="createDashboard()" ng-disabled="dashboardForm.$invalid") Create

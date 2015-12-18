@@ -1,0 +1,8 @@
+div(ng-include="'views/dashboard/shell.html'")
+h1 Dashboard
+
+.row
+    .col-md-6
+        div(ng-repeat="widget in leftWidgets" ng-include="widget.url")
+    .col-md-6
+        div(ng-repeat="widget in rightWidgets" ng-include="widget.url")

@@ -1,0 +1,21 @@
+div(ng-include="'views/dashboard/settings/shell.html'")
+
+.container
+    .row
+        .col-md-12
+            h2 API Keys
+    .row
+        .col-md-12
+            table.table.table-striped.users
+                thead
+                    tr
+                        td
+                            strong Name
+                tbody
+                    tr(ng-repeat="user in users | filter: { roles: 'api' }")
+                        td
+                            a(ng-show="canEdit" href="/settings/api/{{ user._id }}") {{ user.name || user.email }}
+                            span(ng-hide="canEdit") {{ user.name || user.email }}
+    .row
+        .col-md-12
+            a.btn.btn-default.btn-primary.pull-right(href="/settings/api/new" ng-disabled="!canEdit") Add API Key

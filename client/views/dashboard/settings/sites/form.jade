@@ -1,0 +1,21 @@
+form.form-horizontal(name="siteForm")
+    .form-group(ng-class="{ 'has-error': siteForm.name.$invalid || siteForm.name.$error.required }")
+         label.col-md-3.control-label(for="name") Site name*
+         .col-md-9
+             input.form-control(name="name" ng-model="site.name" placeholder="Site/Site Name" ng-required="true" ng-disabled="isSaving")
+    
+    .form-group
+         label.col-md-3.control-label(for="address") Address
+         .col-md-9
+             textarea.form-control(name="address" ng-model="site.address" placeholder="Address" ng-disabled="isSaving")
+    
+    .form-group
+         label.col-md-3.control-label(for="phone") Phone
+         .col-md-9
+             input.form-control(name="phone" ng-model="site.phone" placeholder="Phone" ng-disabled="isSaving")
+    
+    .form-group(ng-class="{ 'has-error': siteForm.email.$invalid }")
+        label.col-md-3.control-label(for="email") Email
+        .col-md-9
+            input.form-control(name="email" placeholder="Email" ng-model="site.email" 
+                               ng-required="true" ng-pattern="emailRegex" ng-disabled="isSaving")

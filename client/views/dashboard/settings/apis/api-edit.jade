@@ -1,0 +1,18 @@
+div(ng-include="'views/dashboard/settings/shell.html'")
+
+div(ng-include="'views/common/spinner.html'" ng-show="isLoading")
+.container(ng-hide="isLoading")
+    .row
+        .col-md-12
+            h2 Edit API Key - {{ user.displayName }}
+            include ./form.jade
+    
+    .row
+        .col-md-12
+            button.btn.btn-danger(ng-click="deleteUser()", ng-disabled="isSaving || !canEdit") Delete
+            | &nbsp;
+            button.btn.btn-warning(ng-click="regenerateKey(user)" ng-disabled="isSaving || !canEdit") Regenerate Key
+            .pull-right
+                a.btn.btn-default(href="/settings/api") Cancel
+                | &nbsp;
+                button.btn.btn-primary(ng-click="saveUser()", ng-disabled="userForm.$invalid || isSaving || !canEdit") Save

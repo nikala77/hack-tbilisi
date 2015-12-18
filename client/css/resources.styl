@@ -1,0 +1,59 @@
+.table.resources
+    tr
+        height: 70px
+    td.pic
+        width: 70px
+    td.practitioner
+        width: 150px
+    td.interval
+        width: 125px
+
+div.avaliable-times
+    .error
+        color: red
+    .row.title
+        span
+            padding-left: 5px
+    .row.regions
+        border-top: 1px dashed gray
+        padding-top: 5px
+        margin-bottom: 10px
+        .radio
+            display: inline-block
+            strong
+                margin-right: 5px
+            margin-right: 10px
+            padding-right: 10px
+            border-right: 1px solid gray
+    .row.weeks
+        border-top: 1px dashed gray
+        padding-top: 10px
+        margin-bottom: 10px
+        .btn
+            margin-top: 20px
+    .row.filters
+        padding-bottom: 10px
+        margin-bottom: 10px
+        select.form-control
+            display: inline
+            width: 70px
+            margin: 0 5px
+    table
+        table-layout: fixed
+        td
+            padding: 5px 0
+        td.time
+            padding-left: 5px
+        td.day-of-week
+            padding-left: 5px
+            width: 100px
+        td.cell
+            cursor: pointer
+    table.disabled
+        opacity: 0.5
+        td.cell
+            cursor: not-allowed
+
+div.edit-region-modal
+    .sp-replacer.sp-light
+        width: 50px

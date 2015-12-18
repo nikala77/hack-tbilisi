@@ -1,0 +1,59 @@
+{
+  "name": "zurili",
+  "version": "0.0.0",
+  "authors": [
+    "Richard Sawyer <richardsawyer123@hotmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.3.13",
+    "angular-jwt": "0.0.9",
+    "angular-resource": "~1.3.13",
+    "angular-route": "~1.3.13",
+    "angular-mocks": "~1.3.13",
+    "angular-bootstrap": "~0.13.0",
+    "angular-ui-calendar": "https://github.com/richardsawyer/ui-calendar.git#784a218bbd1ae115f1397ab94e507d2c04dd3291",
+    "angular-spectrum-colorpicker": "~1.3.5",
+    "angular-ui-select": "~0.11.2",
+    "angular-sortable-view": "~0.0.13",
+    "angular-elastic": "~2.4.2",
+    "aws-sdk-js": "~2.1.24",
+    "bootstrap": "~3.3.4",
+    "fullcalendar": "https://github.com/richardsawyer/fullcalendar.git#343fff5b24dba413f5955c0c724ea58fd2aca094",
+    "jquery": "~2.1.1",
+    "jquery-cookie": "~1.4.1",
+    "lodash": "~3.7.0",
+    "moment": "~2.10.2",
+    "ngImgCrop": "~0.3.0",
+    "toastr": "~2.0.3",
+    "raygun4js": "~1.18.3",
+    "spinkit": "~1.0.1",
+    "ng-file-upload": "~4.2.1",
+    "ngAutocomplete": "~1.0.0",
+    "smart-area": "https://github.com/richardsawyer/smart-area.git#7ab30656b1035094df5604191a753a8bb28c1cd0",
+    "isteven-angular-multiselect": "~4.0.0",
+    "async": "~1.4.2",
+    "zeroclipboard": "2.2.0"
+  },
+  "resolutions": {
+    "jquery": "~2.x",
+    "angular": "^1.3.x"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js",
+        "fonts/*"
+      ]
+    }
+  }
+}

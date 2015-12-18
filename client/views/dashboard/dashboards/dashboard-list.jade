@@ -1,0 +1,98 @@
+div(ng-include="'views/dashboard/shell.html'")
+//http://kamilkp.github.io/angular-sortable-view/
+.container
+    .row
+        .col-md-12
+            h1 Edit Dashboards
+    .row
+        .col-md-4.col-sm-2
+            .btn-group(dropdown='')
+                button.btn.btn-primary(type='button', dropdown-toggle='')
+                    span.glyphicon.glyphicon-bookmark 
+                    |   Dashboard: {{ dashboard.name | zCapitalize }} 
+                    span.caret
+                |       
+                ul.dropdown-menu(role='menu', aria-labelledby='single-button')
+                    li(role='menuitem' ng-repeat="dashboard in dashboards")
+                      a(href='#' ng-click='changeDashboard(dashboard)') {{ dashboard.name | zCapitalize }}
+
+        .col-md-4.col-sm-2
+            .btn-group(dropdown='')
+                a.btn.btn-success(href='/dashboard/new' type='button')
+                    span.glyphicon.glyphicon-plus-sign 
+                    |   New Dashboard
+    br
+    .row
+        .col-md-4.col-sm-6
+            .btn-group
+                button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='false')
+                    span.glyphicon.glyphicon-bookmark
+                    |  Theme: {{ dashboard.theme.name | zCapitalize }}
+                    span.caret
+                ul.dropdown-menu(role='menu')
+                    li(ng-repeat="theme in themes")
+                        a(href='#' ng-click='setTheme(dashboard, theme)') {{ theme.name | zCapitalize }}
+    br                
+    .row
+        .col-md-4.col-sm-6
+            .btn-group
+                button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-expanded='false')
+                    span.glyphicon.glyphicon-plus-sign
+                    |  Add widget 
+                    span.caret
+                ul.dropdown-menu(role='menu')
+                    li(ng-repeat="widget in widgets")
+                        a(href='#' ng-click="addWidget(dashboard, widget)") {{widget.name}}    
+    br
+    .row
+        .multi-sortable(sv-root='')
+            .col-sm-4
+                .sortable-container(sv-part='dashboard.widgets.left')
+                    .alert.alert-success.multi(ng-repeat='widget in dashboard.widgets.left', sv-element='')
+                        | {{ widget.name }}
+                        a(href="#" ng-click="removeLeftWidget(dashboard, $index)")
+                            span.pull-right.text-danger.glyphicon.glyphicon-remove-circle
+            .col-sm-4
+                .sortable-container(sv-part='dashboard.widgets.right')
+                    .alert.alert-warning.multi(ng-repeat='widget in dashboard.widgets.right', sv-element='')
+                        | {{ widget.name }}
+                        a(href="#" ng-click="removeRightWidget(dashboard, $index)")
+                            span.pull-right.text-danger.glyphicon.glyphicon-remove-circle
+
+    .row
+        .col-md-8
+            .pull-left
+                button.btn.btn-danger(ng-click='delete(dashboard.name)')
+                    span.glyphicon.glyphicon-remove-sign
+                    |  Delete 
+                | &nbsp;
+            .pull-right
+                button.btn.btn-default(ng-click='cancel(dashboard)')
+                    span.glyphicon.glyphicon-remove-sign
+                    |  Cancel
+                | &nbsp;
+                button.btn.btn-primary(ng-click='save(dashboard)')
+                    span.glyphicon.glyphicon-ok-sign
+                    |  Save
+    .row.modal-row
+        script(type='text/ng-template', id='delete_dashboard')
+            .modal-header
+              h3.modal-title(align='center') Delete {{ dashboard | zCapitalize }} Dashboard!
+            .modal-body
+              h5
+                | You are about to delete the {{ dashboard | zCapitalize }} Dashboard. This is permanent. Continue?
+            .modal-footer
+              button.btn.btn-primary(type='button', ng-click='ok()') OK
+              button.btn.btn-warning(type='button', ng-click='cancel()') Cancel
+        
+        script(type='text/ng-template', id='delete_dashboard_warning')
+            .modal-header
+              h3.modal-title.text-warning(align='center') Delete Warning!
+            .modal-body
+              h5.text-warning
+                | You cannot delete your last dashboard!
+            .modal-footer
+              button.btn.btn-warning(type='button', ng-click='cancel()') Cancel
+    
+    .row
+        p {{modelAsJson}}

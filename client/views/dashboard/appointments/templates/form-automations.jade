@@ -1,0 +1,36 @@
+.well
+    h4 Automations
+    table.table
+        tr
+            th Trigger
+            th Action
+            th
+        tr
+            td Create appointment
+            td Email welcome
+            td.text-center
+                span.glyphicon.glyphicon-remove-circle.text-danger 
+                | &nbsp;
+                span(popover="same as for appointment-edit" popover-title="{{automationEditTemplate.title}}" popover-placement="left").glyphicon.glyphicon-pencil
+        tr
+            td 1 day out
+            td SMS Reminder
+            td.text-center
+                span.glyphicon.glyphicon-remove-circle.text-danger 
+                | &nbsp;
+                span(popover="same as for appointment-edit" popover-title="{{automationEditTemplate.title}}" popover-placement="left").glyphicon.glyphicon-pencil
+        tr
+            td Status to complete
+            td Email Workshop
+            td.text-center
+                span.glyphicon.glyphicon-remove-circle.text-danger
+                | &nbsp;
+                span(popover="same as for appointment-edit" popover-title="{{automationEditTemplate.title}}" popover-placement="left").glyphicon.glyphicon-pencil
+
+    button.btn.btn-default
+        span.glyphicon.glyphicon-time
+        span &nbsp;Set Reminder
+    | &nbsp;
+    button.btn.btn-success
+        span.glyphicon.glyphicon-plus-sign
+        span &nbsp;Other
