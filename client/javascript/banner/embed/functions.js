@@ -34,11 +34,11 @@ function loadBanner(bannerData, workingBanner, windowx, windowy) {
 		var scaley = freetrans.scaley;
 		var angle = freetrans.angle;
 
-		var dify = (scaley * height - height) / 2;
 		var difx = (scalex * width - width) / 2;
+		var dify = (scaley * height - height) / 2;
 
-		var top = Number(style.top.split('px')[0]) * windowx - dify;
-		var left = Number(style.left.split('px')[0]) * windowy - difx;
+		var top = Number(style.top.split('px')[0]) * windowy - dify;
+		var left = Number(style.left.split('px')[0]) * windowx - difx;
 		var textTop = Number(style.top.split('px')[0]) * windowy;
 		var textLeft = Number(style.left.split('px')[0]) * windowx;
 
@@ -100,6 +100,12 @@ function loadBanner(bannerData, workingBanner, windowx, windowy) {
 			convertSVG(tag.find('img'), fill, stroke, width / scalex, height / scaley);
 
 			tag.css(style);
+
+			tag.css({
+				top: textTop,
+				left: textLeft
+			});
+
 
 			activeTag = tag;
 
