@@ -13,8 +13,8 @@ module.exports = {
 		PORT:'5000'
 	},
 	email: {
-		user: process.env.EMAIL || 'placeholder@gmail.com',
-		pass: process.env.EMAIL_PASS || 'placeholder'
+		user: 'placeholder@gmail.com',
+		pass: 'placeholder'
 	},
 
 	facebookAuth : {

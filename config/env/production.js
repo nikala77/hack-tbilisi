@@ -13,21 +13,21 @@ module.exports = {
 		PORT : process.env.PORT
 	},
 	email: {
-		user: 'placeholder@gmail.com',
-		pass: 'placeholder'
+		user: process.env.EMAIL,
+		pass: process.env.EMAIL_PASS
 	},
 	
 	facebookAuth : {
-		'clientID'		: '949803935104303',
-		'clientSecret'	: '5854b12a3b17dd38d6aa5b9ba0998351',
-		'callbackURL'	: 'http://localhost:5001/auth/facebook/callback'
+		'clientID'		: '1503160056680764',
+		'clientSecret'	: 'b1532a35cc69d183d4d974baae087efc',
+		'callbackURL'	: 'http://hacktbilisi.herokuapp.com/auth/facebook/callback'
 	},
 
 	googleAuth : {
-		'clientID'		: 'my-secret-clientID-here',
-		'clientSecret'	: 'my-client-secret-here',
-		'callbackURL'	: '/auth/google/callback'
+		'clientID'		: '648830601365-r3hi30tker1ujtihfstkqhklkno35619.apps.googleusercontent.com',
+		'clientSecret'	: 'Y0UezWpzlAb1NDVrgRRN5OOm',
+		'callbackURL'	: 'http://hacktbilisi.herokuapp.com/auth/google/callback'
 	},
 
-	TOKEN_SECRET: 'my jwt secret'
+	TOKEN_SECRET: process.env.JWT_SECRET
 }
