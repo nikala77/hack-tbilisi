@@ -1,8 +1,0 @@
-.panel.panel-primary
-    .panel-heading.text-center
-        a(href="/appointments").panel-title Appointments
-    .panel-body
-        .row(ng-repeat="appointment in appointments")
-            .col-md-3 {{appointment.appointmentDate | date:'d MMM y h:mm a'}}
-            .col-md-3 {{appointment.clientName}}
-            .col.md-3 {{appointment.appointmentName}}

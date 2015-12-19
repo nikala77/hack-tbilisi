@@ -1,9 +1,0 @@
-ui-select(multiple="" ng-model="$parent.ngModel")
-    ui-select-match(placeholder="{{ placeholder }}")
-        img.profile-small(profile-img="$item" profile-type="client" profile-defimg="/images/man64.png" profile-size="small")
-        span {{ $item.name }}
-    ui-select-choices(repeat="client._id as client in clients" refresh="refreshClients($select.search)" refresh-delay="300")
-        img.profile-small(profile-img="client" profile-type="client" profile-defimg="/images/man64.png" profile-size="small")
-        span &nbsp;
-        span(ng-bind-html="trustAsHtml((client.name | highlight: $select.search))")
-        span(ng-show="client.age") ({{ client.age }} yoa)
