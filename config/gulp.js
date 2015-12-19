@@ -17,10 +17,11 @@ var config = {
     filters: {
         jsDeep: '**/*.js',
         styl: '*.styl',
+        lessDeep: '**/*.less',
         cssDeep: '**/*.css',
         jadeDeep: '**/*.jade',
         imagesDeep: '**/*.{ico,png,jpg,jpeg,gif,webp,svg}',
-        fontsDeep: '**/*.{eot,svg,ttf,woff,woff2}',
+        fontsDeep: '**/*.{otf,eot,svg,ttf,woff,woff2}',
         swfDeep: '**/*.swf',
         mapDeep: '**/*.map'
     },
@@ -31,18 +32,20 @@ var config = {
         server: SERVER,
         test: TEST,
         client: CLIENT,
-        clientJs: CLIENT + 'app/',
+        clientJs: CLIENT + 'javascript/',
         clientCss: CLIENT + 'css/',
-        clientViews: CLIENT + 'views/',
         clientImages: CLIENT + 'images/',
-        flashCopy: CLIENT + 'vendor/zeroclipboard/',
+        clientFonts: CLIENT,
+        clientBannerCss: CLIENT + 'css/banner/',
+        clientBannerJs: CLIENT + 'javascript/banner/',
+        vendor: CLIENT + 'vendor/',
         dist: DIST,
-        distJs: DIST + 'scripts/',
         distCss: DIST + 'css/',
-        distViews: DIST + 'views/',
+        distJs: DIST + 'scripts/',
         distImages: DIST + 'images/',
         distFonts: DIST + 'fonts/',
-        distFlash: DIST + 'scripts/zeroclipboard/'
+        distBannerCss: DIST + 'css/banner/',
+        distBannerJS: DIST + 'scripts/banner/',
     }
 };
 
@@ -50,16 +53,12 @@ var taskConfigs = {
     watcher: {
         watchers: [
             {
-                src: [config.paths.clientJs + config.filters.jsDeep],
-                tasks: ['build-app-js']
+                src: [config.paths.clientBannerJs + config.filters.jsDeep],
+                tasks: ['build-banner-js']
             },
             {
-                src: [config.paths.clientCss + config.filters.styl],
-                tasks: ['build-app-css']
-            },
-            {
-                src: [config.paths.clientViews + config.filters.jadeDeep],
-                tasks: ['build-app-views']
+                src: [config.paths.clientBannerCss + config.filters.lessDeep],
+                tasks: ['build-banner-css']
             },
             {
                 src: [config.paths.clientImages + config.filters.imagesDeep],
