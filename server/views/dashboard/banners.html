@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="thumbnails">
+	<div>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane" id="banners">
+				{% for banner in banners %}
+				<div class="banner-thumbnail" data-json="{{ banner.data }}">
+					<div class="thumbnail">
+						<img src="/images/placeholder.jpg" alt="placeholder">
+						<div class="caption">
+							<h5>{{ banner.name }}</h5>
+						</div>
+					</div>
+					<div class="tools">
+						<i class="fa fa-pencil-square-o edit-banner" data-id="{{ banner.id }}"></i>
+						<i class="fa fa-trash-o delete-banner" data-id="{{ banner.id }}"></i>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			
+			<div role="tabpanel" class="tab-pane" id="statistics">
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Data Created</th>
+								<th>Data Updated</th>
+								<th>Views</th>
+								<th>Clicks</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for banner in banners %}
+							<tr>
+								<td>{{ loop.index }}</td>
+								<td>{{ banner.name }}</td>
+								<td>{{ banner.createdAt | date('d-m-Y') }}</td>
+								<td>{{ banner.updatedAt | date('d-m-Y') }}</td>
+								<td>{{ banner.views }}</td>
+								<td>{{ banner.clicks }}</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="small-square">
+				<div class="small-square-template template">
+					<div class="tools">
+						<button class="btn btn-default" data-width="200" data-height="200">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="200" data-height="200">Use This</button>
+					</div>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="standard-banner">
+				<div class="standard-banner-template template">
+					<div class="tools">
+						<button class="btn btn-default" data-width="300" data-height="300">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="300" data-height="300">Use This</button>
+					</div>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="leader-board">
+				<div class="leader-board-template template">
+					<div class="tools">
+						<button class="btn btn-default" data-width="728" data-height="90">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="728" data-height="90">Use This</button>
+					</div>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="skyscraper">
+				<div class="skyscraper-template template">
+					<div class="tools">
+						<button class="btn btn-default" data-width="120" data-height="600">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="120" data-height="600">Use This</button>
+					</div>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="wide-skyscraper">
+				<div class="wide-skyscraper-template template">
+					<div class="tools">
+						<button class="btn btn-default" data-width="160" data-height="600">Preview</button><br>
+						<button class="btn btn-primary use-this" data-width="160" data-height="600">Use This</button>
+					</div>
+				</div>
+			</div>
+
+			<div role="tabpanel" class="tab-pane" id="custom-size">
+			<div class="scrollable">
+					<div class="custom-size-rectangle">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
