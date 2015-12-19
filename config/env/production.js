@@ -24,8 +24,8 @@ module.exports = {
 	},
 
 	googleAuth : {
-		'clientID'		: '648830601365-r3hi30tker1ujtihfstkqhklkno35619.apps.googleusercontent.com',
-		'clientSecret'	: 'Y0UezWpzlAb1NDVrgRRN5OOm',
+		'clientID'		: '705492569196-tskji9sg5j6tfct9r4rgm29nn22gkbof.apps.googleusercontent.com',
+		'clientSecret'	: 'xSUSbUpuEYhVVfFUNvg3urqR',
 		'callbackURL'	: 'http://hacktbilisi.herokuapp.com/auth/google/callback'
 	},
 
