@@ -1,7 +1,10 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
+
+
 var path = require('path');
 var _    = require('lodash');
+var	fs   = require('fs');
 
 var rootPath = path.normalize(__dirname + '/../../');
 
@@ -24,8 +27,8 @@ var defConfig = {
     }
 };
 
-// Export the config object based on the NODE_ENV
-var envConfig = require('./' + process.env.NODE_ENV);
+var envConfig = require('./'+ process.env.NODE_ENV);
+
 var config = _.merge(defConfig, envConfig);
 
 module.exports = config;
