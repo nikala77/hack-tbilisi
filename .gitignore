@@ -3,4 +3,4 @@ node_modules
 client/vendor
 
 # Generated files
-public
+client
