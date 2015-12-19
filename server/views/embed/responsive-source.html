@@ -9,7 +9,7 @@
 		<!-- end of Custom Styles -->
 	</head>
 	<body>
-		<div class="working-banner animation-banner" data-id="{{ id }}" data-width="{{ width }}" data-height="{{ height }}"></div>
+		<div class="working-banner animation-banner" data-id="{{ id }}" data-width="{{ width }}" data-height="{{ height }}" data-url="{{ url }}"></div>
 
 		<!-- Plugin Scripts -->
 		<script src="{{ host }}/scripts/vendor.js"></script>
@@ -17,6 +17,24 @@
 
 		<!-- Custom Scripts -->
 		<script src="{{ host }}/scripts/banner/embed/app.js"></script>
+		<script>
+			$(function() {
+				// increment views
+				$.get('/views/{{ id }}');
+
+				// increment clicks 
+				$('.working-banner').on('click', function() {
+					var url = $(this).data('url');
+
+					if(url.indexOf('http') !== 0) {
+						url = 'http://' + url;
+					}
+
+					window.open(url);
+					$.get('/clicks/{{ id }}');
+				});
+			});
+		</script>
 		<!-- End Of Custom Scripts -->
 	</body>
 </html>
