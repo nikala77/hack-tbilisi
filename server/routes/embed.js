@@ -9,4 +9,12 @@ module.exports = function (app) {
 	app.route('/embed/responsive/:id/:width/:height')
 		.get(embed.getResponsive)
 
+
+	// API for views and clicks
+	app.route('/views/:id')
+		.get(embed.incViews);
+
+	app.route('/clicks/:id')
+		.get(embed.incClicks);
+
 };
