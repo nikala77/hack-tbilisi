@@ -71,7 +71,7 @@ function loadPreview(bannerData, workingBanner, windowx, windowy) {
 			activeTag = tag;
 
 		} else if(type === 'textArea') {
-			var tag = $('<textArea type="text" disabled></textArea>');
+			var tag = $('<textArea class="textarea" type="text" disabled></textArea>');
 			
 			var height = Number(style.height.split('px')[0]);
 			var width = Number(style.width.split('px')[0]);
@@ -94,7 +94,7 @@ function loadPreview(bannerData, workingBanner, windowx, windowy) {
 		}  else if(type === 'shape') {
 			var fill = obj.fill;
 			var stroke = obj.stroke;
-			var tag = $('<div data-src="'+ src +'" data-fill="'+ fill +'"><img src="'+ src +'"></img></div>');
+			var tag = $('<div class="shape" data-src="'+ src +'" data-fill="'+ fill +'"><img src="'+ src +'"></img></div>');
 			
 			convertSVG(tag.find('img'), fill, stroke, width / scalex, height / scaley);
 
@@ -164,11 +164,18 @@ function loadPreview(bannerData, workingBanner, windowx, windowy) {
 			var startTime = enterAnimation.start;
 			var delay = enterAnimation.delay;
 			var type = enterAnimation.type;
+			
 			if(obj.tag === 'textArea') {
 				scalex = windowx;
 				scaley = windowy;
 			}
-			generateAnimation(activeTag, type, startTime, delay, scalex, windowy);
+
+			if(obj.tag === 'shape') {
+				scalex = obj.freetrans.scalex;
+				scaley = obj.freetrans.scaley;
+			}
+
+			generateAnimation(activeTag, type, startTime, delay, scalex, scaley, width, height);
 		}
 		if(exitAnimation) {
 			var type = exitAnimation.type;
@@ -176,12 +183,19 @@ function loadPreview(bannerData, workingBanner, windowx, windowy) {
 			var delay = exitAnimation.delay;
 			var enterStartTime = enterAnimation.start;
 			var enterDelay = enterAnimation.delay;
+			
 			if(obj.tag === 'textArea') {
 				scalex = windowx;
 				scaley = windowy;
 			}
+
+			if(obj.tag === 'shape') {
+				scalex = obj.freetrans.scalex;
+				scaley = obj.freetrans.scaley;
+			}
+			
 			var sum = Number(enterStartTime) * 1000 + Number(enterDelay) * 1000 + 1000; 
-			generateAnimation(activeTag, type, startTime, delay, scalex, scaley, sum);
+			generateAnimation(activeTag, type, startTime, delay, scalex, scaley, sum, width, height);
 		}
 	});
 };

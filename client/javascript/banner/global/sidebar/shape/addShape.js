@@ -2,7 +2,7 @@ function addShape(slide, src, width, height, fill, stroke, style, freetrans, ani
 	var random = generateRandom(slide);
 	var x = random.x;
 	var y = random.y;
-	console.log(width, height)
+
 	var width  = width || 90;
 	var height = height || 90;
 

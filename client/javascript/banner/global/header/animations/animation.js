@@ -4,7 +4,6 @@ function generateAnimation(tag, animation, startTime, delay, scalex, scaley, sum
 		startTime = (Number(startTime) + 0.5) * 1000;
 		delay = (Number(delay) + 0.5 ) * 1000;
 		sum = sum ? sum : 0;
-		console.log('animation', animation)
 		eval(animation + '(tag, previewBanner, startTime, delay, scalex, scaley, sum)');
 		
 	} catch(err) {

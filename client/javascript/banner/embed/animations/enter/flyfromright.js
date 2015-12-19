@@ -1,9 +1,13 @@
-function flyFromRight(tag, slide, startTimeAt, delay, scalex) {
+function flyFromRight(tag, slide, startTimeAt, delay, scalex, scaley, width, height) {
 	var left = tag.css('left');
 	var outX = slide.width();
-
+	
 	if(tag.hasClass('textarea')) {
-		outX += tag.width() * scalex;
+		outX += width * scalex;
+	}
+
+	if(tag.hasClass('shape')) {
+		outX += width * scalex;
 	}
 
 	tag.css({
