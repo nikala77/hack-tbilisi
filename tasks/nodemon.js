@@ -14,7 +14,7 @@ gulp.task('nodemon', function (cb) {
         ],
         env: {
             NODE_ENV: 'development',
-            PORT: 3000,
+            PORT: 5000,
             HOST: 'localhost'
         }
     })

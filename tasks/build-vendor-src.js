@@ -1,3 +1,4 @@
+var path           = require('path');
 var gulp           = require('gulp');
 var gif            = require('gulp-if');
 var gsize          = require('gulp-size');
@@ -10,10 +11,17 @@ var mainBowerFiles = require('main-bower-files');
 var args           = require('../config/gulp').args;
 var paths          = require('../config/gulp').paths;
 var filters        = require('../config/gulp').filters;
+var rootPath = path.normalize(__dirname);
 
 gulp.task('build-vendor-js', function() {
+
+    var cabinetPath = paths.vendor + 'jquery.cabinet/jquery.cabinet.js';
+    var matrixPath = paths.vendor + 'jquery-free-transform/js/Matrix.js';
+    var freetransPath = paths.vendor + 'jquery-free-transform/js/jquery.freetrans.js';
+    var notMainBowerFiles = [ cabinetPath, freetransPath, matrixPath ];
+
     return gulp
-        .src(mainBowerFiles(filters.jsDeep))
+        .src(mainBowerFiles(filters.jsDeep).concat(notMainBowerFiles))
         .pipe(gif(args.isNotProduction, gsourcemaps.init()))
         .pipe(gorder([
             'jquery.js',
@@ -21,14 +29,9 @@ gulp.task('build-vendor-js', function() {
             'toastr.js',
             'moment.js',
             'lodash.js',
-            'angular.js',
-            'angular-resource.js',
-            'angular-route.js',
-            'angular-mocks',
-            'ui-bootstrap-tpls.js',
             'select.js',
-            'ng-img-crop.js',
-            'smart-area.js',
+            'jquery-ui.js',
+            'jquery.cabinet.js',
             '*'
         ]))
         .pipe(gif(args.isProduction, guglify({
@@ -43,12 +46,20 @@ gulp.task('build-vendor-js', function() {
 });
 
 gulp.task('build-vendor-css', function() {
+    var bootstrap = paths.vendor + 'bootstrap/dist/css/' + '*.css';
+    var jqueryUICss = paths.vendor + 'jquery-ui/themes/black-tie/css/' + 'jquery-ui.min.css';
+    var fontAwesome = paths.vendor + 'font-awesome/css/' + '*.css';
+    var colPicker = paths.vendor + 'jquery-colpick/css/' + '*.css';
+    var freetrans = paths.vendor + 'jquery-free-transform/css/' + '*.css';
+    var array = [bootstrap, jqueryUICss, fontAwesome, colPicker, freetrans];
+
     return gulp
-        .src(mainBowerFiles(filters.cssDeep))
+        .src(array)
         .pipe(gif(args.isNotProduction, gsourcemaps.init()))
         .pipe(gorder([
             'bootstrap.css',
             'font-awesome.css',
+            'jquery-ui.min.css',
             '*'
         ]))
         .pipe(gif(args.isProduction, gminifyCss()))
@@ -61,11 +72,14 @@ gulp.task('build-vendor-css', function() {
 });
 
 gulp.task('build-vendor-fonts', function() {
+    var bootstrap = paths.vendor + '/bootstrap/dist/fonts/' + filters.fontsDeep;
+    var fontAwesome = paths.vendor + '/font-awesome/fonts/' + filters.fontsDeep;
+    var fonts = paths.client + 'fonts/' + filters.fontsDeep;
+
+    var array = [bootstrap, fontAwesome, fonts];
+
     return gulp
-        .src(mainBowerFiles(filters.fontsDeep))
-        .pipe(gsize({
-            title: 'vendor.fonts'
-        }))
+        .src(array)
         .pipe(gulp.dest(paths.distFonts));
 });
 
