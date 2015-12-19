@@ -2,9 +2,10 @@ var path        = require('path');
 
 module.exports = function (app, passport) {
     require('./account')(app);
-    require('./dashboard')(app);
     require('./facebook')(app, passport);
     require('./google')(app, passport);
+    require('./dashboard')(app);
+    require('./editor')(app);
 
     // authentication strategies
     require('../../config/strategy/passport')(passport);
