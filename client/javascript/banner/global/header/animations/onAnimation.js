@@ -18,7 +18,7 @@ $(function() {
 		var exit = $('#exit-stage');
 		var complex = $('#complex');
 		
-		$('#animationDropdown').dropdown('toggle');
+		// $('#animationDropdown').dropdown('toggle');
 		if(enter.hasClass('active')) {
 			var startTime = $('.enter-start-time').val();
 			var delay = $('.enter-delay').val();
