@@ -1,6 +1,6 @@
-function copyElement(elementID) {
+function copyElement(value) {
     var hiddenInput = document.createElement("input");
-    hiddenInput.setAttribute("value", document.getElementById(elementID).value);
+    hiddenInput.setAttribute("value", value);
     document.body.appendChild(hiddenInput);
     hiddenInput.select();
     document.execCommand("copy");
@@ -48,7 +48,13 @@ $(function () {
 		$("#responsive").addClass("active");
 	});
 
-	$(".copy-btn").on("click",function(){
-		copyElement('puvlish-link-textarea');
+	$(".copy-fixed-btn").on("click",function(){
+		copyElement($('#publish-fixed-textarea').val());
+		$('#publish-fixed-textarea').select();
+	});	
+
+	$(".copy-responsive-btn").on("click",function(){
+		copyElement($('#publish-responsive-textarea').val());
+		$('#publish-responsive-textarea').select();
 	});	
 });
