@@ -1,20 +1,24 @@
-var mongoose 	 = require('mongoose');
+var mongoose     = require('mongoose');
 var passport     = require('passport');
+var Promise      = require('bluebird');
 var validator    = require('validator');
 var crypto       = require('crypto');
 var nodemailer   = require('nodemailer');
 var emailConf    = require('../../config/env/development').email;
 var Promise      = require('promise');
+var errorUtil    = require('../util/errorUtil');
+var httpUtil     = require('../util/httpUtil');
 
 var User = mongoose.model('User');
 
 exports.getLogin = function(req, res) {
-	res.render('account/login.html', {
+    res.render('account/login.html', {
         pageName: 'hack15'
     });
 };
 
 exports.postLogin = function (req, res, next) {
+    console.log(req.body);
     passport.authenticate('local', function(err, user, info) {
         if (err) return next(err)
         if (!user) {
@@ -29,16 +33,18 @@ exports.postLogin = function (req, res, next) {
 }
 
 exports.getSignUp = function(req, res) {
-	res.render('account/signup.html', {
+    res.render('account/signup.html', {
         pageName: 'hack15'
     });
 };
 
-exports.postSignUp = function(req, res) {
-    if (!validator.isEmail(req.body.email)) 
-        return res.status(404).json({message: 'Please enter valid email!'});
-    else if (req.body.password.length < 6) 
-        return res.status(404).json({message: 'Password must contain at least 6 symbol!'});
+exports.postSignUp = function(req, res, next) {
+
+    if (!validator.isEmail(req.body.email)) {
+        return res.status(406).json({ reason: 'Please enter valid email!' });
+    } else if (req.body.password.length < 6) {
+        return res.status(406).json({ reason: 'Password must contain at least 6 symbol!' });
+    }
 
 
     var user = new User({
@@ -46,15 +52,21 @@ exports.postSignUp = function(req, res) {
         'local.password': req.body.password
     });
 
-    user.save(function(err) {
-        if (err)
-            console.log(err);
-        res.status(200).json({message: 'Succesfully registered!'});
+    Promise.resolve(User.findOne({ 'local.email': req.body.email }))
+    .then(function(data) {
+        if(data) {
+            return errorUtil.rejectWithDuplicateObjectError('User with this email already exists!', 'Duplicate Email Error');
+        }
+        return user.save();
+    }).then(function() {
+        return res.status(200).json({ message: 'Successfully registered!' });
+    }).catch(function(err) {
+        return httpUtil.processError(err, 'json', res, next);
     });
 };
 
 exports.getForgot = function(req, res) {
-	res.render('account/forgot.html', {
+    res.render('account/forgot.html', {
         pageName: 'hack15'
     });
 };

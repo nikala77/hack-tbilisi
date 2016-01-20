@@ -28,9 +28,8 @@ gulp.task('build-vendor-js', function() {
             'bootstrap.js',
             'toastr.js',
             'moment.js',
-            'lodash.js',
-            'select.js',
             'jquery-ui.js',
+            'lodash.js',
             'jquery.cabinet.js',
             '*'
         ]))

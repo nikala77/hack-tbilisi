@@ -26,24 +26,25 @@ $(function () {
 
 
 	// signup form 
-	$('#signup').on('click', function () {
+	$('#signup').on('submit', function (e) {
+		e.preventDefault();
+
 		var email = $('#signupemail').val().trim();
 		var password = $('#signuppass').val().trim();
 
 		if (!email || !password) {
-			alert('please fill the fields!!!')
+			showValidation($('.signup-warning'), 'Please fill all fields!', 'error');
 		} else {
-
 			$.ajax({
 				type: "POST",
 				url: '/signup',
-				data: { email: email, password: password },
+				data: $('#signup').serialize(),
 				success: function (data) {
-					alert(data.message);
-					document.location.href='/login';
-				}, 
+					document.location.href='/login?type=success'+
+					'&message=registration was successfull';
+				},
 			}).fail(function (data) {
-				alert(data.responseText);
+				showValidation($('.signup-warning'), data.responseJSON.reason, 'error');
 			});
 		}
 
