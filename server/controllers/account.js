@@ -13,7 +13,7 @@ var User = mongoose.model('User');
 
 exports.getLogin = function(req, res) {
     res.render('account/login.html', {
-        pageName: 'hack15'
+        pageName: 'bannermaker'
     });
 };
 
@@ -34,7 +34,7 @@ exports.postLogin = function (req, res, next) {
 
 exports.getSignUp = function(req, res) {
     res.render('account/signup.html', {
-        pageName: 'hack15'
+        pageName: 'bannermaker'
     });
 };
 
@@ -67,7 +67,7 @@ exports.postSignUp = function(req, res, next) {
 
 exports.getForgot = function(req, res) {
     res.render('account/forgot.html', {
-        pageName: 'hack15'
+        pageName: 'bannermaker'
     });
 };
 
@@ -86,7 +86,7 @@ exports.postForgot = function(req, res) {
         return new Promise(function (resolve, reject) {
             User.findOne({ 'local.email': req.body.email }, function (err, user) {
                 if (!user) {
-                    return res.status(200).json({message: 'No account with that email address exists.'});
+                    return res.status(404).json({ message: 'No account with this email exists.' });
                 }
                 user.local.resetPasswordToken = token;
                 user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -101,6 +101,7 @@ exports.postForgot = function(req, res) {
     };   
 
     var sendMail = function (user) {
+
         var smtpTransport = nodemailer.createTransport('SMTP', {
             service: 'gmail',
             auth: {
@@ -111,7 +112,7 @@ exports.postForgot = function(req, res) {
         var mailOptions = {
             to: user.local.email,
             from: 'hack15@project.com',
-            subject: 'hack15 Password Reset',
+            subject: 'bannermaker Password Reset',
             text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
             'http://' + req.headers.host + '/reset/' + user.local.resetPasswordToken + '\n\n' +
@@ -120,7 +121,7 @@ exports.postForgot = function(req, res) {
         smtpTransport.sendMail(mailOptions, function(err) {
             if (err) {
                 console.log(err)
-                return res.status(404).json({ message: 'senging mail failed, please try later!' })
+                return res.status(500).json({ message: 'senging mail failed, please try later!' })
             }
             return res.status(200).json({ message: 'An e-mail has been sent to ' + user.local.email + ' with further instructions.' });
             
@@ -142,7 +143,7 @@ exports.getReset = function(req, res) {
             return res.status(404).json({message: 'Password reset token is invalid or has expired!'});
         }
         res.render('account/reset.html', {
-            pageName: 'hack15'
+            pageName: 'bannermaker'
         });
     });
 };
@@ -178,7 +179,7 @@ exports.postReset = function (req, res) {
         });
         var mailOptions = {
             to: user.local.email,
-            from: 'hack15@project.com',
+            from: 'bannermaker@project.com',
             subject: 'Your password has been changed',
             text: 'Hello,\n\n' +
                 'This is a confirmation that the password for your account ' + user.local.email + ' has just been changed.\n'

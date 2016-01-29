@@ -33,44 +33,65 @@ $(function () {
 		var password = $('#signuppass').val().trim();
 
 		if (!email || !password) {
+			
 			showValidation($('.signup-warning'), 'Please fill all fields!', 'error');
+		
+		} else if(!isEmail(email)) {
+
+			showValidation($('.signup-warning'), 'Please enter valid email!', 'error');
+
+		} else if(password.length < 6) {
+
+			showValidation($('.signup-warning'), 'Password must contain at least 6 symbol!', 'error');
+
 		} else {
+			
 			$.ajax({
-				type: "POST",
+				type: 'POST',
 				url: '/signup',
 				data: $('#signup').serialize(),
 				success: function (data) {
 					document.location.href='/login?type=success'+
-					'&message=registration was successfull';
+					'&message='+ data.message;
 				},
 			}).fail(function (data) {
 				showValidation($('.signup-warning'), data.responseJSON.reason, 'error');
 			});
+
 		}
 
 	});
 
-	// reset
-	$('#forgot').on('click', function () {
+	// forgot
+	$('#forgot').on('submit', function (e) {
+		e.preventDefault();
+
 		var email = $('#forgotemail').val().trim();
 
 		if (!email) {
-			alert('please enter email!')
+		
+			showValidation($('.forgot-warning'), 'Please enter email!', 'error');
+		
+		} else if(!isEmail(email)) {
+
+			showValidation($('.forgot-warning'), 'Please enter valid email!', 'error');
+
 		} else {
 			$.ajax({
 				type: "POST",
 				url: '/forgot',
-				data: { email: email },
+				data: $('#forgot').serialize(),
 				success: function (data) {
-					alert(data.message);
-					document.location.href='/forgot';
+					document.location.href='/login?type=success'+
+					'&message='+ data.message;
 				}, 
 			}).fail(function (data) {
-				alert(data.responseText);
+				showValidation($('.forgot-warning'), data.responseJSON.message, 'error');
 			});
 		}
 	});
 
+	// reset
 	$('#reset').on('click', function () {
 		var password = $('#resetpass').val().trim();
 		var repeatPassword = $('#repeatpass').val().trim();

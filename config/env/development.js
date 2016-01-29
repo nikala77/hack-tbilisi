@@ -1,9 +1,6 @@
-
-
-
 module.exports = {
 	db: {
-			uri: 'mongodb://localhost:27017/hack15',
+			uri: 'mongodb://localhost:27017/bannermaker',
 			options: {
 				user: '',
 				pass: ''
@@ -13,8 +10,8 @@ module.exports = {
 		PORT:'5000'
 	},
 	email: {
-		user: 'placeholder@gmail.com',
-		pass: 'placeholder'
+		user: process.env.EMAIL || 'placeholder@gmail.com',
+		pass: process.env.EMAIL_PASS || 'placeholder'
 	},
 
 	facebookAuth : {
