@@ -8,17 +8,17 @@ var emailConf    = require('../../config/env/development').email;
 var Promise      = require('promise');
 var errorUtil    = require('../util/errorUtil');
 var httpUtil     = require('../util/httpUtil');
+var path         = require('path');
 
 var User = mongoose.model('User');
 
 exports.getLogin = function(req, res) {
     res.render('account/login.html', {
-        pageName: 'bannermaker'
+        pageName: 'Bannermaker'
     });
 };
 
 exports.postLogin = function (req, res, next) {
-    console.log(req.body);
     passport.authenticate('local', function(err, user, info) {
         if (err) return next(err)
         if (!user) {
@@ -34,7 +34,7 @@ exports.postLogin = function (req, res, next) {
 
 exports.getSignUp = function(req, res) {
     res.render('account/signup.html', {
-        pageName: 'bannermaker'
+        pageName: 'Bannermaker'
     });
 };
 
@@ -67,7 +67,7 @@ exports.postSignUp = function(req, res, next) {
 
 exports.getForgot = function(req, res) {
     res.render('account/forgot.html', {
-        pageName: 'bannermaker'
+        pageName: 'Bannermaker'
     });
 };
 
@@ -92,8 +92,10 @@ exports.postForgot = function(req, res) {
                 user.local.resetPasswordExpires = Date.now() + 3600000; // 1 hour
 
                 user.save(function(err) {
-                    if (err)
+                    if (err) {
                         console.log(err);
+                        return reject(err);
+                    }
                     return  resolve(user);
                 });
             });
@@ -101,7 +103,6 @@ exports.postForgot = function(req, res) {
     };   
 
     var sendMail = function (user) {
-
         var smtpTransport = nodemailer.createTransport('SMTP', {
             service: 'gmail',
             auth: {
@@ -111,8 +112,8 @@ exports.postForgot = function(req, res) {
         });
         var mailOptions = {
             to: user.local.email,
-            from: 'hack15@project.com',
-            subject: 'bannermaker Password Reset',
+            from: 'Bannermaker@project.com',
+            subject: 'Bannermaker Password Reset',
             text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
             'http://' + req.headers.host + '/reset/' + user.local.resetPasswordToken + '\n\n' +
@@ -140,11 +141,13 @@ exports.postForgot = function(req, res) {
 exports.getReset = function(req, res) {
     User.findOne({ 'local.resetPasswordToken': req.params.token, 'local.resetPasswordExpires': { $gt: Date.now() } }, function(err, user) {
         if (!user) {
-            return res.status(404).json({message: 'Password reset token is invalid or has expired!'});
+            return res.render(path.join('../views/', '404.html'), {
+                        pageName: 'Bannermaker'
+                    });
         }
-        res.render('account/reset.html', {
-            pageName: 'bannermaker'
-        });
+        return  res.render('account/reset.html', {
+                    pageName: 'Bannermaker'
+                });
     });
 };
 
@@ -161,8 +164,9 @@ exports.postReset = function (req, res) {
                 user.local.resetPasswordExpires = undefined;    
                 
                 user.save(function(err) {
-                    if (err)
+                    if (err) {
                         console.log(err);
+                    }
                     return  resolve(user);
                 });
             });
@@ -170,7 +174,7 @@ exports.postReset = function (req, res) {
     };   
 
     getUser().then(function (user) {
-            var smtpTransport = nodemailer.createTransport('SMTP', {
+        var smtpTransport = nodemailer.createTransport('SMTP', {
             service: 'gmail',
             auth: {
                 user: emailConf.user,
@@ -179,7 +183,7 @@ exports.postReset = function (req, res) {
         });
         var mailOptions = {
             to: user.local.email,
-            from: 'bannermaker@project.com',
+            from: 'Bannermaker@project.com',
             subject: 'Your password has been changed',
             text: 'Hello,\n\n' +
                 'This is a confirmation that the password for your account ' + user.local.email + ' has just been changed.\n'
@@ -187,14 +191,14 @@ exports.postReset = function (req, res) {
         smtpTransport.sendMail(mailOptions, function(err) {
             if (err) {
                 console.log(err)
-                return res.status(404).json({ message: 'senging mail failed, please try later!' })
+                return res.status(505).json({ message: 'Sending mail failed, please try later!' })
             }
             return res.status(200).json({ message: 'Your password has just been changed!' });
         });
     });
 }
 exports.logout = function (req, res) {
-    req.session.destroy()
+    req.session.destroy();
     req.logout();
     res.redirect('/login');
 }

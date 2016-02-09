@@ -17,7 +17,6 @@ $(function () {
 				}
 			}).fail(function (data) {
 				var message = JSON.parse(data.responseText).message; 
-				alert(message);
 			}) 
 		}
 	});
@@ -97,20 +96,28 @@ $(function () {
 		var repeatPassword = $('#repeatpass').val().trim();
 
 		if (!password || !repeatPassword) {
-			alert('please fill all the fields!')
+			
+			showValidation($('.reset-warning'), 'Please fill all the fields!', 'error');
+
 		} else if (password !== repeatPassword) {
-			alert('password and repeatPassword must be the same!')
+			
+			showValidation($('.reset-warning'), 'Value of these two fields must be the same!', 'error');
+
+		} else if( password.length < 6 ) {
+
+			showValidation($('.reset-warning'), 'Password must contain at least 6 symbol!', 'error');
+
 		} else {
 			$.ajax({
-				type: "POST",
+				type: 'POST',
 				url: document.location.pathname,
 				data: { password: password, repeatPassword: repeatPassword },
 				success: function (data) {
-					alert(data.message);
-					document.location.href='/login';
+					document.location.href='/login?type=success'+
+					'&message='+ data.message;;
 				}, 
 			}).fail(function (data) {
-				alert(data.responseText);
+				showValidation($('.reset-warning'), data.message, 'error');
 			});
 		}
 	});
