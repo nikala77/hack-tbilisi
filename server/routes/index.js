@@ -1,6 +1,12 @@
 var path        = require('path');
 
 module.exports = function (app, passport) {
+    // disable browser back button to return private page after logout
+    app.use(function(req, res, next) {
+        res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+        next();
+    });
+
     require('./account')(app);
     require('./facebook')(app, passport);
     require('./google')(app, passport);
@@ -11,6 +17,7 @@ module.exports = function (app, passport) {
     // authentication strategies
     require('../../config/strategy/passport')(passport);
     require('../../config/strategy/google')(passport);
+
 
     app.all('/api/*', function(req, res){
         res.status(404).send('Invalid api url');
@@ -26,7 +33,7 @@ module.exports = function (app, passport) {
 
     app.use(function(req, res) {
         res.render(path.join(app.get('views'), '404.html'), {
-            pageName: 'hack15'
+            pageName: 'Bannermaker'
         });
     });
 

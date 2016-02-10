@@ -12,7 +12,7 @@ exports.getDashboard = function(req, res) {
 	{ 'name': 1, 'data': 1 }).sort({ updatedAt: -1 }))
 	.then(function(banners) {
 		res.render('dashboard/banners.html', {
-			pageName	: 'hack15',
+			pageName	: 'Bannermaker',
 			user 		: req.user,
 			banners 	: banners,
 		});
@@ -25,7 +25,7 @@ exports.getDashboard = function(req, res) {
 exports.getBannerNew = function(req, res) {
 	res.render('dashboard/banners.html', {
 		user 		: req.user,
-		pageName	: 'hack15',
+		pageName	: 'Bannermaker',
 	});
 };
 
@@ -36,7 +36,7 @@ exports.getBannerStatistics = function(req, res) {
 	.sort({ updatedAt: -1 }))
 	.then(function(banners) {
 		res.render('dashboard/banners.html', {
-			pageName	: 'hack15',
+			pageName	: 'Bannermaker',
 			user 		: req.user,
 			banners 	: banners,
 		});

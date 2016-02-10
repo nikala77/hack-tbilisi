@@ -198,7 +198,7 @@ exports.postReset = function (req, res) {
     });
 }
 exports.logout = function (req, res) {
-    req.session.destroy();
-    req.logout();
-    res.redirect('/login');
+    req.session.destroy(function (err) {
+        res.redirect('/logout'); //Inside a callback… bulletproof!
+    });
 }

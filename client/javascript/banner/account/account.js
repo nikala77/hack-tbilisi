@@ -91,7 +91,9 @@ $(function () {
 	});
 
 	// reset
-	$('#reset').on('click', function () {
+	$('#reset').on('submit', function (e) {
+		e.preventDefault();
+
 		var password = $('#resetpass').val().trim();
 		var repeatPassword = $('#repeatpass').val().trim();
 
