@@ -3,8 +3,3 @@ node_modules
 client/vendor
 
 # Generated files
-<<<<<<< HEAD
-client
-=======
-public
->>>>>>> b48af4112a311aca6c70725a3e10547f08bfd1ea
