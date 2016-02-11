@@ -1,24 +1,32 @@
 $(function () {
 
 	// login form
-	$('#login').on('click', function () {
+	$('#login').on('submit', function (e) {
+		e.preventDefault();
+		var that = $(this);
 		var email = $('#loginemail').val().trim();
 		var password = $('#loginpassword').val().trim();
 
 		if (!email || !password) {
-			alert('please fill the fields!!!')
+			showValidation($('.login-warning'), 'Please fill all fields!', 'error');
 		} else {
 			$.ajax({
 				type: 'POST',
 				url: '/login',
 				data: { email: email, password: password },
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
 					document.location.href = '/';
+				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
 				}
 			}).fail(function (data) {
 				var message = JSON.parse(data.responseText).message; 
-				alert(message);
-			}) 
+				showValidation($('.login-warning'), message, 'error');
+			});
 		}
 	});
 
@@ -26,69 +34,119 @@ $(function () {
 
 
 	// signup form 
-	$('#signup').on('click', function () {
+	$('#signup').on('submit', function (e) {
+		e.preventDefault();
+		var that = $(this);
 		var email = $('#signupemail').val().trim();
 		var password = $('#signuppass').val().trim();
 
 		if (!email || !password) {
-			alert('please fill the fields!!!')
-		} else {
+			
+			showValidation($('.signup-warning'), 'Please fill all fields!', 'error');
+		
+		} else if(!isEmail(email)) {
 
+			showValidation($('.signup-warning'), 'Please enter valid email!', 'error');
+
+		} else if(password.length < 6) {
+
+			showValidation($('.signup-warning'), 'Password must contain at least 6 symbol!', 'error');
+
+		} else {
+			
 			$.ajax({
-				type: "POST",
+				type: 'POST',
 				url: '/signup',
-				data: { email: email, password: password },
+				data: $('#signup').serialize(),
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
-					alert(data.message);
-					document.location.href='/login';
-				}, 
+					document.location.href='/login?type=success'+
+					'&message='+ data.message;
+				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
+				}
 			}).fail(function (data) {
-				alert(data.responseText);
+				showValidation($('.signup-warning'), data.responseJSON.reason, 'error');
 			});
+
 		}
 
 	});
 
-	// reset
-	$('#forgot').on('click', function () {
+	// forgot
+	$('#forgot').on('submit', function (e) {
+		e.preventDefault();
+		var that = $(this);
 		var email = $('#forgotemail').val().trim();
 
 		if (!email) {
-			alert('please enter email!')
+		
+			showValidation($('.forgot-warning'), 'Please enter email!', 'error');
+		
+		} else if(!isEmail(email)) {
+
+			showValidation($('.forgot-warning'), 'Please enter valid email!', 'error');
+
 		} else {
 			$.ajax({
 				type: "POST",
 				url: '/forgot',
-				data: { email: email },
+				data: $('#forgot').serialize(),
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
-					alert(data.message);
-					document.location.href='/forgot';
-				}, 
+					document.location.href='/login?type=success'+
+					'&message='+ data.message;
+				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
+				}
 			}).fail(function (data) {
-				alert(data.responseText);
+				showValidation($('.forgot-warning'), data.responseJSON.message, 'error');
 			});
 		}
 	});
 
-	$('#reset').on('click', function () {
+	// reset
+	$('#reset').on('submit', function (e) {
+		e.preventDefault();
+		var that = $(this);
 		var password = $('#resetpass').val().trim();
 		var repeatPassword = $('#repeatpass').val().trim();
 
 		if (!password || !repeatPassword) {
-			alert('please fill all the fields!')
+			
+			showValidation($('.reset-warning'), 'Please fill all the fields!', 'error');
+
 		} else if (password !== repeatPassword) {
-			alert('password and repeatPassword must be the same!')
+			
+			showValidation($('.reset-warning'), 'Value of these two fields must be the same!', 'error');
+
+		} else if( password.length < 6 ) {
+
+			showValidation($('.reset-warning'), 'Password must contain at least 6 symbol!', 'error');
+
 		} else {
 			$.ajax({
-				type: "POST",
+				type: 'POST',
 				url: document.location.pathname,
 				data: { password: password, repeatPassword: repeatPassword },
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
-					alert(data.message);
-					document.location.href='/login';
-				}, 
+					document.location.href='/login?type=success'+
+					'&message='+ data.message;;
+				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
+				}
 			}).fail(function (data) {
-				alert(data.responseText);
+				showValidation($('.reset-warning'), data.message, 'error');
 			});
 		}
 	});

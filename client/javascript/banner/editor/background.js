@@ -51,11 +51,10 @@ $(function () {
             layout : 'rgb',
             submit : false,
             onChange : function (hsb,rgb) {
-                console.log(bannerBg);
                 var bgColor = '#'+rgb;
                 bannerBg.css({
                     'background-color': bgColor,
-                    'background-image': 'none'
+                    'background-image': none
                 });
             },
             onSubmit : function(hsb,hex,rgb,el) {

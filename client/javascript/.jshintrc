@@ -72,6 +72,13 @@
         "Promise"   : true,
         "require"   : true,
         "exports"   : true,
-        "module"    : true
+        "module"    : true,
+        "angular"   : true,
+        "$"         : true,
+        "window"    : true,
+        "FB"        : true,
+        "document"  : true,
+        "_"         : true,
+        "imageUrl"  : true
     }
 }

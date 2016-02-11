@@ -7,7 +7,6 @@ if (typeof(makeResponsive) === 'undefined') {
 			for(var i = x.length - 1; i >= 0; i--) {
 				var  iframe = document.createElement('IFRAME'); 
 				iframe.setAttribute('src', x[i].getAttribute('data-href')); 
-
 				iframe.style.border = 'none';
 				iframe.className  ='banner';
 

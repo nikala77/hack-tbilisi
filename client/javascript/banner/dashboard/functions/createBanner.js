@@ -13,6 +13,7 @@ function createBanner(useBtn, name, width, height, userID, url, data, template) 
 		url: '/api/banner/new',
 		method: 'POST',
 		data: banner,
+		async: false,
 		timeout: 3000,
 
 		beforeSend: function() {

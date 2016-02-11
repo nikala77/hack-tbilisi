@@ -7,17 +7,18 @@
 				<img src="images/blue.png" class="img-rounded" />
 			</div>
 			<h4>Sign Up</h4>
-			<form>
+			<form action="/signup" method="POST" id="signup">
 				<div class="form-group">
-					<label for="email">Email address:</label>
-					<input type="email" id="signupemail" class="form-control" placeholder="Enter Email">
+					<label for="signupemail">Email address:</label>
+					<input type="email" name="email" id="signupemail" class="form-control" placeholder="Enter Email">
 				</div>
 				<div class="form-group">
-					<label for="password">Password:</label>
-					<input type="password" id="signuppass" class="form-control" placeholder="Enter Password">
+					<label for="signuppass">Password:</label>
+					<input type="password" name="password" id="signuppass" class="form-control" placeholder="Enter Password">
 				</div>
+				<h5 class="signup-warning"></h5>
 				<div class="form-group">
-					<buton type="submit" id="signup" class="btn btn-success btn-block">Sign Up</button>
+					<button type="submit" class="btn btn-success btn-block">Sign Up</button>
 				</div>
 				<div class="form-group">
 					<a href="/login"> Cancel </a>
