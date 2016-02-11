@@ -1,0 +1,81 @@
+{% extends "./layout.html" %}
+{% block content %}
+	<div class="header">
+		<header>
+			<div class="logo">
+				<a href="dashboard" >
+					<img src="/images/blue.png" />
+				</a>
+			</div>
+			<div class="buttons">
+				<button class="btn btn-success btn-primary preview-btn" data-toggle="modal" data-target="#preview"><i class="fa fa-play-circle"></i> Preview</button>
+				<button class="btn btn-danger" data-toggle="modal" data-target="#publish"><i class="fa fa-arrow-circle-up"></i> Publish</button>
+				<button class="btn btn-warning" id="save"><i class="fa fa-floppy-o"></i> Save</button>
+				<input type="text" id="bannername" class="form-control" style="max-width: 200px; display: inline-block; height: 35px;" value="{{ banner.name }}">
+			</div>
+			{% include "./preview.html" %}
+			{% include "./publish.html" %}
+		</header>
+		<div class="main">
+			<div class="dropdown-container">
+				<div class="bannersize-dropdown">
+				  	<button class="btn btn-default dropdown-toggle" type="button" id="banenrsize" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    	Change Banner Size
+				    	<span class="caret"></span>
+				  	</button>
+				  	<ul class="dropdown-menu baner-size-dropdown" aria-labelledby="banenrsize">
+				    	<li>
+				    		<h4>200X200</h4>
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>300X300</h4>	
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>728X90</h4>	
+							<hr>
+				    	</li>
+				    	<li>
+				    		<h4>120X600</h4>	
+				    		<hr>
+				    	</li>
+				    	<li>
+				    		<h4>160X600</h4>	
+				    		<hr>
+				    	</li>
+				    	<li style="text-align:initial;">
+				    		<div class="custom-size">
+					    		<label>custom size</label><br>
+						        	<span>width:</span><input class="custom-size-width" type="number">
+						        	<span>height:</span><input class="custom-size-height" type="number"><br>
+					      			<button class="btn btn-primary">ok</button>
+					      	</div>
+				    	</li>
+				  	</ul>
+				</div>
+				<div class="animations-dropdown">
+					<button class="btn btn-default dropdown-toggle" type="button" id="animdropdown" data-toggle="dropdown">
+				    	Animations
+				    	<span class="caret"></span>
+				  	</button>
+				  	{% include "./animation_dropdown.html" %}
+				</div>
+		  	</div>
+		</div>
+	</div>	
+
+	{% include "./sidebar.html" %}
+	<div class="working-board">
+		<div class="working-banner" style="width: {{ banner.width }}px; height: {{ banner.height }}px"></div>
+	</div>
+	<div class="scalebar">
+		<div class="scale-plus">
+			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		</div>
+		<hr>
+		<div class="scale-minus">
+			<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+		</div>
+	</div>
+{% endblock %}

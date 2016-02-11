@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row signuprow">
+	<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 signup_form">
+		<div>
+			<div class="logo">
+				<img src="images/blue.png" class="img-rounded" />
+			</div>
+			<h4>Sign Up</h4>
+			<form action="/signup" method="POST" id="signup">
+				<div class="form-group">
+					<label for="signupemail">Email address:</label>
+					<input type="email" name="email" id="signupemail" class="form-control" placeholder="Enter Email">
+				</div>
+				<div class="form-group">
+					<label for="signuppass">Password:</label>
+					<input type="password" name="password" id="signuppass" class="form-control" placeholder="Enter Password">
+				</div>
+				<h5 class="signup-warning"></h5>
+				<div class="form-group">
+					<button type="submit" class="btn btn-success btn-block">Sign Up</button>
+				</div>
+				<div class="form-group">
+					<a href="/login"> Cancel </a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
