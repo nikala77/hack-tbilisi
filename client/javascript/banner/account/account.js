@@ -1,23 +1,32 @@
 $(function () {
 
 	// login form
-	$('#login').on('click', function () {
+	$('#login').on('submit', function (e) {
+		e.preventDefault();
+		var that = $(this);
 		var email = $('#loginemail').val().trim();
 		var password = $('#loginpassword').val().trim();
 
 		if (!email || !password) {
-			alert('please fill the fields!!!')
+			showValidation($('.login-warning'), 'Please fill all fields!', 'error');
 		} else {
 			$.ajax({
 				type: 'POST',
 				url: '/login',
 				data: { email: email, password: password },
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
 					document.location.href = '/';
+				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
 				}
 			}).fail(function (data) {
 				var message = JSON.parse(data.responseText).message; 
-			}) 
+				showValidation($('.login-warning'), message, 'error');
+			});
 		}
 	});
 
@@ -27,7 +36,7 @@ $(function () {
 	// signup form 
 	$('#signup').on('submit', function (e) {
 		e.preventDefault();
-
+		var that = $(this);
 		var email = $('#signupemail').val().trim();
 		var password = $('#signuppass').val().trim();
 
@@ -49,10 +58,16 @@ $(function () {
 				type: 'POST',
 				url: '/signup',
 				data: $('#signup').serialize(),
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
 					document.location.href='/login?type=success'+
 					'&message='+ data.message;
 				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
+				}
 			}).fail(function (data) {
 				showValidation($('.signup-warning'), data.responseJSON.reason, 'error');
 			});
@@ -64,7 +79,7 @@ $(function () {
 	// forgot
 	$('#forgot').on('submit', function (e) {
 		e.preventDefault();
-
+		var that = $(this);
 		var email = $('#forgotemail').val().trim();
 
 		if (!email) {
@@ -80,10 +95,16 @@ $(function () {
 				type: "POST",
 				url: '/forgot',
 				data: $('#forgot').serialize(),
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
 					document.location.href='/login?type=success'+
 					'&message='+ data.message;
-				}, 
+				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
+				}
 			}).fail(function (data) {
 				showValidation($('.forgot-warning'), data.responseJSON.message, 'error');
 			});
@@ -93,7 +114,7 @@ $(function () {
 	// reset
 	$('#reset').on('submit', function (e) {
 		e.preventDefault();
-
+		var that = $(this);
 		var password = $('#resetpass').val().trim();
 		var repeatPassword = $('#repeatpass').val().trim();
 
@@ -114,10 +135,16 @@ $(function () {
 				type: 'POST',
 				url: document.location.pathname,
 				data: { password: password, repeatPassword: repeatPassword },
+				beforeSend: function() {
+					startLoading(that.find('button[type=submit]'));
+				},
 				success: function (data) {
 					document.location.href='/login?type=success'+
 					'&message='+ data.message;;
-				}, 
+				},
+				complete: function() {
+					finishLoading(that.find('button[type=submit]'));
+				}
 			}).fail(function (data) {
 				showValidation($('.reset-warning'), data.message, 'error');
 			});
