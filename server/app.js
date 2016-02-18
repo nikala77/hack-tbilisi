@@ -10,6 +10,7 @@ var db = mongoose.connect(configuration.db.uri, configuration.db.options, functi
 		console.error('Could not connect to MongoDB!', err);
 	}
 });
+
 mongoose.connection.on('error', function(err) {
 	console.error('MongoDB connection error: ' + err);
 	process.exit(-1);

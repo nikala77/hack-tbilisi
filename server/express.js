@@ -10,7 +10,6 @@ var	config         = require('../config/env');
 var	consolidate    = require('consolidate');
 var session 	   = require('express-session');
 var passport 	   = require('passport');
-var	configuration  = config.configuration;
 
 module.exports = function() {
 	// Initialize express app
@@ -22,7 +21,7 @@ module.exports = function() {
 	requireDir('./models', { recurse: true });
 
 	// Set swig as the template engine
-	app.set('PORT' , (process.env.PORT || configuration.server.PORT))
+	app.set('PORT' , (process.env.PORT || config.server.PORT))
 		// Set swig as the template engine
 		.engine('html', consolidate.swig)
 		// Set views path and view engine

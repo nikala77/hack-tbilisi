@@ -6,7 +6,7 @@ var paths   = require('../config/gulp').paths;
 
 gulp.task('test', function() {
     if (!process.env.NODE_ENV) {
-            process.env.NODE_ENV = 'test';
+        process.env.NODE_ENV = 'test';
     }
     var scanPaths = argv.path ?
         argv.path :

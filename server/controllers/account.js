@@ -20,10 +20,14 @@ exports.getLogin = function(req, res) {
 
 exports.postLogin = function (req, res, next) {
     passport.authenticate('local', function(err, user, info) {
-        if (err) return next(err)
+        if (err) {
+            return next(err);
+        }
+
         if (!user) {
             return res.status(404).json(info);
         }
+
         req.logIn(user, function(err) {
             if (err) return next(err);
             
@@ -197,6 +201,7 @@ exports.postReset = function (req, res) {
         });
     });
 }
+
 exports.logout = function (req, res) {
     req.session.destroy(function (err) {
         res.redirect('/logout'); //Inside a callback… bulletproof!
