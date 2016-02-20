@@ -1,6 +1,6 @@
 module.exports = {
 	db: {
-			uri: 'mongodb://localhost:27017/bannermaker',
+			uri: 'mongodb://localhost:27017/bannermaker-test',
 			options: {
 				user: '',
 				pass: ''

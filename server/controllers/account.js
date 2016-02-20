@@ -31,7 +31,7 @@ exports.postLogin = function (req, res, next) {
         req.logIn(user, function(err) {
             if (err) return next(err);
             
-            return res.status(200).json({success: true});
+            return res.status(200).json({ success: true });
         });
     })(req, res, next);
 }

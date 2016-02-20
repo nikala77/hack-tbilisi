@@ -3,21 +3,21 @@ var bcrypt   = require('bcrypt-nodejs');
 var Schema   = mongoose.Schema;
 
 var userSchema = new Schema({
-    local            : {
+    local: {
         email        : String,
         password     : String,
         avatar       : { type: String, default: '/images/avatar.png' },
         resetPasswordToken: String,
         resetPasswordExpires: Date
     },
-    facebook         : {
+    facebook: {
         id           : String,
         token        : String,
         email        : String,
         name         : String,
         avatar       : String
     },
-    google           : {
+    google: {
         id           : String,
         token        : String,
         email        : String,
@@ -25,15 +25,6 @@ var userSchema = new Schema({
         avatar       : String
     }
 });
-
-// userSchema.methods.generateHash = function(password) {
-//     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-// };
-
-// // checking if password is valid
-// userSchema.methods.validPassword = function(password) {
-//     return bcrypt.compareSync(password, this.local.password);
-// };
 
 userSchema.methods.comparePassword = function(candidatePassword, callback) {
   bcrypt.compare(candidatePassword, this.local.password, function(err, isMatch) {
@@ -43,11 +34,13 @@ userSchema.methods.comparePassword = function(candidatePassword, callback) {
 };
 
 userSchema.pre('save', function (next) {
-    var user = this,
-        SALT_FACTOR = 5;
+    var user = this;
+    var SALT_FACTOR = 5;
 
     // only hash the password if it has been modified (or is new)
-    if (!user.isModified('local.password')) return next();  
+    if (!user.isModified('local.password')) {
+        return next();
+    }
 
     bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
         if (err) return next(err);
