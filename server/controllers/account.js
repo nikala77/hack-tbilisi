@@ -160,7 +160,7 @@ exports.postReset = function (req, res) {
         return new Promise(function (resolve, reject) {
             User.findOne({ 'local.resetPasswordToken': req.params.token , 'local.resetPasswordExpires': { $gt: Date.now() } }, function(err, user) {
                 if (!user) {
-                    return res.status(404).json({message: 'Password reset token is invalid or has expired!'});
+                    return res.status(404).json({ message: 'Password reset token is invalid or has expired!' });
                 }
 
                 user.local.password = req.body.password;
@@ -187,7 +187,7 @@ exports.postReset = function (req, res) {
         });
         var mailOptions = {
             to: user.local.email,
-            from: 'Bannermaker@project.com',
+            from: 'bannermaker',
             subject: 'Your password has been changed',
             text: 'Hello,\n\n' +
                 'This is a confirmation that the password for your account ' + user.local.email + ' has just been changed.\n'

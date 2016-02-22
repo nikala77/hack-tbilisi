@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.69% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/26</span>
+        <span class='fraction'>16/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">47.62% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/21</span>
+        <span class='fraction'>10/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">0% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/1</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.69% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/26</span>
+        <span class='fraction'>16/26</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -91,32 +91,32 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,36 +132,36 @@
 // TODO: test it
 module.exports = {
     /* jshint maxstatements: 20 */
-    processError: <span class="fstat-no" title="function not covered" >function(err, dataType, res, next) {</span>
-<span class="cstat-no" title="statement not covered" >        if (arguments.length !== 4) {</span>
+    processError: function(err, dataType, res, next) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (arguments.length !== 4) {
 <span class="cstat-no" title="statement not covered" >            throw new Error('Invalid processError call. Must be called with err, dataType, res, next parameters');</span>
         }
         
-<span class="cstat-no" title="statement not covered" >        var resStatus;</span>
-<span class="cstat-no" title="statement not covered" >        if (errorUtil.isUnauthorizedError(err)) {</span>
+        var resStatus;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (errorUtil.isUnauthorizedError(err)) {
 <span class="cstat-no" title="statement not covered" >            resStatus = 401;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (errorUtil.isAccessDeniedError(err)) {</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (errorUtil.isAccessDeniedError(err)) {
 <span class="cstat-no" title="statement not covered" >            resStatus = 403;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (errorUtil.isObjectNotFoundError(err)) {</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (errorUtil.isObjectNotFoundError(err)) {
 <span class="cstat-no" title="statement not covered" >            resStatus = 404;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (errorUtil.isInvalidObjectIdError(err)) {</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (errorUtil.isInvalidObjectIdError(err)) {
 <span class="cstat-no" title="statement not covered" >            resStatus = 422;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (errorUtil.isObjectValidationError(err)) {</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (errorUtil.isObjectValidationError(err)) {
 <span class="cstat-no" title="statement not covered" >            resStatus = 422;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (errorUtil.isUnprocessableRequestError(err)) {</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (errorUtil.isUnprocessableRequestError(err)) {
 <span class="cstat-no" title="statement not covered" >            resStatus = 422;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (errorUtil.isDuplicateObjectError(err)) {</span>
-<span class="cstat-no" title="statement not covered" >            resStatus = 409;</span>
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (errorUtil.isDuplicateObjectError(err)) {
+            resStatus = 409;
         }
         
-<span class="cstat-no" title="statement not covered" >        if (resStatus) {</span>
-<span class="cstat-no" title="statement not covered" >            res = res.status(resStatus);</span>
-<span class="cstat-no" title="statement not covered" >            switch (dataType) {</span>
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (resStatus) {
+            res = res.status(resStatus);
+            switch (dataType) {
                 case 'json':
-<span class="cstat-no" title="statement not covered" >                    return res.json({ reason: err.message, info: err.info });</span>
-                case 'html':
+                    return res.json({ reason: err.message, info: err.info });
+<span class="branch-1 cbranch-no" title="branch not covered" >                case 'html':</span>
 <span class="cstat-no" title="statement not covered" >                    return res.send(err.message);</span>
-                default:
+<span class="branch-2 cbranch-no" title="branch not covered" >                default:</span>
 <span class="cstat-no" title="statement not covered" >                    return res.json({ reason: err.message, info: err.info });</span>
             }
         }
@@ -175,7 +175,7 @@ module.exports = {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Feb 20 2016 00:30:55 GMT+0400 (GET)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 23 2016 02:16:58 GMT+0400 (GET)
 </div>
 </div>
 <script src="../../prettify.js"></script>

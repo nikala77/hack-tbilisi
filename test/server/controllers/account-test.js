@@ -28,6 +28,7 @@ describe('forgot-password', function(done) {
 
 
 	it('should return status 200 user password reset instruction sent', function(done) {
+		this.timeout(5000);
 		request(app)
 			.post('/forgot')
 			.send({ email: 'kakhidze2012@gmail.com' })
@@ -98,7 +99,6 @@ describe('signup User', function(done) {
 			.post('/signup')
 			.send({ email: 'kakhidze2012@mail.ru', password: 'acmilan' })
 			.end(function(err, res) {
-				console.log(res.body);
 				res.status.should.be.equal(200)
 				res.body.should.be.json;
 				res.body.should.have.property('message');
@@ -109,4 +109,40 @@ describe('signup User', function(done) {
 	});
 
 	after(testUtil.deleteUser);
+});
+
+describe('reset password', function(done) {
+	User.collection.drop();
+
+	beforeEach(testUtil.createUserWithToken);
+
+	it('should return token invalid error', function(done) {
+
+		request(app)
+			.post('/reset/wrong-token')
+			.end(function(err, res) {
+				res.status.should.be.equal(404);
+				res.body.should.be.json;
+				res.body.should.have.property('message');
+				res.body.message.should.be.equal('Password reset token is invalid or has expired!');
+				done();
+			});
+
+
+	});
+
+	it('should return password has changed successfully', function(done) {
+		request(app)
+			.post('/reset/test-token')
+			.end(function(err, res) {
+				res.status.should.be.equal(200);
+				res.body.should.be.json;
+				res.body.should.have.property('message');
+				res.body.message.should.be.equal('Your password has just been changed!');
+				done();
+			});
+	});
+
+	afterEach(testUtil.deleteUser);
+
 });
