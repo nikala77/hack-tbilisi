@@ -1,39 +1,28 @@
-// var Promise   = require('bluebird');
-// var _         = require('lodash');
-// var mongoose  = require('mongoose');
-// var db        = require('../../server/util/mongoose');
-// var TestError = require('./test-error');
-// require('../../server/util/promisify');
+var app 	 = require('../../server/app');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
-// before(function(done) {
-//     return db.connect(function(err) {
-//         if (err) { return done(new TestError(err)); }
-//         _clearDb(done);
-//     });
-// });
+var testUtil = {
 
-// afterEach(function(done) {
-//     _clearDb(done);
-// });
+	createUser: function(done) {
+		var user = new User({
+			'local.email': 'kakhidze2012@gmail.com',
+			'local.password': 'acmilan'
+		});
 
-// after(function(done) {
-//     _clearDb(function(err) {
-//         if (err) { return done(new TestError(err)); }
-//         db.disconnect(done);
-//     });
-// });
+		user.save(function(err) {
+			if(err) {
+				throw err;
+			}
+			done();
+		});
+	},
 
-// function _clearDb(done) {
-//     var promises = _(mongoose.models)
-//         .keys()
-//         .map(function(modelName) {
-//             return mongoose.model(modelName).removeAsync();
-//         })
-//         .value();
+	deleteUser: function(done) {
+		User.collection.drop();
+		done();
+	}
 
-//     Promise.all(promises)
-//         .then(function() {
-//             done();
-//         })
-//         .catch(done);
-// }
+};
+
+module.exports = testUtil;
