@@ -1,5 +1,5 @@
 function InvalidOjectIdError(id) {
-  this.message = id + ' is not valid ObjectId';
+  this.message = id;
   this.name = 'InvalidOjectIdError';
 }
 

@@ -1,10 +1,15 @@
 var app 	 = require('../../server/app');
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+
+var User 	 = mongoose.model('User');
+var Banner 	 = mongoose.model('Banner');
 
 var testUtil = {
 
 	createUser: function(done) {
+		User.collection.drop();
+		Banner.collection.drop();
+
 		var user = new User({
 			'local.email': 'kakhidze2012@gmail.com',
 			'local.password': 'acmilan'
@@ -20,6 +25,7 @@ var testUtil = {
 
 	deleteUser: function(done) {
 		User.collection.drop();
+		Banner.collection.drop();
 		done();
 	},
 
@@ -38,6 +44,10 @@ var testUtil = {
 			done();
 		});
 	},
+
+	logIn: function(user) {
+		
+	}
 
 	
 };

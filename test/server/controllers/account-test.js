@@ -9,7 +9,6 @@ var should 	 	= chai.should();
 var User = mongoose.model('User');
 
 describe('forgot-password', function(done) {
-	User.collection.drop();
 
 	before(testUtil.createUser);
 
@@ -45,7 +44,6 @@ describe('forgot-password', function(done) {
 });
 
 describe('signup User', function(done) {
-	User.collection.drop();
 
 	before(testUtil.createUser);
 
@@ -112,7 +110,6 @@ describe('signup User', function(done) {
 });
 
 describe('reset password', function(done) {
-	User.collection.drop();
 
 	beforeEach(testUtil.createUserWithToken);
 

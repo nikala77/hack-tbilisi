@@ -58,14 +58,14 @@ exports.createBanner = function(req, res, next) {
 			banner.userID = mongoose.Types.ObjectId(banner.userID);
 			return Promise.resolve();
 		} catch(err) {
-			return errorUtil.rejectWithObjectNotFoundError('User With this ID', 'Provided UserID isnot valid');
+			return errorUtil.rejectWithObjectInvalidError('Provided UserID is not valid');
 		}
 	}
 
 	validateParams()
 	.then(function() {
 		if(!name || !width || !height) {
-			return errorUtil.rejectWithObjectInvalidError('Banner Object isn\'t valid', 'Banner name, width or height isnot defined');
+			return errorUtil.rejectWithObjectInvalidError('Banner name, width or height is not defined');
 		}
 		return errorUtil.resolve();
 	})
@@ -74,7 +74,7 @@ exports.createBanner = function(req, res, next) {
 	})
 	.then(function(data) {
 		if(!data) {
-			return errorUtil.rejectWithObjectNotFoundError('User With this ID', 'Provided UserID isnot valid');
+			return errorUtil.rejectWithObjectNotFoundError('User with this ID');
 		}
 		return new Banner(banner).save();
 	})
@@ -82,7 +82,6 @@ exports.createBanner = function(req, res, next) {
 		return res.status(301).send(data._id);
 	})
 	.catch(function(err) {
-		console.log(err);
 		return httpUtil.processError(err, 'json', res, next);
 	});
 };
