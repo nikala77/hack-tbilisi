@@ -23,9 +23,17 @@ exports.getDashboard = function(req, res) {
 };
 
 exports.getBannerNew = function(req, res) {
-	res.render('dashboard/banners.html', {
-		user 		: req.user,
-		pageName	: 'Bannermaker',
+	Promise.resolve(Banner.count({ userID: req.user.id }))
+	.then(function(count) {
+		var banners = new Array(count);
+		res.render('dashboard/banners.html', {
+			pageName	: 'Bannermaker',
+			user 		: req.user,
+			banners 	: banners
+		});
+	})
+	.catch(function(err) {
+		httpUtil.processError(err, 'json', res, next);
 	});
 };
 

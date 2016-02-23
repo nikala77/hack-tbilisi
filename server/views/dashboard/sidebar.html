@@ -5,9 +5,9 @@
 				<img src="{{ user.facebook.avatar || user.google.avatar || user.local.avatar }}" alt="profile image" class="img img-circle">
 			</span>
 		</a>
-		<span class="username" data-toggle="popover">
-			{{ user.facebook.name || user.google.name || 'Profile' }}
-			<i class="fa fa-caret-right"></i>
+		<span class="username">
+			<span class="username-title">{{ user.facebook.name || user.google.name || user.local.email }}</span>
+			<i class="fa fa-caret-right username-caret"></i>
 		</span>
 	</div>
 
@@ -22,7 +22,7 @@
 			</li>
 			<li>
 				<a href="/dashboard/banner/new">
-					<i class="fa fa-bar-chart"></i>
+					<i class="fa fa-newspaper-o"></i>
 					<span>New Banner</span>
 					<div class="triangle-right"></div>
 				</a>
