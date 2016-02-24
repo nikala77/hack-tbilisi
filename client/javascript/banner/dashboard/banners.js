@@ -1,12 +1,5 @@
 $(function() {
 
-	// show tools on mouseover
-	$('.banner-thumbnail').on('mouseover', function() {
-		$(this).find('.tools').show();
-	}).on('mouseout', function() {
-		$(this).find('.tools').hide();
-	});
-
 	$('#banner-width').on('keyup', function() {
 		$('.custom-size-rectangle').width(Number($(this).val()));
 		alignMiddle($('.custom-size-rectangle'), $('.scrollable'));
@@ -18,7 +11,20 @@ $(function() {
 	});
 
 	$('.edit-banner').on('click', function() {
-		window.open('/editor/' + $(this).data('id'));
+		window.open('/editor/' + $(this).parent().data('banner-id'));
+	});
+
+	$('.delete-banner').on('click', function() {
+		var id = $(this).parent().data('banner-id');
+		var name = $(this).parent().data('banner-name');
+
+		$('.delete-banner-name').text(name);
+		$('.modal-banner-delete').data('href', '/api/banner/delete/' + id);
+	});
+
+	$('.modal-banner-delete').on('click', function() {
+		var href = $(this).data('href');
+		deleteBanner($(this), href);
 	});
 
 	function alignMiddle(child, parent) {

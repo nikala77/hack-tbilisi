@@ -18,4 +18,7 @@ module.exports = function(app) {
 	app.route('/api/banner/new')
 				.post(dashboard.createBanner);
 
+	app.route('/api/banner/delete/:id')
+				.delete(dashboard.deleteBanner);
+
 };

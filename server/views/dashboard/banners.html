@@ -4,20 +4,74 @@
 	<div>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane" id="banners">
-				{% for banner in banners %}
-				<div class="banner-thumbnail" data-json="{{ banner.data }}">
-					<div class="thumbnail">
-						<img src="/images/placeholder.jpg" alt="placeholder">
-						<div class="caption">
-							<h5>{{ banner.name }}</h5>
+				<div class="table-responsive">
+					<table class="table table-hover banners-table">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Url</th>
+								<th>Created At</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for banner in banners %}
+							<tr>
+								<td>
+									<span>
+										{{ loop.index }}
+									</span>
+								</td>
+								<td>{{ banner.name }}</td>
+								<td>{{ banner.url || 'http://www.example.com' }}</td>
+								<td>{{ banner.createdAt | date('d-m-Y')  }}</td>
+								<td data-banner-id="{{ banner.id }}" data-banner-name="{{ banner.name }}">
+									<button class="btn btn-primary preview-banner" data-json="{{ banner.data }}">
+										<i class="fa fa-television"></i>
+									</button>
+
+									<button class="btn btn-success edit-banner" title="edit">
+										<i class="fa fa-pencil-square-o"></i>
+									</button>
+
+									<button class="btn btn-danger delete-banner" title="delete" data-toggle="modal" data-target="#delete-modal">
+										<i class="fa fa-trash"></i>
+									</button>
+								</td>
+							</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Delete Banner Modal -->
+				<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="delete-modal">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">
+									Delete Banner
+								</h4>
+							</div>
+							<div class="modal-body">
+								<p class="text-danger">
+									Do you really want to delete  
+									<span class="delete-banner-name"></span>
+									?
+								</p>
+							</div>
+							<div class="modal-footer">
+								<button href="#" class="btn btn-danger modal-banner-delete">
+									Delete
+								</button>
+								<button class="btn btn-default" data-dismiss="modal">
+									Cancel
+								</button>
+							</div>
 						</div>
 					</div>
-					<div class="tools">
-						<i class="fa fa-pencil-square-o edit-banner" data-id="{{ banner.id }}"></i>
-						<i class="fa fa-trash-o delete-banner" data-id="{{ banner.id }}"></i>
-					</div>
 				</div>
-				{% endfor %}
 			</div>
 			
 			<div role="tabpanel" class="tab-pane" id="statistics">

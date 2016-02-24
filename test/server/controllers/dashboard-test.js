@@ -71,6 +71,33 @@ describe('add new banner', function(done) {
 	after(testUtil.deleteUser);
 });
 
+
+describe('delete banner', function(done) {
+	before(testUtil.createUser);
+
+	it('should delete banner successfully', function(done) {
+
+		Promise.resolve(User.findOne({ 'local.email': 'kakhidze2012@gmail.com' }))
+		.then(function(user) {
+			return testUtil.createBanner(user.id);
+		})
+		.then(function(banner) {
+			request(app)
+				.delete('/api/banner/delete/'+ banner.id)
+				.end(function(err, res) {
+					res.status.should.be.equal(200);
+					res.body.should.have.property('message');
+					res.body.message.should.be.equal('Banner has successfully deleted!');
+					done();
+				});
+		})
+
+
+	});
+
+	after(testUtil.deleteUser);
+});
+
 describe('get banner statistics', function(done) {
 	before(testUtil.createUser);
 	

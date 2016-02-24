@@ -1,4 +1,5 @@
 var app 	 = require('../../server/app');
+var Promise	 = require('bluebird');
 var mongoose = require('mongoose');
 
 var User 	 = mongoose.model('User');
@@ -47,6 +48,16 @@ var testUtil = {
 
 	logIn: function(user) {
 		
+	},
+
+	createBanner: function(id) {
+		return new Banner({ 
+					userID: id,
+					name: 'myBanner',
+					width: 728,
+					height: 90
+				}).save();
+
 	}
 
 	
