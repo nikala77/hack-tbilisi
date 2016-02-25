@@ -6,6 +6,7 @@
 			<div role="tabpanel" class="tab-pane" id="banners">
 				<div class="alert alert-success delete-alert">
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<div class="delete-text"></div>
 				</div>
 				<div class="table-responsive">
 					<table class="table table-hover banners-table">
@@ -30,10 +31,6 @@
 								<td>{{ banner.url || 'http://www.example.com' }}</td>
 								<td>{{ banner.createdAt | date('d-m-Y')  }}</td>
 								<td data-banner-id="{{ banner.id }}" data-banner-name="{{ banner.name }}">
-									<button class="btn btn-primary preview-banner" data-json="{{ banner.data }}" data-target="#preview-modal" data-toggle="modal">
-										<i class="fa fa-television"></i>
-									</button>
-
 									<button class="btn btn-success edit-banner" title="edit">
 										<i class="fa fa-pencil-square-o"></i>
 									</button>
@@ -49,7 +46,38 @@
 				</div>
 			</div>
 			
-			<div role="tabpanel" class="tab-pane" id="statistics">
+			<div role="tabpanel" class="tab-pane statistics" id="statistics">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="panel panel-banners">
+							<div class="panel-heading"> <h4> Total </h4></div>
+							<div class="panel-body">
+								<h1> {{ total.count || '0' }} </h1>
+							</div>
+							<div class="panel-footer"> <h4> Banners </h4> </div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="panel panel-views">
+							<div class="panel-heading"> <h4> Total </h4></div>
+							<div class="panel-body">
+								<h1> {{ total.views || '0' }} </h1>
+							</div>
+							<div class="panel-footer"> <h4> Views </h4> </div>
+						</div>
+					</div>
+
+					<div class="col-md-4">
+						<div class="panel panel-clicks">
+							<div class="panel-heading"> <h4> Total </h4></div>
+							<div class="panel-body">
+								<h1> {{ total.clicks || '0' }} </h1>
+							</div>
+							<div class="panel-footer"> <h4> Clicks </h4> </div>
+						</div>
+					</div>
+				</div>
 				<div class="table-responsive">
 					<table class="table table-hover table-striped">
 						<thead>

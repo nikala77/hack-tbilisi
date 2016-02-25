@@ -2,6 +2,7 @@ var mongoose  = require('mongoose');
 var User 	  = mongoose.model('User');
 var Banner 	  = mongoose.model('Banner');
 var Promise   = require('bluebird');
+var Q 		  = require('q');
 var errorUtil = require('../util/errorUtil');
 var httpUtil  = require('../util/httpUtil');
 
@@ -38,15 +39,45 @@ exports.getBannerNew = function(req, res) {
 };
 
 exports.getBannerStatistics = function(req, res) {
-	// API get all banners by user ID
-	Promise.resolve(Banner.find({ userID: req.user.id }, 
-	{ 'name': 1, 'createdAt': 1, 'updatedAt': 1, 'views': 1, 'clicks': 1 })
-	.sort({ updatedAt: -1 }))
+	var total;
+	var deferred = Q.defer();
+
+	Banner.aggregate([
+		{ 
+			$match: { 
+				userID: mongoose.Types.ObjectId(req.user.id) 
+			} 
+		},
+		{ 
+			$group: {
+				_id: '$userID',
+				clicks: { $sum: '$clicks' },
+				views:  { $sum: '$views' },
+				count:  { $sum: 1 }
+			}
+		}
+	], function(err, data) {
+		if(err) {
+			deferred.reject(err);
+		}
+
+		deferred.resolve(data);
+	})
+
+	deferred.promise
+	.then(function(data) {
+		total = data[0];
+
+		return Promise.resolve(Banner.find({ userID: req.user.id }, 
+			{ 'name': 1, 'createdAt': 1, 'updatedAt': 1, 'views': 1, 'clicks': 1 })
+			.sort({ updatedAt: -1 }));
+	})
 	.then(function(banners) {
 		res.render('dashboard/banners.html', {
 			pageName	: 'Bannermaker',
 			user 		: req.user,
 			banners 	: banners,
+			total		: total
 		});
 	})
 	.catch(function(err) {

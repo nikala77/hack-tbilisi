@@ -43,16 +43,16 @@ function showDeleteAlert(tag, status, text, time) {
 
 	if(status === 'success') {
 		tag.removeClass('alert-warning').addClass('alert-success');
-		tag.text(text);
+		tag.find('.delete-text').text(text);
 		tag.show();
 	} else {
 		tag.removeClass('alert-success').addClass('alert-warning');
-		tag.text(text);		
+		tag.find('.delete-text').text(text);		
 		tag.show();
 	}
 
 	// hide alert after some time
-	setTimeout(function() {
+	deleteTimeout = setTimeout(function() {
 		tag.slideUp('slow');
 	}, time);
 };
