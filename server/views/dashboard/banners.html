@@ -4,6 +4,9 @@
 	<div>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane" id="banners">
+				<div class="alert alert-success delete-alert">
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+				</div>
 				<div class="table-responsive">
 					<table class="table table-hover banners-table">
 						<thead>
@@ -19,7 +22,7 @@
 							{% for banner in banners %}
 							<tr>
 								<td>
-									<span>
+									<span class="loop-index">
 										{{ loop.index }}
 									</span>
 								</td>
@@ -27,7 +30,7 @@
 								<td>{{ banner.url || 'http://www.example.com' }}</td>
 								<td>{{ banner.createdAt | date('d-m-Y')  }}</td>
 								<td data-banner-id="{{ banner.id }}" data-banner-name="{{ banner.name }}">
-									<button class="btn btn-primary preview-banner" data-json="{{ banner.data }}">
+									<button class="btn btn-primary preview-banner" data-json="{{ banner.data }}" data-target="#preview-modal" data-toggle="modal">
 										<i class="fa fa-television"></i>
 									</button>
 
@@ -43,34 +46,6 @@
 							{% endfor %}
 						</tbody>
 					</table>
-				</div>
-
-				<!-- Delete Banner Modal -->
-				<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" id="delete-modal">
-					<div class="modal-dialog modal-sm">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title">
-									Delete Banner
-								</h4>
-							</div>
-							<div class="modal-body">
-								<p class="text-danger">
-									Do you really want to delete  
-									<span class="delete-banner-name"></span>
-									?
-								</p>
-							</div>
-							<div class="modal-footer">
-								<button href="#" class="btn btn-danger modal-banner-delete">
-									Delete
-								</button>
-								<button class="btn btn-default" data-dismiss="modal">
-									Cancel
-								</button>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			

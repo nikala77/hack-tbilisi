@@ -17,14 +17,18 @@ $(function() {
 	$('.delete-banner').on('click', function() {
 		var id = $(this).parent().data('banner-id');
 		var name = $(this).parent().data('banner-name');
+		var index = $(this).closest('tr').index();
 
 		$('.delete-banner-name').text(name);
 		$('.modal-banner-delete').data('href', '/api/banner/delete/' + id);
+		$('.modal-banner-delete').data('index', index);
 	});
 
 	$('.modal-banner-delete').on('click', function() {
 		var href = $(this).data('href');
-		deleteBanner($(this), href);
+		var index = $(this).data('index');
+		var row = $('.banners-table tbody tr').eq(index);
+		deleteBanner($(this), href, row);
 	});
 
 	function alignMiddle(child, parent) {
