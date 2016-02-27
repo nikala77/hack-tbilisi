@@ -3,3 +3,6 @@ node_modules
 client/vendor
 
 # Generated files
+
+#files for test
+config/env/test.js
