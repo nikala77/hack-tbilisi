@@ -5,7 +5,6 @@ var validator    = require('validator');
 var crypto       = require('crypto');
 var nodemailer   = require('nodemailer');
 var emailConf    = require('../../config/env/development').email;
-var Promise      = require('promise');
 var errorUtil    = require('../util/errorUtil');
 var httpUtil     = require('../util/httpUtil');
 var path         = require('path');

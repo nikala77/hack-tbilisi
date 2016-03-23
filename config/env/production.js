@@ -15,8 +15,8 @@ module.exports = {
 	},
 	
 	facebookAuth : {
-		'clientID'		: '1503160056680764',
-		'clientSecret'	: 'b1532a35cc69d183d4d974baae087efc',
+		'clientID'		: '1044588175600350',
+		'clientSecret'	: '3110c323bcc062c5d334a2593a839c82',
 		'callbackURL'	: 'http://bannermaker.herokuapp.com/auth/facebook/callback'
 	},
 

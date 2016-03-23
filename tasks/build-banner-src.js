@@ -9,7 +9,6 @@ var gsourcemaps = require('gulp-sourcemaps');
 var guglify     = require('gulp-uglify');
 var gminifyCss  = require('gulp-minify-css');
 var gorder      = require('gulp-order');
-var gless       = require('gulp-less');
 var args        = require('../config/gulp').args;
 var paths       = require('../config/gulp').paths;
 var filters     = require('../config/gulp').filters;
